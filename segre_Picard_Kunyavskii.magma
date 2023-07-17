@@ -1,0 +1,108 @@
+K:=Integers();
+M:=GL(11,K);
+
+a:=SparseMatrix(K,11,11);
+
+a[1,1]:=1;
+a[2,3]:=1;
+a[3,4]:=1;
+a[4,5]:=1;
+a[5,2]:=1;
+a[6,9]:=1;
+a[7,10]:=1;
+a[8,6]:=1;
+a[9,11]:=1;
+a[10,7]:=1;
+a[11,8]:=1;
+
+b:=SparseMatrix(K,11,11);
+
+b[1,1]:=1;
+b[2,3]:=1;
+b[3,2]:=1;
+b[4,4]:=1;
+b[5,5]:=1;
+b[6,6]:=1;
+b[7,9]:=1;
+b[8,10]:=1;
+b[9,7]:=1;
+b[10,8]:=1;
+b[11,11]:=1;
+
+c:=SparseMatrix(K,11,11);
+
+c[1,1]:=-1;
+c[1,6]:=-1;
+c[1,7]:=-1;
+c[1,8]:=-1;
+c[1,9]:=-1;
+c[1,10]:=-1;
+c[1,11]:=-1;
+
+
+c[1,1]:=-1;
+c[1,6]:=-1;
+c[1,7]:=-1;
+c[1,8]:=-1;
+c[1,9]:=-1;
+c[1,10]:=-1;
+c[1,11]:=-1;
+c[2,1]:=1;
+c[2,2]:=1;
+c[2,6]:=1;
+c[2,7]:=1;
+c[2,8]:=1;
+c[3,1]:=1;
+c[3,3]:=1;
+c[3,6]:=1;
+c[3,9]:=1;
+c[3,10]:=1;
+c[4,1]:=1;
+c[4,4]:=1;
+c[4,7]:=1;
+c[4,9]:=1;
+c[4,11]:=1;
+c[5,1]:=1;
+c[5,5]:=1;
+c[5,8]:=1;
+c[5,10]:=1;
+c[5,11]:=1;
+c[6,11]:=1;
+c[7,10]:=1;
+c[8,9]:=1;
+c[9,8]:=1;
+c[10,7]:=1;
+c[11,6]:=1;
+
+
+
+
+
+a:=Transpose(Matrix(a));
+b:=Transpose(Matrix(b));
+c:=Transpose(Matrix(c));
+
+g:=sub<M|a,b,c>;
+
+
+gm:=GModule(g,[a,b,c]);
+gmt:=GModule(g,[Transpose(a^(-1)),Transpose(b^(-1)),Transpose(c^(-1))]);
+gc:=CohomologyModule(g,gm);
+gcd:=CohomologyModule(g,gmt);
+
+L:=SubgroupLattice(g);
+dlt:={};
+for x in [2..#L] do 
+	H:=L[x];
+	Picco:=Restriction(gc,H);
+	Picdco:=Restriction(gcd,H);
+	//"H1 of Picard:";
+	H11:=CohomologyGroup(Picco,1);
+	//"H1 of Picard Dual:";
+	Hd1:=CohomologyGroup(Picdco,1);
+	H01:=CohomologyGroup(Picco,0);
+	IntegerToString(x) cat ". " cat "Rank of Pic(X3)^G where G= " cat GroupName(H) cat " is " cat IntegerToString(Degree(H01));
+//end if; 
+end for;
+
+
