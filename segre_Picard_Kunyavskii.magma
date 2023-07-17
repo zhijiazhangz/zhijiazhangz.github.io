@@ -1,3 +1,5 @@
+//We use description of the Picard module of M06 bar in Kunyavskii, Propsition 2
+
 K:=Integers();
 M:=GL(11,K);
 
@@ -96,11 +98,9 @@ for x in [2..#L] do
 	H:=L[x];
 	Picco:=Restriction(gc,H);
 	Picdco:=Restriction(gcd,H);
-	//"H1 of Picard:";
-	H11:=CohomologyGroup(Picco,1);
-	//"H1 of Picard Dual:";
-	Hd1:=CohomologyGroup(Picdco,1);
-	H01:=CohomologyGroup(Picco,0);
+	H11:=CohomologyGroup(Picco,1);//This is H1 of the Picard module;
+	Hd1:=CohomologyGroup(Picdco,1);//This is H1 of the dual of the Picard module;
+	H01:=CohomologyGroup(Picco,0);//This is H0 of the Picard module;
 	IntegerToString(x) cat ". " cat "Rank of Pic(X3)^G where G= " cat GroupName(H) cat " is " cat IntegerToString(Degree(H01));
 //end if; 
 end for;
