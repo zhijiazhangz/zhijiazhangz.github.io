@@ -1,0 +1,177 @@
+//this file compute cohomology of the Picard module of \bar M_{0,6} and its dual 
+//the matrix m1 is the 5-cycle in S6 
+//the matrix m2 is the involution of the five points in P3
+//m1 and m2 generates the permuation on five points in P3
+//the matrix m3 is the cremona involution
+//m1,m2,m3 generate the S6
+
+function choose(n,k)//choose k elements without permutation in a list ls
+	
+	if k eq 1 then 	
+		return [[x]:x in [1..n]];
+	end if;
+	t:=choose(n,k-1);
+	res:=[];
+	for x in t do 
+		for y in [x[k-1]+1..n] do 
+			Append(~res,x cat [y]);
+		end for;
+	end for;
+	return res;
+end function;
+
+ind:=AssociativeArray();
+E:=[];
+n:=0;
+
+poss:=choose(5,2);
+
+for i in [1..5] do 
+	n+:=1;
+	E[n]:=[0,i];
+	ind[[0,i]]:=n;
+end for;
+for x in poss do 
+	n+:=1;
+	E[n]:=[x[1],x[2]];
+	ind[[x[1],x[2]]]:=n;
+end for;
+
+E[16]:=[0,0];
+ind[[0,0]]:=16;
+n+:=1;
+m1:=SparseMatrix(Integers(),n,n);
+
+k:=[0,1,2,3,4,5];
+c5:=map<k->k|[<0,0>,<1,2>,<2,3>,<3,4>,<4,5>,<5,1>]>;
+
+
+for i in [1..5] do 
+	m1[c5(i),i]:=1;
+end for;
+
+for i in [6..15] do 	
+	x1:=E[i][1];
+	x2:=E[i][2];
+	tar:=ind[Sort([c5(x1),c5(x2)])];
+	m1[tar,i]:=1;
+end for;
+
+m1[16,16]:=1;
+
+m2:=SparseMatrix(Integers(),n,n);
+
+c2:=map<k->k|[<0,0>,<1,2>,<2,1>,<3,3>,<4,4>,<5,5>]>;
+
+
+for i in [1..5] do 
+	m2[c2(i),i]:=1;
+end for;
+
+for i in [6..15] do 	
+	x1:=E[i][1];
+	x2:=E[i][2];
+	tar:=ind[Sort([c2(x1),c2(x2)])];
+	m2[tar,i]:=1;
+end for;
+
+m2[16,16]:=1;
+m1:=Matrix(m1);
+m2:=Matrix(m2);
+
+
+m3:=SparseMatrix(Integers(),n,n);
+
+e:=AssociativeArray();
+e[1]:=[[0,1],[0,3],[0,4],[1,3],[1,4],[3,4]];
+m3[16,1]:=1;
+for x in e[1] do 
+	tar:=ind[x];
+	m3[tar,1]:=-1;
+end for;
+
+e[2]:=[[0,2],[0,3],[0,4],[2,3],[2,4],[3,4]];
+m3[16,2]:=1;
+for x in e[2] do 
+	tar:=ind[x];
+	m3[tar,2]:=-1;
+end for;
+
+e[3]:=[[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]];
+m3[16,3]:=1;
+for x in e[3] do 
+	tar:=ind[x];
+	m3[tar,3]:=-1;
+end for;
+
+e[4]:=[[0,1],[0,2],[0,4],[1,2],[1,4],[2,4]];
+m3[16,4]:=1;
+for x in e[4] do 
+	tar:=ind[x];
+	m3[tar,4]:=-1;
+end for;
+
+m3[5,5]:=1;
+
+m3[ind[[3,4]],ind[[1,2]]]:=1;
+m3[ind[[1,3]],ind[[1,3]]]:=1;
+m3[ind[[1,4]],ind[[1,4]]]:=1;
+m3[ind[[2,5]],ind[[1,5]]]:=1;
+m3[ind[[2,3]],ind[[2,3]]]:=1;
+m3[ind[[2,4]],ind[[2,4]]]:=1;
+m3[ind[[1,5]],ind[[2,5]]]:=1;
+m3[ind[[1,2]],ind[[3,4]]]:=1;
+m3[ind[[4,5]],ind[[3,5]]]:=1;
+m3[ind[[3,5]],ind[[4,5]]]:=1;
+
+m3[16,16]:=3;
+m3[ind[[0,1]],16]:=-2;
+m3[ind[[0,2]],16]:=-2;
+m3[ind[[0,3]],16]:=-2;
+m3[ind[[0,4]],16]:=-2;
+m3[ind[[1,2]],16]:=-1;
+m3[ind[[1,3]],16]:=-1;
+m3[ind[[1,4]],16]:=-1;
+m3[ind[[2,3]],16]:=-1;
+m3[ind[[2,4]],16]:=-1;
+m3[ind[[3,4]],16]:=-1;
+
+m3:=Matrix(m3);
+
+S6:=Sym(6);
+S6:=sub<S6|S6!(1,2,3,4,5),S6!(1,2),S6!(1,2)(3,4)(5,6)>;
+
+M:=GL(16,Integers());
+MS6:=sub<M|m1,m2,m3>;
+S6:=Sym(6);
+f:=hom<S6->MS6|[S6!(1,2,3,4,5)->m1,S6!(1,2)->m2,S6!(1,2)(3,4)(5,6)->m3]>;
+
+S5:=Sym(5);
+MS5:=sub<M|m1,m2>;
+S5map:=hom<S5->MS5|[S5!(1,2,3,4,5)->m1,S5!(1,2)->m2]>;
+TT:=S5map(S5!(2,3)(4,5));
+sixcycle:=m3*m1*TT;//Find the matrix of the 6-cycle (1,2,3,4,5,6) in S6
+g:=hom<S6->MS6|[S6!(1,2,3,4,5,6)->sixcycle,S6!(1,2)->m2]>;
+
+GM:=GModule(S6,[sixcycle,m2]);
+GMd:=GModule(S6,[Transpose(sixcycle^(-1)),Transpose(m2^(-1))]);
+
+LS:=SubgroupLattice(S6);
+Pic:=CohomologyModule(S6,GM);//This is the Picard moudle
+Picd:=CohomologyModule(S6,GMd);//This is the dual of the Picard module
+zer:=AssociativeArray();
+dlt:={@@};
+
+
+for x in [2..#LS] do 	
+	H:=LS[x];
+	Picco:=Restriction(Pic,H);//This is Picard module restricted to the subgroup H
+	Picdco:=Restriction(Picd,H);//This is the dual of Picard modulerestricted to the subgroup H
+	H11:=CohomologyGroup(Picco,1);//this is H1 of Picard;
+	Hd1:=CohomologyGroup(Picdco,1);//this is H1 of Picard Dual;
+	H01:=CohomologyGroup(Picdco,0);//this is H0 of Picard;
+	IntegerToString(x) cat ". " cat "Rank of Pic(X3)^G where G= " cat GroupName(H) cat " is " cat IntegerToString(Degree(H01));
+
+end for;
+
+
