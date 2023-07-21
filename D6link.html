@@ -124,13 +124,13 @@ h5=(2*z3+3)*y<sub>1</sub>*y<sub>3</sub><sup>2</sup>+(-5*z3-5)*y<sub>2</sub>*y<su
 Equivalently, the inverse is given by blow-up of six lines and two conics in QC (Figure 1), given by 
 <pre>
 line1: L1=y<sub>4</sub>-y<sub>5</sub>=y<sub>3</sub>-y<sub>5</sub>=y<sub>1</sub>+z3*y<sub>2</sub>=0,
-line2: L2=2y<sub>3</sub>-y<sub>4</sub>-y<sub>5</sub>=2y<sub>2</sub>-y<sub>4</sub>+y<sub>5</sub>=2y<sub>1</sub>-z3^2*y<sub>4</sub>+z3^2*y<sub>5</sub>=0,
-line3: L3=y<sub>4</sub>-z3*y<sub>5</sub>=2y<sub>3</sub>+z3^2*y<sub>5</sub>=y<sub>1</sub>+z3^2*y<sub>2</sub>-(z3+2)*y<sub>5</sub>=0,
-line4: L4=y<sub>4</sub>+z3^2*y<sub>5</sub>=y<sub>3</sub>=y<sub>1</sub>+z3^2*y<sub>2</sub>+z3*y<sub>5</sub>=0,
-line5: L5=y<sub>3</sub>+z3*y<sub>4</sub>+y<sub>5</sub>=y<sub>2</sub>-y<sub>4</sub>-z3^2*y<sub>5</sub>=y<sub>1</sub>+2*z3*y<sub>4</sub>+(z3+2)*y<sub>5</sub>=0,
+line2: L2=2y<sub>3</sub>-y<sub>4</sub>-y<sub>5</sub>=2y<sub>2</sub>-y<sub>4</sub>+y<sub>5</sub>=2y<sub>1</sub>-z3<sup>2</sup>*y<sub>4</sub>+z3<sup>2</sup>*y<sub>5</sub>=0,
+line3: L3=y<sub>4</sub>-z3*y<sub>5</sub>=2y<sub>3</sub>+z3<sup>2</sup>*y<sub>5</sub>=y<sub>1</sub>+z3<sup>2</sup>*y<sub>2</sub>-(z3+2)*y<sub>5</sub>=0,
+line4: L4=y<sub>4</sub>+z3<sup>2</sup>*y<sub>5</sub>=y<sub>3</sub>=y<sub>1</sub>+z3<sup>2</sup>*y<sub>2</sub>+z3*y<sub>5</sub>=0,
+line5: L5=y<sub>3</sub>+z3*y<sub>4</sub>+y<sub>5</sub>=y<sub>2</sub>-y<sub>4</sub>-z3<sup>2</sup>*y<sub>5</sub>=y<sub>1</sub>+2*z3*y<sub>4</sub>+(z3+2)*y<sub>5</sub>=0,
 line6: L6=y<sub>4</sub>-z3*y<sub>5</sub>=y<sub>3</sub>-z3*y<sub>5</sub>=y<sub>1</sub>+z3*y<sub>2</sub>=0,
-conic1: R=2y<sub>3</sub>-z3^2*y<sub>4</sub>-z3*y<sub>5</sub>=2y<sub>1</sub>+2*z3*y<sub>2</sub>-z3^2*y<sub>4</sub>+z3*y<sub>5</sub>=0 (in QC),
-conic2: R'=y<sub>3</sub>-y<sub>4</sub>=y<sub>1</sub>+z3^2*y<sub>2</sub>+z3*y<sub>4</sub>-z3*y<sub>5</sub>=0 (in QC).
+conic1: R=2y<sub>3</sub>-z3<sup>2</sup>*y<sub>4</sub>-z3*y<sub>5</sub>=2y<sub>1</sub>+2*z3*y<sub>2</sub>-z3<sup>2</sup>*y<sub>4</sub>+z3*y<sub>5</sub>=0 (in QC),
+conic2: R'=y<sub>3</sub>-y<sub>4</sub>=y<sub>1</sub>+z3<sup>2</sup>*y<sub>2</sub>+z3*y<sub>4</sub>-z3*y<sub>5</sub>=0 (in QC).
 </pre>
 
 <center>
@@ -235,7 +235,7 @@ The image is a smooth quadric Q given by
 <center>
 <pre>
 
-y<sub>1</sub>*y<sub>3</sub>+1/14*(10*z6-9)*y<sub>2</sub>*y<sub>3</sub>+1/14*(10*z6-9)*y<sub>1</sub>*y<sub>4</sub>+1/98*(-43*z6+10)*y<sub>2</sub>*y<sub>4</sub>+1/21*(-5*z6+1)*y<sub>1</sub>*y<sub>5</sub>+1/294*(29*z6+32)*y<sub>2</sub>*y<sub>5</sub>+1/21*(-5*z6+1)*y<sub>3</sub>*y<sub>5</sub>+1/294*(29*z6+32)*y<sub>4</sub>*y<sub>5</sub>+1/294*(-5*z6-41)*y<sub>5</sub>^2
+y<sub>1</sub>*y<sub>3</sub>+1/14*(10*z6-9)*y<sub>2</sub>*y<sub>3</sub>+1/14*(10*z6-9)*y<sub>1</sub>*y<sub>4</sub>+1/98*(-43*z6+10)*y<sub>2</sub>*y<sub>4</sub>+1/21*(-5*z6+1)*y<sub>1</sub>*y<sub>5</sub>+1/294*(29*z6+32)*y<sub>2</sub>*y<sub>5</sub>+1/21*(-5*z6+1)*y<sub>3</sub>*y<sub>5</sub>+1/294*(29*z6+32)*y<sub>4</sub>*y<sub>5</sub>+1/294*(-5*z6-41)*y<sub>5</sub><sup>2</sup>
 	
 	z6 = the (first) primitive 6-th root of unity
 
@@ -257,9 +257,23 @@ and
 											[0, 1, 0, 0, 0,]
 											[0, 0, 0, 0, 1 ]
 </pre>
+A change of variable leads to the D<sub>6</sub>-action
+<center><pre>
+									[-z6+1,  0,      0,      0,     0,]
+									[0,      z6-1,   0,      0,     0,]
+									[0,      0,      -z6,    0,     0,]
+									[0,      0,      0,      z6,    0,]
+									[0,      0,      0,      0,     -1]
 
-
-
-
+											[0, 0, 0, 1, 0,]
+											[0, 0, 1, 0, 0,]
+											[0, 1, 0, 0, 0,]
+											[1, 0, 0, 0, 0,]
+											[0, 0, 0, 0, 1 ]
+</pre></center>
+on the smooth quadric
+<center><pre>
+		y<sub>2</sub>*y<sub>3</sub> + 1/169*(66*z6 - 69)*y<sub>1</sub>*y<sub>4</sub> + 1/2*(-6*z6 + 3)*y<sub>5</sub><sup>2</sup>
+</pre></center>
 
 
