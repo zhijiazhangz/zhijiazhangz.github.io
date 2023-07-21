@@ -181,9 +181,11 @@ t5=(z3+1)*y<sub>1</sub>*y<sub>3</sub>+1/19*(-z3-12)*y<sub>1</sub>*y<sub>4</sub>+
 
 </pre>
 The line in QC
+<center>
 	<pre>
-		L: y<sub>1</sub>+1/3*(z3+2)*y<sub>4</sub>+1/3*(-z3+1)*y<sub>5</sub>=y<sub>2</sub>+1/3*(5*z3+4)*y<sub>4</sub>+1/3*(z3+5)*y<sub>5</sub>=y<sub>3</sub>-2*z3*y<sub>4</sub>+(-z3-1)*y<sub>5</sub>=0
+L: y<sub>1</sub>+1/3*(z3+2)*y<sub>4</sub>+1/3*(-z3+1)*y<sub>5</sub>=y<sub>2</sub>+1/3*(5*z3+4)*y<sub>4</sub>+1/3*(z3+5)*y<sub>5</sub>=y<sub>3</sub>-2*z3*y<sub>4</sub>+(-z3-1)*y<sub>5</sub>=0
 	</pre>
+</center>
 passes through the C<sub>6</sub>-fixed point mentioned above and the vertex of QC. The projection of the line
 <center>
 	<pre>
@@ -195,7 +197,7 @@ pr: QC ---> P<sup>2</sup>
 and its composition with the involution pr&compfn;&iota; define a product map
 <center>
 	<pre>
-		pr &times; pr&compfn;&iota; : QC ---> P<sup>2</sup><sub>[x<sub>0</sub>:x<sub>1</sub>:x<sub>2</sub>]</sub> &times; P<sup>2</sup><sub>[z<sub>0</sub>:z<sub>1</sub>:z<sub>2</sub>]</sub> 
+pr &times; pr&compfn;&iota; : QC ---> P<sup>2</sup><sub>[x<sub>0</sub>:x<sub>1</sub>:x<sub>2</sub>]</sub> &times; P<sup>2</sup><sub>[z<sub>0</sub>:z<sub>1</sub>:z<sub>2</sub>]</sub> 
 	</pre>
 </center>
 This is a birational map onto its image, a divisor of degree (1,1) given by 
@@ -209,7 +211,7 @@ x<sub>0</sub>*z<sub>0</sub>-1/2*x<sub>0</sub>*z<sub>1</sub>+1/3*(z3-1)*x<sub>0</
 The D<sub>6</sub> acts biregularly on P<sup>2</sup> &times; P<sup>2</sup>, with C<sub>6</sub> acting via two matrices on each factor
 <pre>
 							[-z3-1,          0,             0,       ]     [1,       0,              0,          ]
-							[z3+2,           3*z3+1,        3,       ]  &times;  [-2       -2*z3-1,        -3,        ]
+							[z3+2,           3*z3+1,        3,       ]  &times;  [-2       -2*z3-1,        -3,         ]
 							[ 1/3*(-z3+2),   1/3*(2*z3+6),  -2*z3 - 1]     [5/3*z3,  1/3*(-2*z3-6),  3*z3+1      ]
 </pre>
 and C<sub>2</sub> acting as switching two factors of P<sup>2</sup>. Moreover, the D<sub>6</sub> action leaves invariant the subscheme
@@ -224,10 +226,10 @@ In its comeplement, the divisor of degree (1,1) in P<sup>2</sup> &times; P<sup>2
 <center>
 	<pre>
 
-	P<sup>2</sup> &times; P<sup>2</sup> ---> P<sup>4</sup><sub>[y<sub>1</sub>:y<sub>2</sub>:y<sub>3</sub>:y<sub>4</sub>:y<sub>5</sub>]</sub>
+P<sup>2</sup> &times; P<sup>2</sup> ---> P<sup>4</sup><sub>[y<sub>1</sub>:y<sub>2</sub>:y<sub>3</sub>:y<sub>4</sub>:y<sub>5</sub>]</sub>
 
 
-		[x<sub>0</sub>*(3*z<sub>1</sub>-(3*z<sub>3</sub>+2)*z<sub>2</sub>) : x<sub>1</sub>*(3*z<sub>1</sub>-(3*z<sub>3</sub>+2)*z<sub>2</sub>) : z<sub>0</sub>*(3*x<sub>1</sub>-(3*z<sub>3</sub>+2)*x<sub>2</sub>) : z<sub>1</sub>*(3*x<sub>1</sub>-(3*z<sub>3</sub>+2)*x<sub>2</sub>) : (3*x<sub>1</sub>-(3*z<sub>3</sub>+2)*x<sub>2</sub>)*(3*z<sub>1</sub>-(3*z<sub>3</sub>+2)*z<sub>2</sub>)]
+[x<sub>0</sub>*(3*z<sub>1</sub>-(3*z<sub>3</sub>+2)*z<sub>2</sub>) : x<sub>1</sub>*(3*z<sub>1</sub>-(3*z<sub>3</sub>+2)*z<sub>2</sub>) : z<sub>0</sub>*(3*x<sub>1</sub>-(3*z<sub>3</sub>+2)*x<sub>2</sub>) : z<sub>1</sub>*(3*x<sub>1</sub>-(3*z<sub>3</sub>+2)*x<sub>2</sub>) : (3*x<sub>1</sub>-(3*z<sub>3</sub>+2)*x<sub>2</sub>)*(3*z<sub>1</sub>-(3*z<sub>3</sub>+2)*z<sub>2</sub>)]
 	
 	</pre>
 </center>
@@ -242,21 +244,23 @@ z6 = the (first) primitive 6-th root of unity
 </pre>
 </center>
 The D<sub>6</sub>-action on Q is given by matrices
+<center>
 <pre>
-								[-z6,                0,                0,                 0,             0,]
-								[1/7*(-z6+10),       z6,               0,                 0,             0,]
-								[0,                  0,                z6-1,              0,             0,]
-								[0,                  0,                1/7*(-9*z6-1),     -z6+1,         0,]
-								[1/21*(8*z6-3),      1/3*(2*z6-2),     1/21*(-5*z6+15),   2/3*z6,        -1]
+[-z6,                0,                0,                 0,             0,]
+[1/7*(-z6+10),       z6,               0,                 0,             0,]
+[0,                  0,                z6-1,              0,             0,]
+[0,                  0,                1/7*(-9*z6-1),     -z6+1,         0,]
+[1/21*(8*z6-3),      1/3*(2*z6-2),     1/21*(-5*z6+15),   2/3*z6,        -1]
+
+
+[0, 0, 1, 0, 0,]
+[0, 0, 0, 1, 0,]
+[1, 0, 0, 0, 0,]
+[0, 1, 0, 0, 0,]
+[0, 0, 0, 0, 1 ]
+
 </pre>
-and
-<pre>
-											[0, 0, 1, 0, 0,]
-											[0, 0, 0, 1, 0,]
-											[1, 0, 0, 0, 0,]
-											[0, 1, 0, 0, 0,]
-											[0, 0, 0, 0, 1 ]
-</pre>
+</center>
 A change of variable shows the D<sub>6</sub>-action on X<sub>4</sub> we started with is equivariant birational to a smooth quadric
 <center><pre>
 		y<sub>1</sub>*y<sub>4</sub> - y<sub>2</sub>*y<sub>3</sub> + y<sub>5</sub><sup>2</sup>
