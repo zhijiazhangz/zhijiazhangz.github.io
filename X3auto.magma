@@ -1,0 +1,575 @@
+//This files contains the subgroup lattice of S6, as the automorphism group of the Segre cubic in P^4 defined by 
+//-y[1]^2*y[2] - y[1]*y[2]^2 - y[1]^2*y[3] - 2*y[1]*y[2]*y[3] - y[2]^2*y[3] - y[1]*y[3]^2 - y[2]*y[3]^2 - y[1]^2*y[4] - 2*y[1]*y[2]*y[4] - y[2]^2*y[4] - 2*y[1]*y[3]*y[4] - 2*y[2]*y[3]*y[4] - y[3]^2*y[4] - y[1]*y[4]^2 - y[2]*y[4]^2 - y[3]*y[4]^2 - y[1]^2*y[5] - 2*y[1]*y[2]*y[5] - y[2]^2*y[5] - 2*y[1]*y[3]*y[5] - 2*y[2]*y[3]*y[5] - y[3]^2*y[5] - 2*y[1]*y[4]*y[5] - 2*y[2]*y[4]*y[5] - 2*y[3]*y[4]*y[5] - y[4]^2*y[5] - y[1]*y[5]^2 - y[2]*y[5]^2 - y[3]*y[5]^2 - y[4]*y[5]^2
+//L is an array of the subgroup lattice (L[i] is a representative of a conjugacy class of subgroups)
+//RemainingGroupIndex is the array of indices (in the subgroup lattice) of the groups which 
+//1. do not fixed any singular points 
+//and 2. are not subgroups of the nonstandard S5
+//and 3. are not S6, A6 and standard S5
+
+L:=[ PowerStructure(GrpMat) |
+	MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 4, 1>, <3, 3, 1>, <4, 2, 1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 4, -1>, <1, 5, 1>, <2, 3, 1>, <2, 4, -1>, <3, 2, 1>, <3, 4, -1>, <4,
+        4, -1>, <5, 1, 1>, <5, 4, -1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 4, 1>, <3, 2, 1>, <4, 3, 1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 1, 1>, <3, 3, -1>, <4, 3, -1>, 
+        <4, 5, 1>, <5, 2, 1>, <5, 3, -1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, 1>, <2, 4, 1>, <3, 1, 1>, <4, 5, 1>, <5, 3, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 3, 1>, <4, 2, -1>, 
+        <4, 4, 1>, <5, 1, 1>, <5, 2, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, 1>, <1, 5, -1>, <2, 5, -1>, <3, 1, 1>, <3, 5, -1>, <4, 2, 1>, <4,
+        5, -1>, <5, 4, 1>, <5, 5, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 4, -1>, <2, 4, -1>, <2, 5, 1>, <3, 3, 1>, <3, 4, -1>, <4,
+        4, -1>, <5, 2, 1>, <5, 4, -1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 4, 1>, <3, 3, 1>, <4, 2, 1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 4, 1>, <3, 3, 1>, <4, 2, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 4, 1>, <2, 1, 1>, <3, 3, 1>, <4, 5, 1>, <5, 2, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 1, 1>, <5, 2, -1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 3, 1>, <3, 4, 1>, <4, 2, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 4, 1>, <3, 3, 1>, <4, 2, 1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, -1>, <1, 3, 1>, <2, 1, -1>, <2, 5, 1>, <3, 1, -1>, <4, 1, -1>, 
+        <4, 2, 1>, <5, 1, -1>, <5, 4, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 4, -1>, <1, 5, 1>, <2, 3, 1>, <2, 4, -1>, <3, 2, 1>, <3, 4, -1>, <4,
+        4, -1>, <5, 1, 1>, <5, 4, -1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 3, 1>, <3, 4, 1>, <4, 2, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 4, 1>, <3, 3, 1>, <4, 2, 1>, <5, 1, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, -1>, <1, 3, 1>, <2, 1, -1>, <2, 5, 1>, <3, 1, -1>, <4, 1, -1>, 
+        <4, 2, 1>, <5, 1, -1>, <5, 4, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 1, 1>, <5, 2, -1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, -1>, <1, 3, 1>, <2, 1, -1>, <2, 5, 1>, <3, 1, -1>, <4, 1, -1>, 
+        <4, 2, 1>, <5, 1, -1>, <5, 4, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 3, 1>, <3, 4, 1>, <4, 2, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, -1>, <1, 5, 1>, <2, 1, 1>, <2, 3, -1>, <3, 3, -1>, <3, 4, 1>, <4,
+        3, -1>, <5, 2, 1>, <5, 3, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 1, 1>, <3, 3, 1>, <4, 4, 1>, <5, 2, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 3, 1>, <3, 4, 1>, <4, 1, 1>, <5, 2, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 4, 1>, <3, 3, 1>, <4, 2, 1>, <5, 1, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 3, 1>, <4, 2, -1>, 
+        <4, 4, 1>, <5, 1, 1>, <5, 2, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, -1>, <1, 5, 1>, <2, 3, -1>, <2, 4, 1>, <3, 2, 1>, <3, 3, -1>, <4,
+        3, -1>, <5, 1, 1>, <5, 3, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 3, 1>, <4, 2, -1>, 
+        <4, 4, 1>, <5, 1, 1>, <5, 2, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, 1>, <1, 5, -1>, <2, 4, 1>, <2, 5, -1>, <3, 1, 1>, <3, 5, -1>, <4,
+        2, 1>, <4, 5, -1>, <5, 5, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 5, 1>, <3, 3, 1>, <4, 4, 1>, <5, 2, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 4, -1>, <2, 4, -1>, <2, 5, 1>, <3, 3, 1>, <3, 4, -1>, <4,
+        4, -1>, <5, 2, 1>, <5, 4, -1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, -1>, <1, 5, 1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 1, 1>, <5, 3, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 3, 1>, <4, 2, -1>, 
+        <4, 4, 1>, <5, 1, 1>, <5, 2, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 3, 1>, <4, 2, -1>, 
+        <4, 4, 1>, <5, 2, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, -1>, <1, 3, 1>, <2, 1, -1>, <2, 5, 1>, <3, 1, -1>, <4, 1, -1>, 
+        <4, 2, 1>, <5, 1, -1>, <5, 4, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 3, 1>, <4, 2, -1>, 
+        <4, 4, 1>, <5, 1, 1>, <5, 2, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 4, 1>, <4, 3, 1>, <5, 1, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 3, 1>, <3, 4, 1>, <4, 2, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 4, -1>, <2, 3, 1>, <2, 4, -1>, <3, 2, 1>, <3, 4, -1>, <4,
+        4, -1>, <5, 4, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 4, 1>, <3, 2, 1>, <4, 3, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 4, 1>, <3, 3, 1>, <4, 2, 1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 1, 1>, <3, 3, -1>, <4, 3, -1>, 
+        <4, 5, 1>, <5, 2, 1>, <5, 3, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 1, 1>, <5, 2, -1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, 1>, <1, 4, -1>, <2, 4, -1>, <2, 5, 1>, <3, 4, -1>, <4, 3, 1>, <4,
+        4, -1>, <5, 1, 1>, <5, 4, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, 1>, <1, 3, -1>, <2, 1, 1>, <2, 3, -1>, <3, 3, -1>, <4, 3, -1>, 
+        <4, 4, 1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, 1>, <2, 5, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, 1>, <1, 5, -1>, <2, 4, 1>, <2, 5, -1>, <3, 1, 1>, <3, 5, -1>, <4,
+        2, 1>, <4, 5, -1>, <5, 5, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, 1>, <1, 4, -1>, <2, 4, -1>, <2, 5, 1>, <3, 4, -1>, <4, 3, 1>, <4,
+        4, -1>, <5, 1, 1>, <5, 4, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, 1>, <2, 5, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 4, -1>, <2, 2, 1>, <2, 4, -1>, <3, 4, -1>, <4, 3, 1>, <4,
+        4, -1>, <5, 4, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, 1>, <2, 5, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 5, 1>, <3, 3, 1>, <4, 4, 1>, <5, 2, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 4, 1>, <3, 3, 1>, <4, 2, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, 1>, <2, 4, 1>, <3, 1, 1>, <4, 5, 1>, <5, 3, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 4, 1>, <2, 1, 1>, <3, 3, 1>, <4, 5, 1>, <5, 2, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 3, 1>, <4, 2, -1>, 
+        <4, 4, 1>, <5, 1, 1>, <5, 2, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 1, 1>, <3, 3, -1>, <4, 3, -1>, 
+        <4, 5, 1>, <5, 2, 1>, <5, 3, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 3, 1>, <4, 2, -1>, 
+        <4, 4, 1>, <5, 1, 1>, <5, 2, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 4, 1>, <3, 2, 1>, <4, 3, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 4, 1>, <3, 3, 1>, <4, 2, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 4, 1>, <3, 2, 1>, <4, 3, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 4, 1>, <3, 3, 1>, <4, 2, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 4, 1>, <3, 2, 1>, <4, 3, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 1, 1>, <3, 3, -1>, <4, 3, -1>, 
+        <4, 5, 1>, <5, 2, 1>, <5, 3, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 3, 1>, <4, 2, -1>, 
+        <4, 4, 1>, <5, 1, 1>, <5, 2, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, -1>, <1, 5, 1>, <2, 3, -1>, <2, 4, 1>, <3, 3, -1>, <4, 2, 1>, <4,
+        3, -1>, <5, 1, 1>, <5, 3, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, -1>, <2, 3, -1>, <2, 4, 1>, <3, 1, 1>, <3, 3, -1>, <4, 3, -1>, 
+        <4, 5, 1>, <5, 2, 1>, <5, 3, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 3, 1>, <4, 2, -1>, 
+        <4, 4, 1>, <5, 1, 1>, <5, 2, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 1, 1>, <3, 3, 1>, <4, 4, 1>, <5, 2, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 2, 1>, <2, 3, -1>, <3, 3, -1>, <3, 4, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 5, 1>, <3, 3, -1>, <4, 3, -1>, 
+        <4, 4, 1>, <5, 2, 1>, <5, 3, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 5, 1>, <3, 3, 1>, <4, 4, 1>, <5, 2, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, 1>, <1, 5, -1>, <2, 4, 1>, <2, 5, -1>, <3, 1, 1>, <3, 5, -1>, <4,
+        2, 1>, <4, 5, -1>, <5, 5, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 1, 1>, <3, 3, 1>, <4, 4, 1>, <5, 2, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 2, 1>, <2, 3, -1>, <3, 3, -1>, <3, 4, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 5, 1>, <3, 3, -1>, <4, 3, -1>, 
+        <4, 4, 1>, <5, 2, 1>, <5, 3, -1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 1, 1>, <3, 3, 1>, <4, 4, 1>, <5, 2, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 2, 1>, <2, 3, -1>, <3, 3, -1>, <3, 4, 1>, <4,
+        3, -1>, <5, 3, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 3, -1>, <2, 3, -1>, <2, 5, 1>, <3, 3, -1>, <4, 3, -1>, 
+        <4, 4, 1>, <5, 2, 1>, <5, 3, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, 1>, <1, 5, -1>, <2, 5, -1>, <3, 1, 1>, <3, 5, -1>, <4, 2, 1>, <4,
+        5, -1>, <5, 4, 1>, <5, 5, -1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, -1>, <1, 5, 1>, <2, 1, 1>, <2, 3, -1>, <3, 3, -1>, <3, 4, 1>, <4,
+        3, -1>, <5, 2, 1>, <5, 3, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, -1>, <2, 1, -1>, <2, 2, 1>, <3, 1, -1>, <3, 4, 1>, <4, 1, -1>, 
+        <4, 3, 1>, <5, 1, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, 1>, <2, 1, 1>, <3, 2, 1>, <4, 4, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 4, 1>, <4, 3, 1>, <5, 1, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 2, 1>, <3, 4, 1>, <4, 3, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, -1>, <1, 3, 1>, <2, 1, -1>, <2, 5, 1>, <3, 1, -1>, <4, 1, -1>, 
+        <4, 2, 1>, <5, 1, -1>, <5, 4, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, 1>, <2, 2, 1>, <3, 1, 1>, <4, 5, 1>, <5, 4, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 3, 1>, <4, 2, -1>, 
+        <4, 4, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 3, 1>, <3, 4, 1>, <4, 2, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 4, -1>, <2, 3, 1>, <2, 4, -1>, <3, 2, 1>, <3, 4, -1>, <4,
+        4, -1>, <5, 4, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <2, 3, 1>, <3, 2, 1>, <4, 4, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 2, -1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 2, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, 1>, <1, 5, -1>, <2, 4, 1>, <2, 5, -1>, <3, 1, 1>, <3, 5, -1>, <4,
+        2, 1>, <4, 5, -1>, <5, 5, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 4, -1>, <2, 2, 1>, <2, 4, -1>, <3, 4, -1>, <4, 3, 1>, <4,
+        4, -1>, <5, 4, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, 1>, <1, 4, -1>, <2, 1, 1>, <2, 4, -1>, <3, 3, 1>, <3, 4, -1>, <4,
+        4, -1>, <5, 4, -1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, 1>, <2, 5, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, 1>, <1, 4, -1>, <2, 2, 1>, <2, 4, -1>, <3, 3, 1>, <3, 4, -1>, <4,
+        4, -1>, <5, 4, -1>, <5, 5, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, -1>, <1, 5, 1>, <2, 3, -1>, <2, 4, 1>, <3, 2, 1>, <3, 3, -1>, <4,
+        1, 1>, <4, 3, -1>, <5, 3, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, -1>, <1, 5, 1>, <2, 2, -1>, <3, 2, -1>, <3, 4, 1>, <4, 2, -1>, 
+        <4, 3, 1>, <5, 1, 1>, <5, 2, -1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 3, 1>, <4, 4, 1>, <5, 1, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, 1>, <2, 1, 1>, <3, 4, 1>, <4, 5, 1>, <5, 3, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 3, 1>, <1, 5, -1>, <2, 1, 1>, <2, 5, -1>, <3, 4, 1>, <3, 5, -1>, <4,
+        2, 1>, <4, 5, -1>, <5, 5, -1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 5, 1>, <2, 2, 1>, <3, 4, 1>, <4, 3, 1>, <5, 1, 1>]))
+    ]> where w := K.1 where K := CyclotomicField(3),
+
+    MatrixGroup<5, K | [
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 2, 1>, <2, 1, 1>, <3, 3, 1>, <4, 4, 1>, <5, 5, 1>])),
+        Matrix(SparseMatrix(K, 5, 5, [
+        <1, 1, -1>, <1, 2, 1>, <2, 1, -1>, <2, 3, 1>, <3, 1, -1>, <3, 4, 1>, <4,
+        1, -1>, <4, 5, 1>, <5, 1, -1>]))
+    ]> where w := K.1 where K := CyclotomicField(3)
+];
+
+RemainingGroupIndex:=[ 8, 10, 23, 24, 25, 26, 29, 31, 38, 39, 40, 41, 42, 43, 49, 50, 51];
+
+
+for x in RemainingGroupIndex do 
+IntegerToString(x) cat ".GroupName: " cat GroupName(L[x]);
+L[x];
+"------------------------------";
+"";
+end for;
