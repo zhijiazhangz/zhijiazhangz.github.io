@@ -23,15 +23,24 @@ The page displays a subgroup lattice of S<sub>6</sub> as the automorphism group 
 -y[1]^2*y[2] - y[1]*y[2]^2 - y[1]^2*y[3] - 2*y[1]*y[2]*y[3] - y[2]^2*y[3] - y[1]*y[3]^2 - y[2]*y[3]^2 - y[1]^2*y[4] - 2*y[1]*y[2]*y[4] - 
 y[2]^2*y[4] - 2*y[1]*y[3]*y[4] - 2*y[2]*y[3]*y[4] - y[3]^2*y[4] - y[1]*y[4]^2 - y[2]*y[4]^2 - y[3]*y[4]^2 - y[1]^2*y[5] - 2*y[1]*y[2]*y[5] - 
 y[2]^2*y[5] - 2*y[1]*y[3]*y[5] - 2*y[2]*y[3]*y[5] - y[3]^2*y[5] - 2*y[1]*y[4]*y[5] - 2*y[2]*y[4]*y[5] - 2*y[3]*y[4]*y[5] - 
-y[4]^2*y[5] - y[1]*y[5]^2 - y[2]*y[5]^2 - y[3]*y[5]^2 - y[4]*y[5]^2
+y[4]^2*y[5] - y[1]*y[5]^2 - y[2]*y[5]^2 - y[3]*y[5]^2 - y[4]*y[5]^2.
 </pre></center>
-and the classes of the subgroups which 
+and generators of every subgroup (up to conjugacy) of it. 
+In particular, a subgroup of S<sub>6</sub> is linearizable if and only if
 <ul>
-<li> do not fixed any singular points and,</li>
-<li>are not subgroups of the nonstandard S<sub>5</sub> and,</li> 
-<li>are not S<sub>6</sub>, A<sub>6</sub> and standard S<sub>5</sub></li>
+<li> fixed any singular points and, or</li>
+<li> is contained in the nonstandard S<sub>5</sub> and, or</li> 
+<li> is isomorphic to C<sub>2</sub><sup>2</sup> and leaves three invariant planes in X<sub>3</sub>.
 </ul>
-The source code of matrices of the groups can be found <a href=https://github.com/zhijiazhangz/zhijiazhangz.github.io/blob/main/X3auto.magma>here</a>.
+There are 36 linearizable conjugacy classes, their indices in the subgroup lattice below are 
+<pre>
+[ 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 27, 28, 30, 32, 33, 34, 35, 36, 37, 44, 45, 46, 47, 48, 52, 53 ]
+</pre>
+There are 19 nonlinearizable conjugacy classes, their indices in the subgroup lattice below are 
+<pre>
+[ 10, 23, 24, 25, 26, 29, 31, 38, 39, 40, 41, 42, 43, 49, 50, 51, 54, 55, 56]
+</pre>
+The source code of generators of the groups can be found <a href=https://github.com/zhijiazhangz/zhijiazhangz.github.io/blob/main/X3auto.magma>here</a>.
 <br>
 <br>
 <br>
@@ -102,10 +111,6 @@ Partially ordered set of subgroup classes
 [ 2]  Order 2    Length 15              Maximal Subgroups: 1
 ---
 [ 1]  Order 1    Length 1               Maximal Subgroups:
-
-
-The remaining groups are (indice in the subgroup lattice above)
-[ 8, 10, 23, 24, 25, 26, 29, 31, 38, 39, 40, 41, 42, 43, 49, 50, 51];
 
 
 Concretely, they are:
