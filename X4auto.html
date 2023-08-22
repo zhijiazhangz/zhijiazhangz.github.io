@@ -168,8 +168,17 @@ The remaining groups are (indice in the subgroup lattice above)
 [ 3, 4, 5, 7, 12, 13, 18, 20, 24, 25, 39, 41, 49 ]
 
 Concretely, they are:
+2: the group name is   C2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+------------------------------
 
-GroupName: C2
+ 3: the group name is   C2, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2
 Generators:
     [          1           0           0           0           0]
@@ -179,7 +188,7 @@ Generators:
     [          0           0           0           1           0]
 ------------------------------
 
-GroupName: C3
+ 4: the group name is   C3, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 3
 Generators:
     [     1      0      0      0      0]
@@ -189,7 +198,7 @@ Generators:
     [     0      0      0      0 zeta_3]
 ------------------------------
 
-GroupName: C3
+ 5: the group name is   C3, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 3
 Generators:
     [-1/3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2) 2/3]
@@ -199,7 +208,17 @@ Generators:
     [1/3*zeta_3 1/3 -2/3 1/3 1/3*zeta_3]
 ------------------------------
 
-GroupName: C5
+ 6: the group name is   C3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 3
+Generators:
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0 -zeta_3 - 1           0           0]
+------------------------------
+
+ 7: the group name is   C5, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 5
 Generators:
     [-1/3 2/3 2/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2)]
@@ -209,7 +228,71 @@ Generators:
     [1/3*zeta_3 -2/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3]
 ------------------------------
 
-GroupName: C2^2
+ 8: the group name is   C4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 - 2) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2)]
+    [1/3*(zeta_3 + 2) 0 1/3*(-2*zeta_3 - 1) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 1/3*(-zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+------------------------------
+
+ 9: the group name is C2^2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2
+Generators:
+    [          1           0           0           0           0]
+    [          0           0      zeta_3           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0 -zeta_3 - 1           0]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+------------------------------
+
+ 10: the group name is C2^2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2
+Generators:
+    [1/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3 -1/3*zeta_3 2/3]
+    [-1/3*zeta_3 -1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 -1/3*zeta_3 -1/3]
+
+    [-1/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 -2/3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) -2/3]
+    [1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3 1/3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3]
+------------------------------
+
+ 11: the group name is C2^2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0    -zeta_3          0]
+    [         0          0 zeta_3 + 1          0          0]
+    [         0          0          0          0         -1]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 1/3*zeta_3 -2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 -2/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3 1/3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1) 1/3 1/3]
+------------------------------
+
+ 12: the group name is C2^2, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2
 Generators:
     [          1           0           0           0           0]
@@ -225,7 +308,7 @@ Generators:
     [          0           0 -zeta_3 - 1           0           0]
 ------------------------------
 
-GroupName: C4
+ 13: the group name is   C4, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2
 Generators:
     [          1           0           0           0           0]
@@ -241,7 +324,71 @@ Generators:
     [      0 -zeta_3       0       0       0]
 ------------------------------
 
-GroupName: S3
+ 14: the group name is   S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+------------------------------
+
+ 15: the group name is   C6, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0           0           0 -zeta_3 - 1]
+------------------------------
+
+ 16: the group name is   C6, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [1/3*(-2*zeta_3 - 1) 1/3*(4*zeta_3 + 2) 0 0 0]
+    [1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0 0 0]
+    [0 0 1/3*(zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2)]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 - 1) 1/3*(zeta_3 + 2)]
+    [0 0 1/3*(zeta_3 - 1) 1/3*(zeta_3 - 1) 1/3*(zeta_3 - 1)]
+------------------------------
+
+ 17: the group name is   S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3
+Generators:
+    [1/3 -2/3*zeta_3 -2/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [1/3*(zeta_3 + 1) 2/3 -1/3 -1/3*zeta_3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3 -1/3 2/3*zeta_3 -1/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) -1/3 -1/3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3 2/3]
+
+    [1/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3]
+    [-1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+    [-1/3 -1/3 1/3*(zeta_3 + 1) 2/3*zeta_3 -1/3]
+    [-1/3 -1/3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3 -1/3]
+    [-1/3 -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+------------------------------
+
+ 18: the group name is   S3, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3
 Generators:
     [-1/3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2) 2/3]
@@ -257,7 +404,23 @@ Generators:
     [1/3 1/3 -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
 ------------------------------
 
-GroupName: C6
+ 19: the group name is   C6, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 4) 0 0 0]
+    [1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 0 0 0]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 0 1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+------------------------------
+
+ 20: the group name is   C6, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3
 Generators:
     [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
@@ -273,7 +436,55 @@ Generators:
     [1/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3]
 ------------------------------
 
-GroupName: C9
+ 21: the group name is C3^2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 3^2
+Generators:
+    [1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 4) 0 0 0]
+    [1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 0 0 0]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 0 1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0 -zeta_3 - 1           0           0]
+------------------------------
+
+ 22: the group name is C3^2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 3^2
+Generators:
+    [1/3*(-2*zeta_3 - 1) 1/3*(4*zeta_3 + 2) 0 0 0]
+    [1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0 0 0]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1)]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0 -zeta_3 - 1           0           0]
+------------------------------
+
+ 23: the group name is C3^2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 3^2
+Generators:
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0           0           0 -zeta_3 - 1]
+
+    [1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 4) 0 0 0]
+    [1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 0 0 0]
+    [0 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1)]
+------------------------------
+
+ 24: the group name is   C9, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 3^2
 Generators:
     [1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 4) 0 0 0]
@@ -289,7 +500,7 @@ Generators:
     [-1/3 1/3*(zeta_3 + 1) 2/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3]
 ------------------------------
 
-GroupName: D5
+ 25: the group name is   D5, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 5
 Generators:
     [1/3 -2/3 -2/3*zeta_3 -2/3*zeta_3 -2/3*zeta_3]
@@ -305,7 +516,298 @@ Generators:
     [0 1/3*(-2*zeta_3 - 1) 0 1/3*(zeta_3 - 1) 1/3*(zeta_3 + 2)]
 ------------------------------
 
-GroupName: C3:C4
+ 26: the group name is   Q8, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3
+Generators:
+    [1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 - 2) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2)]
+    [1/3*(zeta_3 + 2) 0 1/3*(-2*zeta_3 - 1) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 1/3*(-zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+
+    [1/3*(-2*zeta_3 - 1) 0 1/3*(-2*zeta_3 - 4) 0 0]
+    [0 1/3*(-2*zeta_3 - 1) 0 1/3*(zeta_3 - 1) 1/3*(-2*zeta_3 - 1)]
+    [1/3*(-zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 0 0]
+    [0 1/3*(zeta_3 + 2) 0 1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1)]
+    [0 1/3*(-2*zeta_3 - 1) 0 1/3*(zeta_3 + 2) 1/3*(zeta_3 + 2)]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+------------------------------
+
+ 27: the group name is C2^3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3
+Generators:
+    [          1           0           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0      zeta_3           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+
+    [1 0 0 0 0]
+    [0 0 1 0 0]
+    [0 1 0 0 0]
+    [0 0 0 0 1]
+    [0 0 0 1 0]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) -2/3 1/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 -2/3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3]
+------------------------------
+
+ 28: the group name is C2^3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3
+Generators:
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 -1/3 -1/3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2)]
+    [-1/3*zeta_3 -1/3 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3]
+    [1/3*(zeta_3 + 1) 2/3*zeta_3 -1/3*zeta_3 -1/3 -1/3]
+
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 -1/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 -1/3 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 2/3*zeta_3 -1/3 -1/3]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 -1/3 2/3]
+
+    [-1/3 2/3 2/3*zeta_3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 1/3 1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2) 1/3*zeta_3]
+    [1/3 1/3 -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 -2/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3]
+------------------------------
+
+ 29: the group name is C2^3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3
+Generators:
+    [          1           0           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0      zeta_3           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0    -zeta_3          0]
+    [         0          0 zeta_3 + 1          0          0]
+    [         0          0          0          0         -1]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) -2/3 1/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 -2/3]
+------------------------------
+
+ 30: the group name is C2*C4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3
+Generators:
+    [-1/3 2/3 2/3*zeta_3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 -2/3 1/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+    [1/3 1/3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3]
+
+    [          1           0           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [1/3 -2/3*zeta_3 -2/3 -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 
+        2)]
+    [-1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 
+        1)]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 2/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3 -1/3*zeta_3 -1/3 2/3*zeta_3 -1/3*zeta_3]
+------------------------------
+
+ 31: the group name is   D4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3
+Generators:
+    [-1/3 2/3 2/3*zeta_3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 -2/3 1/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+    [1/3 1/3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3]
+
+    [1/3 -2/3*zeta_3 -2/3 -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 2/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 
+        1)]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 
+        2)]
+    [-1/3 2/3*zeta_3 -1/3 -1/3*zeta_3 -1/3*zeta_3]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0 -zeta_3 - 1]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0      zeta_3           0           0]
+    [          0      zeta_3           0           0           0]
+------------------------------
+
+ 32: the group name is C2*C4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3
+Generators:
+    [          1           0           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0      zeta_3           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+
+    [1/3 -2/3*zeta_3 -2/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [1/3*(zeta_3 + 1) -1/3 2/3 -1/3*zeta_3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3 -1/3 -1/3*zeta_3 2/3*zeta_3]
+    [-1/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) -1/3 -1/3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3 -1/3]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) -2/3 1/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 -2/3]
+------------------------------
+
+ 33: the group name is   D4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3
+Generators:
+    [          1           0           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0      zeta_3           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+
+    [1/3 -2/3*zeta_3 -2/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [1/3*(zeta_3 + 1) -1/3 2/3 -1/3*zeta_3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3 -1/3 -1/3*zeta_3 2/3*zeta_3]
+    [-1/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) -1/3 -1/3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3 -1/3]
+
+    [1 0 0 0 0]
+    [0 0 1 0 0]
+    [0 1 0 0 0]
+    [0 0 0 0 1]
+    [0 0 0 1 0]
+------------------------------
+
+ 34: the group name is   D4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           0           0      zeta_3           0]
+    [          0           0           0           0      zeta_3]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0 -zeta_3 - 1]
+    [          0           0           0           1           0]
+    [          0           0           1           0           0]
+    [          0      zeta_3           0           0           0]
+------------------------------
+
+ 35: the group name is   A4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3
+Generators:
+    [1/3*(-2*zeta_3 - 1) 0 1/3*(4*zeta_3 + 2) 0 0]
+    [0 1/3*(zeta_3 - 1) 0 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2)]
+    [1/3*(-zeta_3 + 1) 0 1/3*(-zeta_3 + 1) 0 0]
+    [0 1/3*(-2*zeta_3 - 1) 0 1/3*(zeta_3 - 1) 1/3*(zeta_3 + 2)]
+    [0 1/3*(zeta_3 - 1) 0 1/3*(zeta_3 - 1) 1/3*(zeta_3 - 1)]
+
+    [ 1/3 -2/3 -2/3 -2/3 -2/3]
+    [-1/3  2/3 -1/3 -1/3 -1/3]
+    [-1/3 -1/3 -1/3 -1/3  2/3]
+    [-1/3 -1/3 -1/3  2/3 -1/3]
+    [-1/3 -1/3  2/3 -1/3 -1/3]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3 -1/3*zeta_3 2/3]
+    [-1/3*zeta_3 -1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 -1/3*zeta_3 -1/3]
+------------------------------
+
+ 36: the group name is   A4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3
+Generators:
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+
+    [          1           0           0           0           0]
+    [          0           0           0      zeta_3           0]
+    [          0           0           0           0      zeta_3]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0 -zeta_3 - 1]
+    [          0           0           0           1           0]
+    [          0           0           1           0           0]
+    [          0      zeta_3           0           0           0]
+------------------------------
+
+ 37: the group name is   D6, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0    -zeta_3          0]
+    [         0          0 zeta_3 + 1          0          0]
+    [         0          0          0          0         -1]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) -2/3 1/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 -2/3]
+
+    [1/3 -2/3 -2/3 -2/3 -2/3]
+    [-1/3 2/3 -1/3 -1/3 -1/3]
+    [-1/3*zeta_3 -1/3*zeta_3 -1/3*zeta_3 2/3*zeta_3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) 
+        1/3*(zeta_3 + 1)]
+    [-1/3 -1/3 -1/3 -1/3 2/3]
+------------------------------
+
+ 38: the group name is C2*C6, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+
+    [     -1       0       0       0       0]
+    [      0       0       0       0 -zeta_3]
+    [      0       0 -zeta_3       0       0]
+    [      0       0       0 -zeta_3       0]
+    [      0      -1       0       0       0]
+
+    [          1           0           0           0           0]
+    [          0      zeta_3           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0           0           0      zeta_3]
+------------------------------
+
+ 39: the group name is C3:C4, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3
 Generators:
     [        -1          0          0          0          0]
@@ -327,7 +829,29 @@ Generators:
     [1/3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3*(-zeta_3 - 1)]
 ------------------------------
 
-GroupName: D6
+ 40: the group name is  C12, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3
+Generators:
+    [1/3 -2/3 1/3*(2*zeta_3 + 2) -2/3 -2/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3*zeta_3 1/3*(zeta_3 + 1) -1/3]
+    [-1/3*zeta_3 2/3*zeta_3 -1/3 -1/3*zeta_3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3]
+    [-1/3*zeta_3 -1/3*zeta_3 -1/3 -1/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+
+    [1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 4) 0 0 0]
+    [1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2) 0 0 0]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 - 1) 1/3*(-2*zeta_3 - 1)]
+    [0 0 1/3*(zeta_3 - 1) 1/3*(zeta_3 - 1) 1/3*(zeta_3 + 2)]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1) 1/3*(zeta_3 - 1)]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+------------------------------
+
+ 41: the group name is   D6, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3
 Generators:
     [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
@@ -349,7 +873,161 @@ Generators:
     [1/3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3*(-zeta_3 - 1)]
 ------------------------------
 
-GroupName: F5
+ 42: the group name is C3:S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3^2
+Generators:
+    [1 0 0 0 0]
+    [0 0 0 0 1]
+    [0 0 0 1 0]
+    [0 0 1 0 0]
+    [0 1 0 0 0]
+
+    [1/3 -2/3 -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3]
+    [-1/3 2/3 -1/3*zeta_3 1/3*(zeta_3 + 1) -1/3]
+    [-1/3*zeta_3 -1/3*zeta_3 1/3*(zeta_3 + 1) 2/3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3 -1/3*zeta_3 1/3*(zeta_3 + 1)]
+    [-1/3 -1/3 -1/3*zeta_3 1/3*(zeta_3 + 1) 2/3]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3 1/3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1) 1/3 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 1/3*zeta_3 -2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 -2/3*zeta_3 1/3*zeta_3]
+------------------------------
+
+ 43: the group name is C3*S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3^2
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [1/3*(-2*zeta_3 - 1) 1/3*(4*zeta_3 + 2) 0 0 0]
+    [1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0 0 0]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1) 1/3*(-2*zeta_3 - 1)]
+    [0 0 1/3*(zeta_3 - 1) 1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1)]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(zeta_3 + 2) 1/3*(zeta_3 + 2)]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+------------------------------
+
+ 44: the group name is C3*S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3^2
+Generators:
+    [     -1       0       0       0       0]
+    [      0       0       0       0 -zeta_3]
+    [      0       0 -zeta_3       0       0]
+    [      0       0       0 -zeta_3       0]
+    [      0      -1       0       0       0]
+
+    [          1           0           0           0           0]
+    [          0      zeta_3           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0           0           0      zeta_3]
+
+    [          1           0           0           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0           1           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+------------------------------
+
+ 45: the group name is C3*S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3^2
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+
+    [1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 4) 0 0 0]
+    [1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 0 0 0]
+    [0 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1)]
+------------------------------
+
+ 46: the group name is C3*S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3^2
+Generators:
+    [1 0 0 0 0]
+    [0 0 1 0 0]
+    [0 1 0 0 0]
+    [0 0 0 0 1]
+    [0 0 0 1 0]
+
+    [-1/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2) 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 1/3 -2/3*zeta_3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3 1/3*(-zeta_3 - 1) 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3*zeta_3 1/3 1/3*zeta_3]
+
+    [1/3 -2/3 -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3]
+    [-1/3 2/3 -1/3*zeta_3 1/3*(zeta_3 + 1) -1/3]
+    [-1/3*zeta_3 -1/3*zeta_3 1/3*(zeta_3 + 1) 2/3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3 -1/3*zeta_3 1/3*(zeta_3 + 1)]
+    [-1/3 -1/3 -1/3*zeta_3 1/3*(zeta_3 + 1) 2/3]
+------------------------------
+
+ 47: the group name is C3*S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3^2
+Generators:
+    [          1           0           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0           1           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           1           0           0           0]
+
+    [          1           0           0           0           0]
+    [          0      zeta_3           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0           0           0      zeta_3]
+
+    [          1           0           0           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0           1           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+------------------------------
+
+ 48: the group name is C3*C6, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3^2
+Generators:
+    [     1      0      0      0      0]
+    [     0      1      0      0      0]
+    [     0      0 zeta_3      0      0]
+    [     0      0      0 zeta_3      0]
+    [     0      0      0      0 zeta_3]
+
+    [1/3*(2*zeta_3 + 1) 1/3*(-4*zeta_3 - 2) 0 0 0]
+    [1/3*(zeta_3 - 1) 1/3*(zeta_3 - 1) 0 0 0]
+    [0 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 - 2)]
+    [0 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 - 2)]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+------------------------------
+
+ 49: the group name is   F5, the generators are:
 MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 5
 Generators:
     [-1/3 2/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3]
@@ -370,4 +1048,2124 @@ Generators:
     [1/3 1/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2)]
     [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3]
 ------------------------------
+
+ 50: the group name is C3^3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 3^3
+Generators:
+    [     1      0      0      0      0]
+    [     0      1      0      0      0]
+    [     0      0 zeta_3      0      0]
+    [     0      0      0 zeta_3      0]
+    [     0      0      0      0 zeta_3]
+
+    [1/3*(-2*zeta_3 - 1) 1/3*(4*zeta_3 + 2) 0 0 0]
+    [1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0 0 0]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1)]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+------------------------------
+
+ 51: the group name is  He3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 3^3
+Generators:
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3 -2/3]
+    [-1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1)]
+
+    [1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 4) 0 0 0]
+    [1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 0 0 0]
+    [0 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1)]
+------------------------------
+
+ 52: the group name is C9:C3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 3^3
+Generators:
+    [1/3*(-2*zeta_3 - 1) 1/3*(4*zeta_3 + 2) 0 0 0]
+    [1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0 0 0]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(zeta_3 + 2) 1/3*(zeta_3 + 2)]
+    [0 0 1/3*(zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2)]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 1/3*(-2*zeta_3 - 2) -1/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3 -1/3*zeta_3 2/3]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3 2/3*zeta_3 -1/3]
+------------------------------
+
+ 53: the group name is C2^4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+
+    [        -1          0          0          0          0]
+    [         0          0          0          0 zeta_3 + 1]
+    [         0          0         -1          0          0]
+    [         0          0          0         -1          0]
+    [         0    -zeta_3          0          0          0]
+
+    [-1/3 2/3 2/3*zeta_3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 1/3 1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2) 1/3*zeta_3]
+    [1/3 1/3 -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 -2/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3]
+
+    [-1/3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3*zeta_3]
+    [1/3*zeta_3 1/3 1/3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2)]
+    [1/3*zeta_3 1/3 1/3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3*zeta_3 1/3 1/3]
+    [1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3*zeta_3 1/3 1/3]
+------------------------------
+
+ 54: the group name is D4:C2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+
+    [1/3*(2*zeta_3 + 1) 1/3*(-4*zeta_3 - 2) 0 0 0]
+    [1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 0 0 0]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2)]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1)]
+
+    [1/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3]
+    [-1/3 -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+    [-1/3*zeta_3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [-1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+
+    [1/3 -2/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3 -1/3 -1/3 1/3*(zeta_3 + 1) 2/3*zeta_3]
+    [-1/3 -1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [-1/3*zeta_3 -1/3*zeta_3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+------------------------------
+
+ 55: the group name is C2*D4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4
+Generators:
+    [-1/3 2/3 2/3*zeta_3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 1/3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) -2/3*zeta_3]
+    [1/3 -2/3 1/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*zeta_3 1/3]
+
+    [          1           0           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [1/3 -2/3*zeta_3 -2/3 -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 
+        2)]
+    [-1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 
+        1)]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 2/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3 -1/3*zeta_3 -1/3 2/3*zeta_3 -1/3*zeta_3]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0 -zeta_3 - 1]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0      zeta_3           0           0]
+    [          0      zeta_3           0           0           0]
+------------------------------
+
+ 56: the group name is C2^2:C4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4
+Generators:
+    [-1/3 2/3 2/3*zeta_3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 1/3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) -2/3*zeta_3]
+    [1/3 -2/3 1/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*zeta_3 1/3]
+
+    [          1           0           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [        -1          0          0          0          0]
+    [         0          0          0          0 zeta_3 + 1]
+    [         0 zeta_3 + 1          0          0          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0    -zeta_3          0]
+
+    [-1/3 2/3*zeta_3 2/3 2/3*zeta_3 2/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 
+        2)]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 
+        1)]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 
+        1)]
+    [1/3 -2/3*zeta_3 1/3 1/3*zeta_3 1/3*zeta_3]
+------------------------------
+
+ 57: the group name is C2^2:C4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4
+Generators:
+    [-1/3 2/3 2/3*zeta_3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 1/3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) -2/3*zeta_3]
+    [1/3 -2/3 1/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*zeta_3 1/3]
+
+    [          1           0           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [1/3 -2/3*zeta_3 -2/3 -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 
+        2)]
+    [-1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 
+        1)]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 2/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3 -1/3*zeta_3 -1/3 2/3*zeta_3 -1/3*zeta_3]
+
+    [-1/3 2/3*zeta_3 2/3 2/3*zeta_3 2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3 1/3]
+    [1/3 1/3*zeta_3 -2/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) -2/3 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) 1/3 -2/3]
+------------------------------
+
+ 58: the group name is C2*D4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0    -zeta_3          0]
+    [         0          0 zeta_3 + 1          0          0]
+    [         0          0          0          0         -1]
+
+    [1 0 0 0 0]
+    [0 0 1 0 0]
+    [0 1 0 0 0]
+    [0 0 0 0 1]
+    [0 0 0 1 0]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0      zeta_3           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) -2/3 1/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 -2/3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3]
+------------------------------
+
+ 59: the group name is SL(2,3), the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3
+Generators:
+    [     1      0      0      0      0]
+    [     0      1      0      0      0]
+    [     0      0 zeta_3      0      0]
+    [     0      0      0 zeta_3      0]
+    [     0      0      0      0 zeta_3]
+
+    [1/3*(2*zeta_3 + 1) 0 1/3*(-4*zeta_3 - 2) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 + 1)]
+    [1/3*(-2*zeta_3 - 1) 0 1/3*(-2*zeta_3 - 1) 0 0]
+    [0 1/3*(-zeta_3 + 1) 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 1/3*(-zeta_3 - 2) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+
+    [1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 - 2) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2)]
+    [1/3*(zeta_3 + 2) 0 1/3*(-2*zeta_3 - 1) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 1/3*(-zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+------------------------------
+
+ 60: the group name is C2*A4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0    -zeta_3          0]
+    [         0          0 zeta_3 + 1          0          0]
+    [         0          0          0          0         -1]
+
+    [-1/3 2/3*zeta_3 2/3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 1/3*zeta_3 1/3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3*zeta_3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*zeta_3 1/3*zeta_3 1/3]
+    [1/3 1/3*zeta_3 -2/3 1/3 1/3*(-zeta_3 - 1)]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0      zeta_3           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+
+    [1/3 -2/3*zeta_3 -2/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [1/3*(zeta_3 + 1) 2/3 -1/3 -1/3*zeta_3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3 -1/3 2/3*zeta_3 -1/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) -1/3 -1/3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3 2/3]
+------------------------------
+
+ 61: the group name is SL(2,3), the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3
+Generators:
+    [1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 4) 0 0 0]
+    [1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2) 0 0 0]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2)]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1)]
+
+    [1/3*(2*zeta_3 + 1) 0 1/3*(-4*zeta_3 - 2) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 + 1)]
+    [1/3*(-2*zeta_3 - 1) 0 1/3*(-2*zeta_3 - 1) 0 0]
+    [0 1/3*(-zeta_3 + 1) 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 1/3*(-zeta_3 - 2) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+
+    [1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 - 2) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2)]
+    [1/3*(zeta_3 + 2) 0 1/3*(-2*zeta_3 - 1) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 1/3*(-zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+------------------------------
+
+ 62: the group name is SL(2,3), the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3
+Generators:
+    [-1/3 2/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3 -2/3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3 -2/3*zeta_3]
+    [1/3 1/3 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3]
+
+    [1/3*(2*zeta_3 + 1) 0 1/3*(-4*zeta_3 - 2) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 + 1)]
+    [1/3*(-2*zeta_3 - 1) 0 1/3*(-2*zeta_3 - 1) 0 0]
+    [0 1/3*(-zeta_3 + 1) 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 1/3*(-zeta_3 - 2) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+
+    [1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 - 2) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2)]
+    [1/3*(zeta_3 + 2) 0 1/3*(-2*zeta_3 - 1) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 1/3*(-zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+------------------------------
+
+ 63: the group name is C3*Q8, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3
+Generators:
+    [-1/3 2/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3 1/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3 1/3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 -2/3*zeta_3 1/3*(-zeta_3 - 1)]
+
+    [1/3*(2*zeta_3 + 1) 0 1/3*(-4*zeta_3 - 2) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 + 1)]
+    [1/3*(-2*zeta_3 - 1) 0 1/3*(-2*zeta_3 - 1) 0 0]
+    [0 1/3*(-zeta_3 + 1) 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 1/3*(-zeta_3 - 2) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+
+    [1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 - 2) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2)]
+    [1/3*(zeta_3 + 2) 0 1/3*(-2*zeta_3 - 1) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 1/3*(-zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+------------------------------
+
+ 64: the group name is   S4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3
+Generators:
+    [        -1          0          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0 zeta_3 + 1          0          0          0]
+    [         0          0          0         -1          0]
+
+    [1/3 -2/3 -2/3 -2/3 -2/3]
+    [-1/3 2/3 -1/3 -1/3 -1/3]
+    [-1/3*zeta_3 -1/3*zeta_3 -1/3*zeta_3 2/3*zeta_3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) 
+        1/3*(zeta_3 + 1)]
+    [-1/3 -1/3 -1/3 -1/3 2/3]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0      zeta_3           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) -2/3 1/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 -2/3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3]
+------------------------------
+
+ 65: the group name is C2*A4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3
+Generators:
+    [     -1       0       0       0       0]
+    [      0       0       0       0 -zeta_3]
+    [      0       0 -zeta_3       0       0]
+    [      0       0       0 -zeta_3       0]
+    [      0      -1       0       0       0]
+
+    [          1           0           0           0           0]
+    [          0      zeta_3           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0           0           0      zeta_3]
+
+    [-1/3 2/3 2/3*zeta_3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 1/3 1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2) 1/3*zeta_3]
+    [1/3 1/3 -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 -2/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3]
+
+    [-1/3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3*zeta_3]
+    [1/3*zeta_3 1/3 1/3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2)]
+    [1/3*zeta_3 1/3 1/3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3*zeta_3 1/3 1/3]
+    [1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3*zeta_3 1/3 1/3]
+------------------------------
+
+ 66: the group name is C2*A4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3
+Generators:
+    [1 0 0 0 0]
+    [0 0 1 0 0]
+    [0 1 0 0 0]
+    [0 0 0 0 1]
+    [0 0 0 1 0]
+
+    [1/3 -2/3 -2/3 -2/3 -2/3]
+    [-1/3 2/3 -1/3 -1/3 -1/3]
+    [-1/3*zeta_3 -1/3*zeta_3 -1/3*zeta_3 2/3*zeta_3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) 
+        1/3*(zeta_3 + 1)]
+    [-1/3 -1/3 -1/3 -1/3 2/3]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0      zeta_3           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) -2/3 1/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 -2/3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3]
+------------------------------
+
+ 67: the group name is   S4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3
+Generators:
+    [        -1          0          0          0          0]
+    [         0          0          0    -zeta_3          0]
+    [         0         -1          0          0          0]
+    [         0          0          0          0         -1]
+    [         0          0 zeta_3 + 1          0          0]
+
+    [-1/3 2/3*zeta_3 2/3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 1/3*zeta_3 1/3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3*zeta_3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*zeta_3 1/3*zeta_3 1/3]
+    [1/3 1/3*zeta_3 -2/3 1/3 1/3*(-zeta_3 - 1)]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0      zeta_3           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+
+    [1/3 -2/3*zeta_3 -2/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [1/3*(zeta_3 + 1) 2/3 -1/3 -1/3*zeta_3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3 -1/3 2/3*zeta_3 -1/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) -1/3 -1/3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3 2/3]
+------------------------------
+
+ 68: the group name is   S4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0 -zeta_3 - 1]
+    [          0           0           0           1           0]
+    [          0           0           1           0           0]
+    [          0      zeta_3           0           0           0]
+
+    [          1           0           0           0           0]
+    [          0           0           0      zeta_3           0]
+    [          0           0           0           0      zeta_3]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+------------------------------
+
+ 69: the group name is C3:D4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0 -zeta_3 - 1]
+    [          0           0           0           1           0]
+    [          0           0           1           0           0]
+    [          0      zeta_3           0           0           0]
+
+    [          1           0           0           0           0]
+    [          0           0      zeta_3           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0 -zeta_3 - 1           0]
+
+    [-1/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [1/3 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3 1/3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) -2/3]
+    [1/3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3*(-zeta_3 - 1)]
+------------------------------
+
+ 70: the group name is S3^2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3^2
+Generators:
+    [-1  0  0  0  0]
+    [ 0 -1  0  0  0]
+    [ 0  0  0 -1  0]
+    [ 0  0 -1  0  0]
+    [ 0  0  0  0 -1]
+
+    [1 0 0 0 0]
+    [0 0 0 0 1]
+    [0 0 0 1 0]
+    [0 0 1 0 0]
+    [0 1 0 0 0]
+
+    [-1/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3 -2/3*zeta_3 1/3]
+    [1/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3 1/3*zeta_3 1/3]
+    [1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2) 1/3 1/3*(-zeta_3 - 1)]
+
+    [1/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3]
+    [-1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [-1/3 -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+------------------------------
+
+ 71: the group name is S3^2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3^2
+Generators:
+    [1 0 0 0 0]
+    [0 0 1 0 0]
+    [0 1 0 0 0]
+    [0 0 0 0 1]
+    [0 0 0 1 0]
+
+    [1 0 0 0 0]
+    [0 0 0 0 1]
+    [0 0 0 1 0]
+    [0 0 1 0 0]
+    [0 1 0 0 0]
+
+    [-1/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3 -2/3*zeta_3 1/3]
+    [1/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3 1/3*zeta_3 1/3]
+    [1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2) 1/3 1/3*(-zeta_3 - 1)]
+
+    [1/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3]
+    [-1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [-1/3 -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+------------------------------
+
+ 72: the group name is C3:S3.C2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3^2
+Generators:
+    [-1  0  0  0  0]
+    [ 0  0 -1  0  0]
+    [ 0  0  0  0 -1]
+    [ 0 -1  0  0  0]
+    [ 0  0  0 -1  0]
+
+    [1 0 0 0 0]
+    [0 0 0 0 1]
+    [0 0 0 1 0]
+    [0 0 1 0 0]
+    [0 1 0 0 0]
+
+    [-1/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3 -2/3*zeta_3 1/3]
+    [1/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3 1/3*zeta_3 1/3]
+    [1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2) 1/3 1/3*(-zeta_3 - 1)]
+
+    [1/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3]
+    [-1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [-1/3 -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+------------------------------
+
+ 73: the group name is C6*S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3^2
+Generators:
+    [     -1       0       0       0       0]
+    [      0       0       0       0 -zeta_3]
+    [      0       0 -zeta_3       0       0]
+    [      0       0       0 -zeta_3       0]
+    [      0      -1       0       0       0]
+
+    [     1      0      0      0      0]
+    [     0      1      0      0      0]
+    [     0      0 zeta_3      0      0]
+    [     0      0      0 zeta_3      0]
+    [     0      0      0      0 zeta_3]
+
+    [          1           0           0           0           0]
+    [          0      zeta_3           0           0           0]
+    [          0           0           1           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0 -zeta_3 - 1]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+------------------------------
+
+ 74: the group name is C3^2:S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3^3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 -1/3*zeta_3 -1/3]
+    [-1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) 2/3*zeta_3]
+    [-1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3]
+
+    [1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 4) 0 0 0]
+    [1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 0 0 0]
+    [0 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1)]
+------------------------------
+
+ 75: the group name is C3*C3:S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3^3
+Generators:
+    [          1           0           0           0           0]
+    [          0           0           0      zeta_3           0]
+    [          0           0           0           0      zeta_3]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 -1/3*zeta_3 -1/3]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3 -1/3*zeta_3 2/3]
+
+    [-1/3 2/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*zeta_3 -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+    [1/3*zeta_3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3 -2/3*zeta_3 -2/3]
+    [-1/3*zeta_3 2/3 -1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [-1/3 1/3*(zeta_3 + 1) 2/3 -1/3*zeta_3 -1/3]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 1/3*(zeta_3 + 1) 2/3*zeta_3]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3]
+------------------------------
+
+ 76: the group name is C3^2*S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3^3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0           0           0 -zeta_3 - 1]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 4) 0 0 0]
+    [1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 0 0 0]
+    [0 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1)]
+------------------------------
+
+ 77: the group name is   A5, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3 * 5
+Generators:
+    [1/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3*zeta_3 1/3*(2*zeta_3 + 2)]
+    [-1/3*zeta_3 -1/3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) -1/3]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 -1/3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 2/3*zeta_3 -1/3 -1/3 -1/3*zeta_3]
+    [-1/3*zeta_3 -1/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3]
+
+    [-1/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [1/3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*(2*zeta_3 + 2)]
+    [1/3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3]
+    [1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3 1/3 1/3*zeta_3]
+------------------------------
+
+ 78: the group name is   A5, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3 * 5
+Generators:
+    [-1/3 1/3*(-2*zeta_3 - 2) 2/3 2/3 2/3*zeta_3]
+    [1/3*zeta_3 1/3 1/3*zeta_3 -2/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3 1/3*(-zeta_3 - 1) 1/3 1/3 -2/3*zeta_3]
+    [1/3 1/3*(2*zeta_3 + 2) 1/3 1/3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1) 1/3]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           0           0      zeta_3           0]
+    [          0           0           0           0           1]
+------------------------------
+
+ 79: the group name is C3wrC3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 3^4
+Generators:
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0           0           0 -zeta_3 - 1]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 -1/3*zeta_3 -1/3]
+    [-1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) 2/3*zeta_3]
+    [-1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3]
+
+    [1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 4) 0 0 0]
+    [1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 0 0 0]
+    [0 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1)]
+------------------------------
+
+ 80: the group name is Q8:C2^2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^5
+Generators:
+    [1/3 1/3*(2*zeta_3 + 2) -2/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 -1/3 2/3]
+    [-1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 2/3 -1/3]
+    [-1/3*zeta_3 2/3 -1/3*zeta_3 -1/3 -1/3]
+
+    [1/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3]
+    [-1/3 -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+    [-1/3*zeta_3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [-1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+
+    [1/3 -2/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3 -1/3 -1/3 1/3*(zeta_3 + 1) 2/3*zeta_3]
+    [-1/3 -1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [-1/3*zeta_3 -1/3*zeta_3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+
+    [1/3 -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 1/3*(2*zeta_3 + 2)]
+    [1/3*(zeta_3 + 1) -1/3 -1/3*zeta_3 -1/3 2/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) -1/3]
+    [1/3*(zeta_3 + 1) -1/3 -1/3*zeta_3 2/3 -1/3*zeta_3]
+    [-1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3 1/3*(zeta_3 + 1) -1/3]
+------------------------------
+
+ 81: the group name is C2^2.D4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^5
+Generators:
+    [1/3 1/3*(2*zeta_3 + 2) -2/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 -1/3 2/3]
+    [-1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 2/3 -1/3]
+    [-1/3*zeta_3 2/3 -1/3*zeta_3 -1/3 -1/3]
+
+    [1/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3]
+    [-1/3 -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+    [-1/3*zeta_3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [-1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+
+    [-1/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3 1/3*(-zeta_3 - 1) 1/3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 -2/3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 1/3 -2/3*zeta_3]
+
+    [1/3 -2/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3 -1/3 -1/3 1/3*(zeta_3 + 1) 2/3*zeta_3]
+    [-1/3 -1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [-1/3*zeta_3 -1/3*zeta_3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+------------------------------
+
+ 82: the group name is C2^2wrC2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^5
+Generators:
+    [          1           0           0           0           0]
+    [          0           0           0           0 -zeta_3 - 1]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0      zeta_3           0           0]
+    [          0      zeta_3           0           0           0]
+
+    [-1/3 2/3*zeta_3 2/3 2/3*zeta_3 2/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 
+        2)]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 
+        1)]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 
+        1)]
+    [1/3 -2/3*zeta_3 1/3 1/3*zeta_3 1/3*zeta_3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0         -1          0]
+    [         0          0 zeta_3 + 1          0          0]
+
+    [          1           0           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [1/3 -2/3 -2/3*zeta_3 -2/3 1/3*(2*zeta_3 + 2)]
+    [-1/3 -1/3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [-1/3 2/3 -1/3*zeta_3 -1/3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+------------------------------
+
+ 83: the group name is A4:C4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4 * 3
+Generators:
+    [1/3*(-2*zeta_3 - 1) 0 1/3*(-2*zeta_3 - 4) 0 0]
+    [0 1/3*(zeta_3 - 1) 0 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1)]
+    [0 1/3*(zeta_3 - 1) 0 1/3*(zeta_3 - 1) 1/3*(zeta_3 + 2)]
+    [0 1/3*(zeta_3 + 2) 0 1/3*(zeta_3 - 1) 1/3*(zeta_3 - 1)]
+    [1/3*(-zeta_3 - 2) 0 1/3*(-zeta_3 + 1) 0 0]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0         -1          0]
+    [         0          0 zeta_3 + 1          0          0]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3 1/3*zeta_3 -2/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1)]
+    [1/3 -2/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1)]
+    [1/3 1/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2)]
+    [1/3 1/3*zeta_3 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1)]
+
+    [          1           0           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [1/3 -2/3 -2/3*zeta_3 -2/3 1/3*(2*zeta_3 + 2)]
+    [-1/3 -1/3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [-1/3 2/3 -1/3*zeta_3 -1/3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+------------------------------
+
+ 84: the group name is C2^2*A4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4 * 3
+Generators:
+    [     -1       0       0       0       0]
+    [      0       0       0       0 -zeta_3]
+    [      0       0 -zeta_3       0       0]
+    [      0       0       0 -zeta_3       0]
+    [      0      -1       0       0       0]
+
+    [          1           0           0           0           0]
+    [          0      zeta_3           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0           0           0      zeta_3]
+
+    [-1/3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3*zeta_3]
+    [1/3*zeta_3 1/3 1/3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2)]
+    [1/3*zeta_3 1/3 1/3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3*zeta_3 1/3 1/3]
+    [1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3*zeta_3 1/3 1/3]
+
+    [-1/3 2/3*zeta_3 2/3 1/3*(-2*zeta_3 - 2) 2/3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*(2*zeta_3 + 2)]
+    [1/3 1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2) 1/3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3 1/3*zeta_3]
+    [1/3 -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+------------------------------
+
+ 85: the group name is SL(2,3):C2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4 * 3
+Generators:
+    [1/3 1/3*(2*zeta_3 + 2) -2/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 -1/3 2/3]
+    [-1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 2/3 -1/3]
+    [-1/3*zeta_3 2/3 -1/3*zeta_3 -1/3 -1/3]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0           0           0 -zeta_3 - 1]
+
+    [1/3*(2*zeta_3 + 1) 0 0 0 1/3*(2*zeta_3 + 4)]
+    [0 1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 0]
+    [0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 0]
+    [0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0]
+    [1/3*(zeta_3 - 1) 0 0 0 1/3*(-2*zeta_3 - 1)]
+
+    [1/3*(2*zeta_3 + 1) 0 0 0 1/3*(2*zeta_3 - 2)]
+    [0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1) 0]
+    [0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 0]
+    [0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0]
+    [1/3*(zeta_3 + 2) 0 0 0 1/3*(-2*zeta_3 - 1)]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+------------------------------
+
+ 86: the group name is C2*S4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4 * 3
+Generators:
+    [-1/3 2/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3]
+    [1/3 1/3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 -2/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3 1/3*zeta_3]
+    [1/3 -2/3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3]
+
+    [-1/3 2/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 -2/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3 1/3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3]
+    [1/3 -2/3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3 1/3*zeta_3]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0      zeta_3           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+
+    [1/3 -2/3*zeta_3 -2/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [1/3*(zeta_3 + 1) -1/3 -1/3 -1/3*zeta_3 2/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3 2/3 -1/3*zeta_3 -1/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3 -1/3]
+    [-1/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) -1/3 -1/3]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 1/3*zeta_3 -2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 -2/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3 1/3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1) 1/3 1/3]
+------------------------------
+
+ 87: the group name is C2*S4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4 * 3
+Generators:
+    [-1/3 1/3*(-2*zeta_3 - 2) 2/3 2/3 2/3*zeta_3]
+    [1/3*zeta_3 1/3 1/3*zeta_3 -2/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3 1/3*(-zeta_3 - 1) 1/3 1/3 -2/3*zeta_3]
+    [1/3 1/3*(2*zeta_3 + 2) 1/3 1/3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1) 1/3]
+
+    [1/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3]
+    [-1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+    [-1/3 -1/3 1/3*(zeta_3 + 1) 2/3*zeta_3 -1/3]
+    [-1/3 -1/3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3 -1/3]
+    [-1/3 -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 1/3*zeta_3 -2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 -2/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3 1/3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1) 1/3 1/3]
+
+    [1 0 0 0 0]
+    [0 0 1 0 0]
+    [0 1 0 0 0]
+    [0 0 0 0 1]
+    [0 0 0 1 0]
+
+    [          1           0           0           0           0]
+    [          0           0           0      zeta_3           0]
+    [          0           0           0           0      zeta_3]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+------------------------------
+
+ 88: the group name is S3wrC2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3^2
+Generators:
+    [-1/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3]
+    [1/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3 -2/3*zeta_3 1/3]
+    [1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2) 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3 1/3*zeta_3 1/3]
+
+    [-1  0  0  0  0]
+    [ 0 -1  0  0  0]
+    [ 0  0  0 -1  0]
+    [ 0  0 -1  0  0]
+    [ 0  0  0  0 -1]
+
+    [-1/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3]
+    [1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2) 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3 1/3*zeta_3 1/3]
+    [1/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3 -2/3*zeta_3 1/3]
+
+    [-1/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3 -2/3*zeta_3 1/3]
+    [1/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3 1/3*zeta_3 1/3]
+    [1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2) 1/3 1/3*(-zeta_3 - 1)]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3 1/3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1) 1/3 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 1/3*zeta_3 -2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 -2/3*zeta_3 1/3*zeta_3]
+------------------------------
+
+ 89: the group name is C3*SL(2,3), the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3^2
+Generators:
+    [     1      0      0      0      0]
+    [     0      1      0      0      0]
+    [     0      0 zeta_3      0      0]
+    [     0      0      0 zeta_3      0]
+    [     0      0      0      0 zeta_3]
+
+    [-1/3 2/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3 1/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3 1/3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 -2/3*zeta_3 1/3*(-zeta_3 - 1)]
+
+    [1/3 -2/3 -2/3 -2/3*zeta_3 1/3*(2*zeta_3 + 2)]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) -1/3 -1/3*zeta_3]
+    [-1/3 2/3 -1/3 -1/3*zeta_3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3*zeta_3 -1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3]
+    [-1/3 -1/3 -1/3 -1/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [1/3*(-2*zeta_3 - 1) 1/3*(4*zeta_3 + 2) 0 0 0]
+    [1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0 0 0]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1)]
+------------------------------
+
+ 90: the group name is C2^4:C5, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4 * 5
+Generators:
+    [-1/3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3*zeta_3 1/3 1/3]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*zeta_3 1/3 -2/3]
+    [1/3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*zeta_3 -2/3 1/3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0         -1          0]
+    [         0          0 zeta_3 + 1          0          0]
+
+    [-1  0  0  0  0]
+    [ 0  0  0 -1  0]
+    [ 0  0 -1  0  0]
+    [ 0 -1  0  0  0]
+    [ 0  0  0  0 -1]
+
+    [1/3 -2/3 -2/3*zeta_3 -2/3 1/3*(2*zeta_3 + 2)]
+    [-1/3 2/3 -1/3*zeta_3 -1/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1) 2/3*zeta_3]
+    [-1/3 -1/3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3 -1/3]
+
+    [1/3 -2/3*zeta_3 -2/3 -2/3*zeta_3 -2/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1) 2/3 -1/3]
+    [-1/3 -1/3*zeta_3 2/3 -1/3*zeta_3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) -1/3 -1/3]
+    [1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1) -1/3 2/3]
+------------------------------
+
+ 91: the group name is C3^3:C2^2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3^3
+Generators:
+    [          1           0           0           0           0]
+    [          0           0           0           0 -zeta_3 - 1]
+    [          0           0           0           1           0]
+    [          0           0           1           0           0]
+    [          0      zeta_3           0           0           0]
+
+    [          1           0           0           0           0]
+    [          0           0      zeta_3           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0 -zeta_3 - 1           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 -1/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3]
+    [-1/3*zeta_3 -1/3 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 -1/3 2/3]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [-1/3*zeta_3 2/3 -1/3*zeta_3 -1/3 -1/3]
+    [-1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3*zeta_3]
+    [-1/3 1/3*(zeta_3 + 1) -1/3 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1)]
+
+    [-1/3 2/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*zeta_3 -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+    [1/3*zeta_3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+------------------------------
+
+ 92: the group name is C3^2:S3.C2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3^3
+Generators:
+    [1/3 -2/3 1/3*(2*zeta_3 + 2) -2/3 -2/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3*zeta_3 1/3*(zeta_3 + 1) -1/3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) 2/3]
+    [-1/3 2/3 1/3*(zeta_3 + 1) -1/3 -1/3*zeta_3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) -2/3 1/3*(2*zeta_3 + 2)]
+    [-1/3*zeta_3 2/3 -1/3 -1/3*zeta_3 -1/3]
+    [-1/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 2/3 -1/3*zeta_3 -1/3]
+    [-1/3*zeta_3 -1/3 -1/3 -1/3*zeta_3 2/3]
+
+    [1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 4) 0 0 0]
+    [1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 0 0 0]
+    [0 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1)]
+------------------------------
+
+ 93: the group name is C3*S3^2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3^3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           0      zeta_3           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0 -zeta_3 - 1           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 -1/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3]
+    [-1/3*zeta_3 -1/3 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 -1/3 2/3]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [-1/3*zeta_3 2/3 -1/3*zeta_3 -1/3 -1/3]
+    [-1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3*zeta_3]
+    [-1/3 1/3*(zeta_3 + 1) -1/3 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1)]
+
+    [-1/3 2/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*zeta_3 -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+    [1/3*zeta_3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+------------------------------
+
+ 94: the group name is C3^2:(C3:C4), the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3^3
+Generators:
+    [        -1          0          0          0          0]
+    [         0          0          0          0 zeta_3 + 1]
+    [         0          0          0         -1          0]
+    [         0 zeta_3 + 1          0          0          0]
+    [         0          0 zeta_3 + 1          0          0]
+
+    [          1           0           0           0           0]
+    [          0           0      zeta_3           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           0 -zeta_3 - 1           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 -1/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3]
+    [-1/3*zeta_3 -1/3 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 -1/3 2/3]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [-1/3*zeta_3 2/3 -1/3*zeta_3 -1/3 -1/3]
+    [-1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3*zeta_3]
+    [-1/3 1/3*(zeta_3 + 1) -1/3 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1)]
+
+    [-1/3 2/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*zeta_3 -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+    [1/3*zeta_3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+------------------------------
+
+ 95: the group name is   S5, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3 * 5
+Generators:
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) -2/3 1/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 -2/3]
+
+    [        -1          0          0          0          0]
+    [         0          0          0          0 zeta_3 + 1]
+    [         0          0 zeta_3 + 1          0          0]
+    [         0          0          0    -zeta_3          0]
+    [         0    -zeta_3          0          0          0]
+------------------------------
+
+ 96: the group name is   S5, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3 * 5
+Generators:
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 1/3*zeta_3 -2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 -2/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3 1/3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1) 1/3 1/3]
+
+    [          1           0           0           0           0]
+    [          0           0           0      zeta_3           0]
+    [          0           0           0           0 -zeta_3 - 1]
+    [          0      zeta_3           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+------------------------------
+
+ 97: the group name is C3wrS3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2 * 3^4
+Generators:
+    [     1      0      0      0      0]
+    [     0      1      0      0      0]
+    [     0      0 zeta_3      0      0]
+    [     0      0      0 zeta_3      0]
+    [     0      0      0      0 zeta_3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [-1/3*zeta_3 2/3 -1/3*zeta_3 -1/3 -1/3]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 2/3 -1/3]
+    [-1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 -1/3 2/3]
+
+    [1/3*(-2*zeta_3 - 1) 1/3*(4*zeta_3 + 2) 0 0 0]
+    [1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0 0 0]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1)]
+------------------------------
+
+ 98: the group name is C2wrC2^2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^6
+Generators:
+    [-1  0  0  0  0]
+    [ 0  0  0  0 -1]
+    [ 0  0 -1  0  0]
+    [ 0  0  0 -1  0]
+    [ 0 -1  0  0  0]
+
+    [1/3 -2/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3 -1/3 -1/3 1/3*(zeta_3 + 1) 2/3*zeta_3]
+    [-1/3 -1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [-1/3*zeta_3 -1/3*zeta_3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+
+    [1/3 -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 1/3*(2*zeta_3 + 2)]
+    [1/3*(zeta_3 + 1) -1/3 -1/3*zeta_3 -1/3 2/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) -1/3]
+    [1/3*(zeta_3 + 1) -1/3 -1/3*zeta_3 2/3 -1/3*zeta_3]
+    [-1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3 1/3*(zeta_3 + 1) -1/3]
+
+    [1/3 -2/3*zeta_3 -2/3 1/3*(2*zeta_3 + 2) -2/3]
+    [1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [-1/3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 -1/3*zeta_3]
+    [-1/3 2/3*zeta_3 -1/3 1/3*(zeta_3 + 1) -1/3]
+
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 -1/3 -1/3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2)]
+    [-1/3*zeta_3 -1/3 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3]
+    [1/3*(zeta_3 + 1) 2/3*zeta_3 -1/3*zeta_3 -1/3 -1/3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+------------------------------
+
+ 99: the group name is C2^3:A4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^5 * 3
+Generators:
+    [          1           0           0           0           0]
+    [          0      zeta_3           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+    [          0           0           0           0      zeta_3]
+
+    [-1/3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3*zeta_3]
+    [1/3*zeta_3 1/3 1/3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2)]
+    [1/3*zeta_3 1/3 1/3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3*zeta_3 1/3 1/3]
+    [1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3*zeta_3 1/3 1/3]
+
+    [1/3*(2*zeta_3 + 1) 0 0 0 1/3*(-4*zeta_3 - 2)]
+    [0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 - 2) 0]
+    [0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 0]
+    [0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0]
+    [1/3*(-2*zeta_3 - 1) 0 0 0 1/3*(-2*zeta_3 - 1)]
+
+    [1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 - 2) 0 0 0]
+    [1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1) 0 0 0]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+
+    [1/3*(2*zeta_3 + 1) 1/3*(-4*zeta_3 - 2) 0 0 0]
+    [1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 0 0 0]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2)]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1)]
+    [0 0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1)]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+------------------------------
+
+ 100: the group name is C2^3:A4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^5 * 3
+Generators:
+    [          1           0           0           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0           1           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+
+    [1/3 -2/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3 -1/3 -1/3 1/3*(zeta_3 + 1) 2/3*zeta_3]
+    [-1/3 -1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [-1/3*zeta_3 -1/3*zeta_3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+
+    [1/3 -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 1/3*(2*zeta_3 + 2)]
+    [1/3*(zeta_3 + 1) -1/3 -1/3*zeta_3 -1/3 2/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) -1/3]
+    [1/3*(zeta_3 + 1) -1/3 -1/3*zeta_3 2/3 -1/3*zeta_3]
+    [-1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3 1/3*(zeta_3 + 1) -1/3]
+
+    [1/3 -2/3*zeta_3 -2/3 1/3*(2*zeta_3 + 2) -2/3]
+    [1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [-1/3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 -1/3*zeta_3]
+    [-1/3 2/3*zeta_3 -1/3 1/3*(zeta_3 + 1) -1/3]
+
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 -1/3 -1/3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2)]
+    [-1/3*zeta_3 -1/3 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3]
+    [1/3*(zeta_3 + 1) 2/3*zeta_3 -1/3*zeta_3 -1/3 -1/3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+------------------------------
+
+ 101: the group name is Q8.A4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^5 * 3
+Generators:
+    [     1      0      0      0      0]
+    [     0      1      0      0      0]
+    [     0      0 zeta_3      0      0]
+    [     0      0      0 zeta_3      0]
+    [     0      0      0      0 zeta_3]
+
+    [1/3*(2*zeta_3 + 1) 0 0 0 1/3*(2*zeta_3 - 2)]
+    [0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1) 0]
+    [0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 0]
+    [0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0]
+    [1/3*(zeta_3 + 2) 0 0 0 1/3*(-2*zeta_3 - 1)]
+
+    [1/3*(2*zeta_3 + 1) 0 0 0 1/3*(-4*zeta_3 - 2)]
+    [0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 - 2) 0]
+    [0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 + 1) 1/3*(2*zeta_3 + 1) 0]
+    [0 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0]
+    [1/3*(-2*zeta_3 - 1) 0 0 0 1/3*(-2*zeta_3 - 1)]
+
+    [1/3 -2/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3 -1/3 -1/3 1/3*(zeta_3 + 1) 2/3*zeta_3]
+    [-1/3 -1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [-1/3*zeta_3 -1/3*zeta_3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 -1/3 2/3]
+    [-1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 2/3 -1/3]
+    [-1/3*zeta_3 2/3 -1/3*zeta_3 -1/3 -1/3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+------------------------------
+
+ 102: the group name is GL(2,Z/4), the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^5 * 3
+Generators:
+    [1/3*(-2*zeta_3 - 1) 0 1/3*(-2*zeta_3 - 4) 0 0]
+    [0 1/3*(zeta_3 - 1) 0 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1)]
+    [0 1/3*(zeta_3 - 1) 0 1/3*(zeta_3 - 1) 1/3*(zeta_3 + 2)]
+    [0 1/3*(zeta_3 + 2) 0 1/3*(zeta_3 - 1) 1/3*(zeta_3 - 1)]
+    [1/3*(-zeta_3 - 2) 0 1/3*(-zeta_3 + 1) 0 0]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3*zeta_3 1/3*(2*zeta_3 + 2)]
+    [-1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [-1/3*zeta_3 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3]
+    [-1/3 1/3*(zeta_3 + 1) 2/3*zeta_3 -1/3*zeta_3 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3 2/3 -1/3*zeta_3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0         -1          0]
+    [         0          0 zeta_3 + 1          0          0]
+
+    [-1  0  0  0  0]
+    [ 0  0  0 -1  0]
+    [ 0  0 -1  0  0]
+    [ 0 -1  0  0  0]
+    [ 0  0  0  0 -1]
+
+    [-1/3 2/3*zeta_3 2/3 2/3*zeta_3 2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3 1/3]
+    [1/3 1/3*zeta_3 -2/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) -2/3 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) 1/3 -2/3]
+
+    [-1/3 2/3 2/3*zeta_3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 -2/3 1/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+    [1/3 1/3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3]
+------------------------------
+
+ 103: the group name is C2^4:D5, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^5 * 5
+Generators:
+    [-1/3 1/3*(-2*zeta_3 - 2) 2/3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*zeta_3 -2/3 1/3*zeta_3 1/3 1/3]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3 1/3*zeta_3 -2/3 1/3]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3*zeta_3]
+
+    [1/3*(-2*zeta_3 - 1) 0 1/3*(-2*zeta_3 + 2) 0 0]
+    [1/3*(2*zeta_3 + 1) 0 1/3*(-zeta_3 + 1) 0 0]
+    [0 1/3*(zeta_3 - 1) 0 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 - 1)]
+    [0 1/3*(zeta_3 - 1) 0 1/3*(zeta_3 - 1) 1/3*(-2*zeta_3 - 1)]
+    [0 1/3*(zeta_3 - 1) 0 1/3*(zeta_3 + 2) 1/3*(zeta_3 + 2)]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0         -1          0]
+    [         0          0 zeta_3 + 1          0          0]
+
+    [-1  0  0  0  0]
+    [ 0  0  0 -1  0]
+    [ 0  0 -1  0  0]
+    [ 0 -1  0  0  0]
+    [ 0  0  0  0 -1]
+
+    [-1/3 2/3*zeta_3 2/3 2/3*zeta_3 2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3 1/3]
+    [1/3 1/3*zeta_3 -2/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) -2/3 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) 1/3 -2/3]
+
+    [-1/3 2/3 2/3*zeta_3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 -2/3 1/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+    [1/3 1/3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3]
+------------------------------
+
+ 104: the group name is SU(3,2), the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3^3
+Generators:
+    [1/3 -2/3*zeta_3 -2/3*zeta_3 -2/3 -2/3*zeta_3]
+    [-1/3 -1/3*zeta_3 2/3*zeta_3 -1/3 -1/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(-2*zeta_3 - 
+        2)]
+    [1/3*(zeta_3 + 1) 2/3 -1/3 1/3*(zeta_3 + 1) -1/3]
+    [-1/3 -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3*zeta_3]
+
+    [1/3 -2/3 -2/3*zeta_3 -2/3*zeta_3 -2/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3 -1/3 2/3]
+    [-1/3*zeta_3 -1/3*zeta_3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 
+        1)]
+    [-1/3 2/3 -1/3*zeta_3 -1/3*zeta_3 -1/3*zeta_3]
+    [-1/3 -1/3 2/3*zeta_3 -1/3*zeta_3 -1/3*zeta_3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0           1           0           0]
+    [          0           0           0 -zeta_3 - 1           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2)]
+    [-1/3*zeta_3 2/3 -1/3*zeta_3 -1/3 -1/3]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 2/3 -1/3]
+    [-1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 -1/3*zeta_3 -1/3 2/3]
+
+    [1/3*(-2*zeta_3 - 1) 1/3*(4*zeta_3 + 2) 0 0 0]
+    [1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0 0 0]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1)]
+------------------------------
+
+ 105: the group name is S3^2:S3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3^3
+Generators:
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0         -1          0          0]
+    [         0          0          0          0    -zeta_3]
+    [         0          0          0 zeta_3 + 1          0]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0 -zeta_3 - 1]
+    [          0           0           0           1           0]
+    [          0           0           1           0           0]
+    [          0      zeta_3           0           0           0]
+
+    [          1           0           0           0           0]
+    [          0           0           0      zeta_3           0]
+    [          0           0           0           0      zeta_3]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 -1/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3]
+    [-1/3*zeta_3 -1/3 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 -1/3 2/3]
+
+    [-1/3 2/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 -2/3*zeta_3 1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 1/3*(2*zeta_3 + 2)]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3]
+
+    [1/3 -2/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3*zeta_3 -1/3]
+    [-1/3 -1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+------------------------------
+
+ 106: the group name is C3^3:C2^2:C3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^2 * 3^4
+Generators:
+    [          1           0           0           0           0]
+    [          0           1           0           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0      zeta_3]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [          1           0           0           0           0]
+    [          0           0           0           0 -zeta_3 - 1]
+    [          0           0           0           1           0]
+    [          0           0           1           0           0]
+    [          0      zeta_3           0           0           0]
+
+    [          1           0           0           0           0]
+    [          0           0           0      zeta_3           0]
+    [          0           0           0           0      zeta_3]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0 -zeta_3 - 1           0           0]
+
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 -1/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3]
+    [-1/3*zeta_3 -1/3 2/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 -1/3 2/3]
+
+    [-1/3 2/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 -2/3*zeta_3 1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 1/3*(2*zeta_3 + 2)]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3]
+
+    [1/3 -2/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3*zeta_3 -1/3]
+    [-1/3 -1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+------------------------------
+
+ 107: the group name is   A6, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3^2 * 5
+Generators:
+    [-1/3 2/3*zeta_3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 -2/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 1/3*zeta_3 -2/3*zeta_3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1) 1/3 1/3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3 1/3]
+
+    [1/3 -2/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3]
+    [-1/3 -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3*zeta_3 -1/3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3*zeta_3 -1/3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3]
+    [-1/3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3]
+------------------------------
+
+ 108: the group name is C2^3:S4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^6 * 3
+Generators:
+    [-1  0  0  0  0]
+    [ 0  0  0  0 -1]
+    [ 0  0 -1  0  0]
+    [ 0  0  0 -1  0]
+    [ 0 -1  0  0  0]
+
+    [          1           0           0           0           0]
+    [          0      zeta_3           0           0           0]
+    [          0           0           1           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0 -zeta_3 - 1]
+
+    [1/3 -2/3*zeta_3 -2/3 1/3*(2*zeta_3 + 2) -2/3]
+    [1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [-1/3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 -1/3*zeta_3]
+    [-1/3 2/3*zeta_3 -1/3 1/3*(zeta_3 + 1) -1/3]
+
+    [1/3 -2/3*zeta_3 -2/3*zeta_3 -2/3 -2/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3 -1/3 1/3*(zeta_3 + 1) 2/3]
+    [1/3*(zeta_3 + 1) -1/3 2/3 1/3*(zeta_3 + 1) -1/3]
+    [-1/3 -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 2/3 -1/3 1/3*(zeta_3 + 1) -1/3]
+
+    [-1/3 2/3 2/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3]
+    [1/3 1/3 1/3 1/3*(-zeta_3 - 1) -2/3*zeta_3]
+    [1/3 1/3 1/3 1/3*(2*zeta_3 + 2) 1/3*zeta_3]
+    [1/3*zeta_3 1/3*zeta_3 -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3]
+
+    [-1/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 1/3 -2/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2) 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3*zeta_3 1/3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3 1/3*(-zeta_3 - 1) 1/3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+------------------------------
+
+ 109: the group name is C2wrA4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^6 * 3
+Generators:
+    [     -1       0       0       0       0]
+    [      0       0       0       0 -zeta_3]
+    [      0       0 -zeta_3       0       0]
+    [      0       0       0 -zeta_3       0]
+    [      0      -1       0       0       0]
+
+    [          1           0           0           0           0]
+    [          0 -zeta_3 - 1           0           0           0]
+    [          0           0      zeta_3           0           0]
+    [          0           0           0      zeta_3           0]
+    [          0           0           0           0 -zeta_3 - 1]
+
+    [1/3 -2/3*zeta_3 -2/3 1/3*(2*zeta_3 + 2) -2/3]
+    [1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [-1/3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 -1/3*zeta_3]
+    [-1/3 2/3*zeta_3 -1/3 1/3*(zeta_3 + 1) -1/3]
+
+    [1/3 -2/3*zeta_3 -2/3*zeta_3 -2/3 -2/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3 -1/3 1/3*(zeta_3 + 1) 2/3]
+    [1/3*(zeta_3 + 1) -1/3 2/3 1/3*(zeta_3 + 1) -1/3]
+    [-1/3 -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 2/3 -1/3 1/3*(zeta_3 + 1) -1/3]
+
+    [-1/3 2/3 2/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3]
+    [1/3 1/3 1/3 1/3*(-zeta_3 - 1) -2/3*zeta_3]
+    [1/3 1/3 1/3 1/3*(2*zeta_3 + 2) 1/3*zeta_3]
+    [1/3*zeta_3 1/3*zeta_3 -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3]
+
+    [-1/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 1/3 -2/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2) 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3*zeta_3 1/3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3 1/3*(-zeta_3 - 1) 1/3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+------------------------------
+
+ 110: the group name is SL(2,3):A4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^5 * 3^2
+Generators:
+    [     1      0      0      0      0]
+    [     0      1      0      0      0]
+    [     0      0 zeta_3      0      0]
+    [     0      0      0 zeta_3      0]
+    [     0      0      0      0 zeta_3]
+
+    [          1           0           0           0           0]
+    [          0      zeta_3           0           0           0]
+    [          0           0           1           0           0]
+    [          0           0           0           1           0]
+    [          0           0           0           0 -zeta_3 - 1]
+
+    [1/3 -2/3*zeta_3 -2/3 1/3*(2*zeta_3 + 2) -2/3]
+    [1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [-1/3 -1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 -1/3*zeta_3]
+    [-1/3 2/3*zeta_3 -1/3 1/3*(zeta_3 + 1) -1/3]
+
+    [1/3 -2/3*zeta_3 -2/3*zeta_3 -2/3 -2/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3 -1/3 1/3*(zeta_3 + 1) 2/3]
+    [1/3*(zeta_3 + 1) -1/3 2/3 1/3*(zeta_3 + 1) -1/3]
+    [-1/3 -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 2/3 -1/3 1/3*(zeta_3 + 1) -1/3]
+
+    [-1/3 2/3 2/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3]
+    [1/3 1/3 1/3 1/3*(-zeta_3 - 1) -2/3*zeta_3]
+    [1/3 1/3 1/3 1/3*(2*zeta_3 + 2) 1/3*zeta_3]
+    [1/3*zeta_3 1/3*zeta_3 -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3]
+
+    [-1/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 1/3 -2/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2) 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3*zeta_3 1/3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3 1/3*(-zeta_3 - 1) 1/3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+------------------------------
+
+ 111: the group name is SU(3,2).C3, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3^4
+Generators:
+    [-1/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [1/3 1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3 1/3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) -2/3]
+    [1/3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3*(-zeta_3 - 1)]
+
+    [1/3 -2/3 1/3*(2*zeta_3 + 2) -2/3 -2/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3*zeta_3 1/3*(zeta_3 + 1) -1/3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) 2/3]
+    [-1/3 2/3 1/3*(zeta_3 + 1) -1/3 -1/3*zeta_3]
+
+    [1/3*(2*zeta_3 + 1) 0 0 1/3*(2*zeta_3 + 4) 0]
+    [0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 + 1) 0 1/3*(2*zeta_3 + 1)]
+    [1/3*(zeta_3 - 1) 0 0 1/3*(-2*zeta_3 - 1) 0]
+    [0 1/3*(-zeta_3 - 2) 1/3*(-zeta_3 - 2) 0 1/3*(2*zeta_3 + 1)]
+    [0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2) 0 1/3*(-zeta_3 - 2)]
+
+    [-1/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3 2/3]
+    [1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*zeta_3]
+    [1/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1)]
+
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 -1/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1)]
+    [-1/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3*zeta_3]
+    [1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3 2/3 -1/3]
+    [-1/3 1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) -1/3*zeta_3 -1/3*zeta_3]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1)]
+    [-1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) 2/3*zeta_3]
+    [-1/3*zeta_3 -1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 1/3*(-2*zeta_3 - 2) -1/3 1/3*(zeta_3 + 1)]
+
+    [1/3*(-2*zeta_3 - 1) 1/3*(4*zeta_3 + 2) 0 0 0]
+    [1/3*(-zeta_3 + 1) 1/3*(-zeta_3 + 1) 0 0 0]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1)]
+------------------------------
+
+ 112: the group name is C3^3.S4, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^3 * 3^4
+Generators:
+    [-1/3 2/3 1/3*(-2*zeta_3 - 2) 2/3 2/3*zeta_3]
+    [1/3 -2/3 1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*zeta_3 -2/3 1/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3 1/3 1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3*zeta_3]
+    [-1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3 1/3*(zeta_3 + 1)]
+    [-1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 1/3*(zeta_3 + 1) 2/3*zeta_3]
+    [-1/3*zeta_3 -1/3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1)]
+    [-1/3*zeta_3 -1/3 1/3*(-2*zeta_3 - 2) -1/3 1/3*(zeta_3 + 1)]
+
+    [-1/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 -2/3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) -2/3]
+    [1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3 1/3 1/3*zeta_3]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3]
+
+    [-1/3 2/3*zeta_3 2/3*zeta_3 2/3*zeta_3 2/3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 1/3 1/3*(2*zeta_3 + 2)]
+    [1/3*(-zeta_3 - 1) -2/3 1/3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3 1/3*zeta_3 -2/3*zeta_3 1/3*zeta_3 1/3]
+
+    [1/3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 -2/3 -2/3]
+    [-1/3*zeta_3 2/3 1/3*(zeta_3 + 1) -1/3*zeta_3 -1/3*zeta_3]
+    [-1/3*zeta_3 -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3*zeta_3]
+    [-1/3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3 -1/3]
+    [-1/3*zeta_3 -1/3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3 -1/3*zeta_3]
+
+    [1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 - 2) 0 0]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(2*zeta_3 + 1) 1/3*(-zeta_3 - 2)]
+    [1/3*(zeta_3 - 1) 0 1/3*(zeta_3 + 2) 0 0]
+    [0 1/3*(-zeta_3 - 2) 0 1/3*(2*zeta_3 + 1) 1/3*(2*zeta_3 + 1)]
+    [0 1/3*(2*zeta_3 + 1) 0 1/3*(-zeta_3 - 2) 1/3*(2*zeta_3 + 1)]
+
+    [-1/3 2/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 -2/3*zeta_3 1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 1/3*(2*zeta_3 + 2)]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3 1/3*zeta_3]
+------------------------------
+
+ 113: the group name is   S6, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^4 * 3^2 * 5
+Generators:
+    [-1/3 2/3*zeta_3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 1/3*(-2*zeta_3 - 2)]
+    [1/3*zeta_3 1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3]
+    [1/3*zeta_3 1/3*(2*zeta_3 + 2) 1/3 1/3*(-zeta_3 - 1) 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 1/3 -2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*zeta_3 -2/3 1/3*zeta_3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0    -zeta_3          0]
+    [         0          0 zeta_3 + 1          0          0]
+    [         0          0          0          0         -1]
+------------------------------
+
+ 114: the group name is C2.A4wrC2, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^6 * 3^2
+Generators:
+    [-1/3 2/3*zeta_3 2/3*zeta_3 2/3 2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) -2/3 1/3 1/3*(-zeta_3 - 1) 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 -2/3 1/3*(-zeta_3 - 1) 1/3]
+    [1/3 1/3*zeta_3 1/3*zeta_3 -2/3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3 1/3*(-zeta_3 - 1) -2/3]
+
+    [1/3*(-2*zeta_3 - 1) 0 0 0 1/3*(4*zeta_3 + 2)]
+    [0 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 - 1) 1/3*(zeta_3 + 2) 0]
+    [0 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 0]
+    [0 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 0]
+    [1/3*(-zeta_3 + 1) 0 0 0 1/3*(-zeta_3 + 1)]
+
+    [1/3 -2/3 -2/3*zeta_3 -2/3 1/3*(2*zeta_3 + 2)]
+    [-1/3*zeta_3 -1/3*zeta_3 1/3*(zeta_3 + 1) -1/3*zeta_3 2/3]
+    [-1/3*zeta_3 -1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3 -1/3]
+    [1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) -1/3 1/3*(-2*zeta_3 - 2) -1/3*zeta_3]
+    [1/3*(zeta_3 + 1) 1/3*(-2*zeta_3 - 2) -1/3 1/3*(zeta_3 + 1) -1/3*zeta_3]
+
+    [-1/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3 2/3]
+    [1/3*zeta_3 1/3 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1)]
+    [1/3 1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3 1/3]
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*zeta_3 1/3 1/3]
+
+    [-1/3 2/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3 2/3]
+    [1/3 1/3 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3]
+    [1/3*zeta_3 1/3*zeta_3 1/3 1/3*(2*zeta_3 + 2) 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3 -2/3 1/3*(-zeta_3 - 1) 1/3*zeta_3 1/3]
+
+    [1/3 -2/3*zeta_3 1/3*(2*zeta_3 + 2) -2/3*zeta_3 1/3*(2*zeta_3 + 2)]
+    [1/3*(zeta_3 + 1) -1/3 -1/3*zeta_3 -1/3 2/3*zeta_3]
+    [-1/3*zeta_3 1/3*(zeta_3 + 1) 2/3 1/3*(zeta_3 + 1) -1/3]
+    [1/3*(zeta_3 + 1) -1/3 -1/3*zeta_3 2/3 -1/3*zeta_3]
+    [-1/3*zeta_3 1/3*(-2*zeta_3 - 2) -1/3 1/3*(zeta_3 + 1) -1/3]
+
+    [-1/3 1/3*(-2*zeta_3 - 2) 2/3 1/3*(-2*zeta_3 - 2) 1/3*(-2*zeta_3 - 2)]
+    [1/3*zeta_3 1/3 1/3*zeta_3 1/3 -2/3]
+    [1/3 1/3*(-zeta_3 - 1) 1/3 1/3*(2*zeta_3 + 2) 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 1/3 -2/3*zeta_3 1/3 1/3]
+    [1/3*zeta_3 -2/3 1/3*zeta_3 1/3 1/3]
+
+    [        -1          0          0          0          0]
+    [         0         -1          0          0          0]
+    [         0          0          0 zeta_3 + 1          0]
+    [         0          0    -zeta_3          0          0]
+    [         0          0          0          0         -1]
+------------------------------
+
+ 115: the group name is C2^4.A5, the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^6 * 3 * 5
+Generators:
+    [1/3*(-2*zeta_3 - 1) 0 0 1/3*(4*zeta_3 + 2) 0]
+    [1/3*(2*zeta_3 + 1) 0 0 1/3*(2*zeta_3 + 1) 0]
+    [0 1/3*(zeta_3 - 1) 1/3*(zeta_3 - 1) 0 1/3*(zeta_3 - 1)]
+    [0 1/3*(-2*zeta_3 - 1) 1/3*(zeta_3 + 2) 0 1/3*(zeta_3 - 1)]
+    [0 1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1) 0 1/3*(zeta_3 - 1)]
+
+    [-1/3 2/3 2/3 1/3*(-2*zeta_3 - 2) 2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3]
+    [1/3*zeta_3 1/3*zeta_3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) 1/3*(2*zeta_3 + 2) 1/3*zeta_3 1/3]
+    [1/3*zeta_3 -2/3*zeta_3 1/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+
+    [-1/3 2/3*zeta_3 2/3 2/3*zeta_3 2/3*zeta_3]
+    [1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3 1/3]
+    [1/3 1/3*zeta_3 -2/3 1/3*zeta_3 1/3*zeta_3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) -2/3 1/3]
+    [1/3*(-zeta_3 - 1) 1/3 1/3*(-zeta_3 - 1) 1/3 -2/3]
+
+    [-1/3 2/3 2/3*zeta_3 2/3 1/3*(-2*zeta_3 - 2)]
+    [1/3 -2/3 1/3*zeta_3 1/3 1/3*(-zeta_3 - 1)]
+    [1/3*(-zeta_3 - 1) 1/3*(-zeta_3 - 1) -2/3 1/3*(-zeta_3 - 1) 1/3*zeta_3]
+    [1/3 1/3 1/3*zeta_3 -2/3 1/3*(-zeta_3 - 1)]
+    [1/3*zeta_3 1/3*zeta_3 1/3*(-zeta_3 - 1) 1/3*zeta_3 -2/3]
+
+    [-1  0  0  0  0]
+    [ 0  0  0 -1  0]
+    [ 0  0 -1  0  0]
+    [ 0 -1  0  0  0]
+    [ 0  0  0  0 -1]
+
+    [1/3 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) 1/3*(2*zeta_3 + 2) -2/3]
+    [-1/3*zeta_3 -1/3 -1/3 2/3 -1/3*zeta_3]
+    [-1/3*zeta_3 -1/3 2/3 -1/3 -1/3*zeta_3]
+    [-1/3*zeta_3 2/3 -1/3 -1/3 -1/3*zeta_3]
+    [-1/3 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 1/3*(zeta_3 + 1) 2/3]
+------------------------------
+
+ 116: the group name is C(2,3), the generators are:
+MatrixGroup(5, Cyclotomic Field of order 3 and degree 2) of order 2^6 * 3^4 * 5
+Generators:
+    [1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 + 2) 0 0 0]
+    [1/3*(-zeta_3 + 1) 1/3*(-zeta_3 - 2) 0 0 0]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1)]
+    [0 0 1/3*(zeta_3 + 2) 1/3*(zeta_3 - 1) 1/3*(zeta_3 + 2)]
+    [0 0 1/3*(zeta_3 - 1) 1/3*(zeta_3 + 2) 1/3*(zeta_3 + 2)]
+
+    [1/3*(-2*zeta_3 - 1) 0 0 1/3*(-2*zeta_3 + 2) 0]
+    [0 1/3*(-2*zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 0 1/3*(zeta_3 + 2)]
+    [0 1/3*(zeta_3 - 1) 1/3*(-2*zeta_3 - 1) 0 1/3*(zeta_3 - 1)]
+    [1/3*(2*zeta_3 + 1) 0 0 1/3*(-zeta_3 + 1) 0]
+    [0 1/3*(zeta_3 + 2) 1/3*(-2*zeta_3 - 1) 0 1/3*(-2*zeta_3 - 1)]
+------------------------------
+
+
 </pre>
