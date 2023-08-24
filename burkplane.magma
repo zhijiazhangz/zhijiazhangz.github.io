@@ -1,0 +1,42 @@
+//planelistinP4 is an associative array with 40 keys 
+//planelistinP4[i] returns the i-th planes on the Burkhadrt quartic X4 defined by
+//y[1]^4-y[1]*(y[2]^3+y[3]^3+y[4]^3+y[5]^3)+3*y[2]*y[3]*y[4]*y[5] in P4
+
+
+
+K:=CyclotomicField(3);
+w:=RootOfUnity(3);
+P5<[x]>:=ProjectiveSpace(K,5);
+PP5<[x]>:=CoordinateRing(P5);
+ElementarySymmetricPolynomial(PP5,4);
+
+P4<[y]>:=ProjectiveSpace(K,4);
+X4:=Scheme(P4,[y[1]^4-y[1]*(y[2]^3+y[3]^3+y[4]^3+y[5]^3)+3*y[2]*y[3]*y[4]*y[5]]);
+PP4<[y]>:=CoordinateRing(P4);
+
+tr:=hom<PP5->PP4|[y[1]+y[2]+y[5],y[1]+w*y[2]+w^2*y[5],y[1]+w^2*y[2]+w*y[5],-y[1]-y[3]-y[4],-y[1]-w*y[3]-w^2*y[4],-y[1]-w^2*y[3]-w*y[4]]>;
+
+X:=Scheme(P5,[ElementarySymmetricPolynomial(PP5,4),ElementarySymmetricPolynomial(PP5,1)]);
+
+    Plp:=AssociativeArray();
+    indi:=AssociativeArray();
+    planelist:=[];
+    planelistinP4:=[];
+    ct:=0;
+    for i1,i2,i3 in [0..5] do 
+    	if i1 lt i2 and i2 lt i3 then 
+    		ct+:=1;
+	    	Plp[[i1,i2,i3,1]]:=ct;
+	    	indi[ct]:=[i1,i2,i3,1];
+	    	Append(~planelist,Scheme(X,[x[i2+1]-w*x[i1+1],x[i3+1]-w^2*x[i1+1] ]));
+	    	Append(~planelistinP4,Scheme(X4,[tr(x[i2+1]-w*x[i1+1]),tr(x[i3+1]-w^2*x[i1+1]) ]));
+	    	ct+:=1;
+    	    Plp[[i1,i2,i3,-1]]:=ct;
+    	    indi[ct]:=[i1,i2,i3,-1];
+    	    Append(~planelist,Scheme(X,[x[i3+1]-w*x[i1+1],x[i2+1]-w^2*x[i1+1] ]));
+    	    Append(~planelistinP4,Scheme(X4,[tr(x[i3+1]-w*x[i1+1]),tr(x[i2+1]-w^2*x[i1+1]) ]));
+
+    	end if;
+    end for;
+
+
