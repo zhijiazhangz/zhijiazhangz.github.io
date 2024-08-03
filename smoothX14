@@ -1,0 +1,30 @@
+
+<HTML>
+<HEAD>
+
+<style type="text/css">
+A:link {TEXT-DECORATION:none; }
+a:visited {TEXT-DECORATION:none; }
+a:active { text-decoration:none; }
+</STYLE>
+
+<body text="#000000" LINK="#0000F0" VLINK="#000090">
+
+<style> A:link {TEXT-DECORATION:"none"}
+        A:visited {TEXT-DECORATION:"none"}
+</STYLE>
+
+<TITLE>Smooth Example</TITLE>
+</HEAD>
+
+
+
+<h1>Stable Equivariant Birationalities</h1>
+
+<br>
+
+<font size="5">
+
+
+</body>
+</html>
