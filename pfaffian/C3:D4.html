@@ -1,4 +1,5 @@
 
+
 <HTML>
 <HEAD>
 
@@ -14,17 +15,344 @@ a:active { text-decoration:none; }
         A:visited {TEXT-DECORATION:"none"}
 </STYLE>
 
-<TITLE>Smooth Example</TITLE>
+<TITLE>C3D4</TITLE>
 </HEAD>
 
 
 
-<h1>Smooth cubic threefold with C<sub>3</sub>:D<sub>4</sub> action</h1>
+<h1>Smooth Pfaffian cubic threefold with C<sub>3</sub>:D<sub>4</sub> action</h1>
 
-<br>
 
 <font size="5">
+<pre>
+Here we present a equivariant Pfaffian C<sub>3</sub>:D<sub>4</sub> action on a smooth cubic threefold.
+Source code can be found <a ><a href="https://zhijiazhangz.github.io./pfaffian/C3D4">here</a>
+The 6-dimensional representation V is given by 
+
+   Generators:
+    [               0                1                0                0                0                0]
+    [               1                0                0                0                0                0]
+    [               0                0          1/2         -1/2 -1/2*zeta_24^6  1/2*zeta_24^6]
+    [               0                0         -1/2         -1/2 -1/2*zeta_24^6 -1/2*zeta_24^6]
+    [               0                0  1/2*zeta_24^6  1/2*zeta_24^6          1/2          1/2]
+    [               0                0 -1/2*zeta_24^6  1/2*zeta_24^6          1/2         -1/2]
+
+    [           zeta_24^3                    0                    0                    0                    0                    0]
+    [                   0 -zeta_24^5 + zeta_24                    0                    0                    0                    0]
+    [                   0                    0                    0                    0                   -1                    0]
+    [                   0                    0                    0                    0                    0                    1]
+    [                   0                    0                    0                   -1                    0                    0]
+    [                   0                    0                   -1                    0                    0                    0]
+
+    [               1                0                0                0                0                0]
+    [               0                1                0                0                0                0]
+    [               0                0         -1/2         -1/2 -1/2*zeta_24^6  1/2*zeta_24^6]
+    [               0                0          1/2         -1/2  1/2*zeta_24^6  1/2*zeta_24^6]
+    [               0                0 -1/2*zeta_24^6  1/2*zeta_24^6         -1/2         -1/2]
+    [               0                0  1/2*zeta_24^6  1/2*zeta_24^6          1/2         -1/2]
 
 
+
+
+The wedge 2 of V dual is given by 
+
+    [-1 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+    [0 0 0 0 0 1/2 -1/2 1/2*zeta_24^6 -1/2*zeta_24^6 0 0 0 0 0 0]
+    [0 0 0 0 0 -1/2 -1/2 1/2*zeta_24^6 1/2*zeta_24^6 0 0 0 0 0 0]
+    [0 0 0 0 0 -1/2*zeta_24^6 -1/2*zeta_24^6 1/2 1/2 0 0 0 0 0 0]
+    [0 0 0 0 0 1/2*zeta_24^6 -1/2*zeta_24^6 1/2 -1/2 0 0 0 0 0 0]
+    [0 1/2 -1/2 1/2*zeta_24^6 -1/2*zeta_24^6 0 0 0 0 0 0 0 0 0 0]
+    [0 -1/2 -1/2 1/2*zeta_24^6 1/2*zeta_24^6 0 0 0 0 0 0 0 0 0 0]
+    [0 -1/2*zeta_24^6 -1/2*zeta_24^6 1/2 1/2 0 0 0 0 0 0 0 0 0 0]
+    [0 1/2*zeta_24^6 -1/2*zeta_24^6 1/2 -1/2 0 0 0 0 0 0 0 0 0 0]
+    [0 0 0 0 0 0 0 0 0 -1/2 1/2*zeta_24^6 0 0 -1/2*zeta_24^6 -1/2]
+    [0 0 0 0 0 0 0 0 0 -1/2*zeta_24^6 0 1/2 -1/2 0 1/2*zeta_24^6]
+    [0 0 0 0 0 0 0 0 0 0 1/2 -1/2 -1/2 1/2 0]
+    [0 0 0 0 0 0 0 0 0 0 -1/2 -1/2 -1/2 -1/2 0]
+    [0 0 0 0 0 0 0 0 0 1/2*zeta_24^6 0 1/2 -1/2 0 -1/2*zeta_24^6]
+    [0 0 0 0 0 0 0 0 0 -1/2 -1/2*zeta_24^6 0 0 1/2*zeta_24^6 -1/2]
+
+    [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+    [0 0 0 zeta_24^5 - zeta_24 0 0 0 0 0 0 0 0 0 0 0]
+    [0 0 0 0 -zeta_24^5 + zeta_24 0 0 0 0 0 0 0 0 0 0]
+    [0 0 zeta_24^5 - zeta_24 0 0 0 0 0 0 0 0 0 0 0 0]
+    [0 zeta_24^5 - zeta_24 0 0 0 0 0 0 0 0 0 0 0 0 0]
+    [0 0 0 0 0 0 0 -zeta_24^3 0 0 0 0 0 0 0]
+    [0 0 0 0 0 0 0 0 zeta_24^3 0 0 0 0 0 0]
+    [0 0 0 0 0 0 -zeta_24^3 0 0 0 0 0 0 0 0]
+    [0 0 0 0 0 -zeta_24^3 0 0 0 0 0 0 0 0 0]
+    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1]
+    [0 0 0 0 0 0 0 0 0 0 0 0 -1 0 0]
+    [0 0 0 0 0 0 0 0 0 0 -1 0 0 0 0]
+    [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0]
+    [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0]
+    [0 0 0 0 0 0 0 0 0 -1 0 0 0 0 0]
+
+    [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+    [0 -1/2 -1/2 1/2*zeta_24^6 -1/2*zeta_24^6 0 0 0 0 0 0 0 0 0 0]
+    [0 1/2 -1/2 -1/2*zeta_24^6 -1/2*zeta_24^6 0 0 0 0 0 0 0 0 0 0]
+    [0 1/2*zeta_24^6 -1/2*zeta_24^6 -1/2 -1/2 0 0 0 0 0 0 0 0 0 0]
+    [0 -1/2*zeta_24^6 -1/2*zeta_24^6 1/2 -1/2 0 0 0 0 0 0 0 0 0 0]
+    [0 0 0 0 0 -1/2 -1/2 1/2*zeta_24^6 -1/2*zeta_24^6 0 0 0 0 0 0]
+    [0 0 0 0 0 1/2 -1/2 -1/2*zeta_24^6 -1/2*zeta_24^6 0 0 0 0 0 0]
+    [0 0 0 0 0 1/2*zeta_24^6 -1/2*zeta_24^6 -1/2 -1/2 0 0 0 0 0 0]
+    [0 0 0 0 0 -1/2*zeta_24^6 -1/2*zeta_24^6 1/2 -1/2 0 0 0 0 0 0]
+    [0 0 0 0 0 0 0 0 0 1/2 0 1/2*zeta_24^6 1/2*zeta_24^6 0 1/2]
+    [0 0 0 0 0 0 0 0 0 1/2*zeta_24^6 1/2 0 0 1/2 -1/2*zeta_24^6]
+    [0 0 0 0 0 0 0 0 0 0 -1/2 1/2 -1/2 1/2 0]
+    [0 0 0 0 0 0 0 0 0 0 -1/2 -1/2 1/2 1/2 0]
+    [0 0 0 0 0 0 0 0 0 -1/2*zeta_24^6 1/2 0 0 1/2 1/2*zeta_24^6]
+    [0 0 0 0 0 0 0 0 0 1/2 0 -1/2*zeta_24^6 -1/2*zeta_24^6 0 1/2]
+
+
+
+A five dimensional subspace A in wedge 2 of V dual is given in basis
+y1: [1,0,0,0,0,0,0,0,0,2,-2*zeta_24^6,2*zeta_24^6,2*zeta_24^6,2*zeta_24^6,-2]
+
+y2: [0,0,0,1,-zeta_24^6,1/3*(-zeta_24^5 - zeta_24),1/3*(2*zeta_24^7 - zeta_24^3),1/3*(2*zeta_24^7 + zeta_24^5 - zeta_24^3 + zeta_24),1/3*(2*zeta_24^7 - zeta_24^5 - zeta_24^3 - zeta_24),0,0,0,0,0,0]
+
+y3: [0,1,zeta_24^6,0,0,1/3*(-2*zeta_24^7 + zeta_24^5 + zeta_24^3 + zeta_24),1/3*(-2*zeta_24^7 - zeta_24^5 + zeta_24^3 - zeta_24),1/3*(zeta_24^5 + zeta_24),1/3*(2*zeta_24^7 - zeta_24^3),0,0,0,0,0,0]
+
+y4: [0,6,-6*zeta_24^6,0,0,0,0,-6*zeta_24^3,6*zeta_24^5 - 6*zeta_24,-8,-4*zeta_24^6 + 4*zeta_24^5 + 4*zeta_24^3 - 4*zeta_24 + 4,4*zeta_24^6 + 4*zeta_24^5 + 4*zeta_24^3 - 4*zeta_24 + 4,4*zeta_24^6 + 4*zeta_24^5 + 4*zeta_24^3 - 4*zeta_24 + 4,4*zeta_24^6 - 4*zeta_24^5 - 4*zeta_24^3 + 4*zeta_24 - 4,8]
+
+y5: [0,0,0,6,6*zeta_24^6,-6*zeta_24^3,-6*zeta_24^5 + 6*zeta_24,0,0,8*zeta_24^3,4*zeta_24^6 + 4*zeta_24^5 + 4*zeta_24^3 - 4*zeta_24 - 4,4*zeta_24^6 - 4*zeta_24^5 + 4*zeta_24^3 + 4*zeta_24 - 4,4*zeta_24^6 - 4*zeta_24^5 + 4*zeta_24^3 + 4*zeta_24 - 4,-4*zeta_24^6 - 4*zeta_24^5 - 4*zeta_24^3 + 4*zeta_24 + 4,-8*zeta_24^3]
+
+
+
+The interesection of P(A) with Pfaffian cubic form is a smooth cubic threefold Y given by 
+-12*x1^3 + 1/3*(64*zeta_24^7 - 32*zeta_24^5 - 32*zeta_24^4 - 32*zeta_24^3 - 32*zeta_24 + 16)*x2^2*x4 + 1/3*(-64*zeta_24^7 - 32*zeta_24^6 + 64*zeta_24^4 + 32*zeta_24^3 + 64*zeta_24^2 - 
+    32)*x2*x3*x4 + 1/3*(32*zeta_24^7 - 16*zeta_24^6 + 16*zeta_24^5 - 16*zeta_24^3 + 32*zeta_24^2 + 16*zeta_24)*x3^2*x4 + (-80*zeta_24^5 + 208*zeta_24^3 + 80*zeta_24 - 128)*x1*x4^2 + 
+    (576*zeta_24^6 - 576*zeta_24^5 + 576*zeta_24^3 + 576*zeta_24)*x4^3 + 1/3*(-32*zeta_24^7 - 16*zeta_24^6 + 32*zeta_24^4 + 16*zeta_24^3 + 32*zeta_24^2 - 16)*x2^2*x5 + 1/3*(64*zeta_24^7 - 
+    32*zeta_24^6 + 32*zeta_24^5 - 32*zeta_24^3 + 64*zeta_24^2 + 32*zeta_24)*x2*x3*x5 + 1/3*(-32*zeta_24^6 + 16*zeta_24^5 - 64*zeta_24^4 + 64*zeta_24^2 + 16*zeta_24 + 32)*x3^2*x5 + 
+    (128*zeta_24^6 - 288*zeta_24^5 + 128*zeta_24^3 + 288*zeta_24 - 128)*x1*x4*x5 + (1728*zeta_24^5 - 1728*zeta_24)*x4^2*x5 + (-128*zeta_24^6 + 208*zeta_24^5 + 80*zeta_24^3 - 
+    208*zeta_24)*x1*x5^2 + 1728*x4*x5^2 + (-576*zeta_24^6 + 576*zeta_24^3 + 576)*x5^3
+
+
+The group action on Y is generated by two 5x5 matrices given by
+    [-1 0 0 0 0]
+    [0 1/6*(2*zeta_24^7 - zeta_24^5 - zeta_24^3 - zeta_24)    1/6*(-6*zeta_24^7 - zeta_24^5 + 3*zeta_24^3 - zeta_24) 0 0]
+    [0 1/6*(2*zeta_24^7 + 3*zeta_24^5 - zeta_24^3 + 3*zeta_24)     1/6*(-2*zeta_24^7 + zeta_24^5 + zeta_24^3 + zeta_24) 0 0]
+    [0 0 0 1/2*(zeta_24^5 - zeta_24^3 - zeta_24)   1/2*(zeta_24^5 - zeta_24^3 - zeta_24)]
+    [0 0 0 1/2*(zeta_24^5 - zeta_24^3 - zeta_24)    1/2*(-zeta_24^5 + zeta_24^3 + zeta_24)]
+
+    [                  1                   0                   0                   0                   0]
+    [                  0                   0           zeta_24^3                   0                   0]
+    [                  0 zeta_24^5 - zeta_24                   0                   0                   0]
+    [                  0                   0                   0                   0 zeta_24^5 - zeta_24]
+    [                  0                   0                   0          -zeta_24^3                   0]
+
+
+Under the following choice of a basis of the annihilators of A
+
+
+x1:    [1,0,0,0,0,0,0,0,0,0,0,0,1/6*zeta_24^6,1/6*zeta_24^6,1/6],
+    
+x2:    [0,1,0,0,0,0,1/3*(-2*zeta_24^7 - zeta_24^5 + zeta_24^3 - zeta_24),0,1/3*(zeta_24^5 + zeta_24),0,0,0,1/12*(-zeta_24^7 + zeta_24^6 + 2*zeta_24^5 - 3*zeta_24^4 + 2*zeta_24^3 + zeta_24^2 - zeta_24),1/12*(3*zeta_24^7 + 2*zeta_24^6 - zeta_24^5 + zeta_24^4 - 3*zeta_24^3 - zeta_24^2 + 2*zeta_24 + 1),1/12*(2*zeta_24^7 - zeta_24^6 - zeta_24^5 - zeta_24^3 + 2*zeta_24^2 - zeta_24 - 3)
+    ],
+    
+x3:    [0,0,1,0,0,0,1/3*(-2*zeta_24^7 + zeta_24^5 + zeta_24^3 + zeta_24),0,1/3*(2*zeta_24^7 - zeta_24^3),0,0,0,1/12*(zeta_24^7 - zeta_24^5 + zeta_24^4 + zeta_24^3 + 3*zeta_24^2 + 2*zeta_24 + 1),1/12*(zeta_24^7 - zeta_24^6 - zeta_24^4 - 2*zeta_24^3 - zeta_24^2 - 3*zeta_24 + 2),1/12*(-2*zeta_24^7 + 3*zeta_24^6 - zeta_24^5 + 2*zeta_24^4 + zeta_24^3 - zeta_24 - 1)],
+    
+x4:    [0,0,0,1,0,0,1/3*(zeta_24^5 + zeta_24),0,1/3*(-2*zeta_24^7 + zeta_24^5 + zeta_24^3 + zeta_24),0,0,0,1/12*(zeta_24^7 + zeta_24^6 - zeta_24^4 - 2*zeta_24^3 + zeta_24^2 - 3*zeta_24 + 2),1/12*(-zeta_24^7 - zeta_24^5 - zeta_24^4 - zeta_24^3 - 3*zeta_24^2 + 2*zeta_24 - 1),1/12*(-2*zeta_24^7 - zeta_24^6 - 3*zeta_24^5 - 2*zeta_24^4 + zeta_24^3 + 2*zeta_24^2 + 3*zeta_24 + 1)],
+
+x5:    [0,0,0,0,1,0,1/3*(-2*zeta_24^7 + zeta_24^3),0,1/3*(-2*zeta_24^7 - zeta_24^5 + zeta_24^3 - zeta_24),0,0,0,1/12*(3*zeta_24^7 + 2*zeta_24^6 - zeta_24^5 - zeta_24^4 - 3*zeta_24^3 - zeta_24^2 + 2*zeta_24 - 1),1/12*(-zeta_24^7 - zeta_24^6 - 2*zeta_24^5 + 3*zeta_24^4 + 2*zeta_24^3 - zeta_24^2 + zeta_24),1/12*(zeta_24^6 - zeta_24^5 - 2*zeta_24^4 + 3*zeta_24^3 - 2*zeta_24^2 - zeta_24 + 1)]
+
+x6:    [0,0,0,0,0,1,-zeta_24^6,0,0,0,0,0,1/4*(zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 + 1),1/4*(zeta_24^6 + zeta_24^5 + zeta_24^3 - zeta_24 - 1),-1/2],
+
+x7:    [0,0,0,0,0,0,0,1,zeta_24^6,0,0,0,1/4*(-zeta_24^6 - zeta_24^5 + zeta_24^3 + zeta_24 + 1),1/4*(zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 - 1),1/2*zeta_24^3],
+
+x8:    [0,0,0,0,0,0,0,0,0,1,0,0,0,0,1],
+
+x9:    [0,0,0,0,0,0,0,0,0,0,1,0,0,1,0],
+
+x10:    [0,0,0,0,0,0,0,0,0,0,0,1,-1,0,0]
+
+
+
+
+
+the dual degree 14 Fano threefold is given by the vanishing
+
+1/6*y1*y8 + 1/12*(2*zeta_24^7 - zeta_24^6 - zeta_24^5 - zeta_24^3 + 2*zeta_24^2 - zeta_24 - 3)*y2*y8 + 1/12*(-2*zeta_24^7 + 3*zeta_24^6 - zeta_24^5 + 2*zeta_24^4 + zeta_24^3 - zeta_24 - 
+    1)*y3*y8 + 1/12*(-2*zeta_24^7 - zeta_24^6 - 3*zeta_24^5 - 2*zeta_24^4 + zeta_24^3 + 2*zeta_24^2 + 3*zeta_24 + 1)*y4*y8 + 1/12*(zeta_24^6 - zeta_24^5 - 2*zeta_24^4 + 3*zeta_24^3 - 
+    2*zeta_24^2 - zeta_24 + 1)*y5*y8 - 1/2*y6*y8 + 1/2*zeta_24^3*y7*y8 + y8^2 - 1/6*zeta_24^6*y1*y9 + 1/12*(-3*zeta_24^7 - 2*zeta_24^6 + zeta_24^5 - zeta_24^4 + 3*zeta_24^3 + zeta_24^2 - 
+    2*zeta_24 - 1)*y2*y9 + 1/12*(-zeta_24^7 + zeta_24^6 + zeta_24^4 + 2*zeta_24^3 + zeta_24^2 + 3*zeta_24 - 2)*y3*y9 + 1/12*(zeta_24^7 + zeta_24^5 + zeta_24^4 + zeta_24^3 + 3*zeta_24^2 - 
+    2*zeta_24 + 1)*y4*y9 + 1/12*(zeta_24^7 + zeta_24^6 + 2*zeta_24^5 - 3*zeta_24^4 - 2*zeta_24^3 + zeta_24^2 - zeta_24)*y5*y9 + 1/4*(-zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 + 1)*y6*y9 +
+    1/4*(-zeta_24^6 + zeta_24^5 + zeta_24^3 - zeta_24 + 1)*y7*y9 - y9^2 + 1/6*zeta_24^6*y1*y10 + 1/12*(-zeta_24^7 + zeta_24^6 + 2*zeta_24^5 - 3*zeta_24^4 + 2*zeta_24^3 + zeta_24^2 - 
+    zeta_24)*y2*y10 + 1/12*(zeta_24^7 - zeta_24^5 + zeta_24^4 + zeta_24^3 + 3*zeta_24^2 + 2*zeta_24 + 1)*y3*y10 + 1/12*(zeta_24^7 + zeta_24^6 - zeta_24^4 - 2*zeta_24^3 + zeta_24^2 - 
+    3*zeta_24 + 2)*y4*y10 + 1/12*(3*zeta_24^7 + 2*zeta_24^6 - zeta_24^5 - zeta_24^4 - 3*zeta_24^3 - zeta_24^2 + 2*zeta_24 - 1)*y5*y10 + 1/4*(zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 + 
+    1)*y6*y10 + 1/4*(-zeta_24^6 - zeta_24^5 + zeta_24^3 + zeta_24 + 1)*y7*y10 - y10^2,
+1/6*zeta_24^6*y1*y6 + 1/12*(-zeta_24^7 + zeta_24^6 + 2*zeta_24^5 - 3*zeta_24^4 + 2*zeta_24^3 + zeta_24^2 - zeta_24)*y2*y6 + 1/12*(zeta_24^7 - zeta_24^5 + zeta_24^4 + zeta_24^3 + 3*zeta_24^2 
+    + 2*zeta_24 + 1)*y3*y6 + 1/12*(zeta_24^7 + zeta_24^6 - zeta_24^4 - 2*zeta_24^3 + zeta_24^2 - 3*zeta_24 + 2)*y4*y6 + 1/12*(3*zeta_24^7 + 2*zeta_24^6 - zeta_24^5 - zeta_24^4 - 3*zeta_24^3 
+    - zeta_24^2 + 2*zeta_24 - 1)*y5*y6 + 1/4*(zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 + 1)*y6^2 + 1/4*(-zeta_24^6 - zeta_24^5 + zeta_24^3 + zeta_24 + 1)*y6*y7 + y7*y8 + 1/3*(2*zeta_24^7 
+    + zeta_24^5 - zeta_24^3 + zeta_24)*y2*y9 + 1/3*(2*zeta_24^7 - zeta_24^5 - zeta_24^3 - zeta_24)*y3*y9 + 1/3*(-zeta_24^5 - zeta_24)*y4*y9 + 1/3*(2*zeta_24^7 - zeta_24^3)*y5*y9 + 
+    zeta_24^6*y6*y9 - y6*y10,
+1/18*(-zeta_24^5 - zeta_24)*y1*y2 + 1/12*(3*zeta_24^7 + 3*zeta_24^6 - 2*zeta_24^5 + zeta_24^4 - 2*zeta_24^3 - zeta_24^2 + 3*zeta_24)*y2^2 + 1/18*(-2*zeta_24^7 + zeta_24^3)*y1*y3 + 
+    1/12*(zeta_24^6 - zeta_24^5 + 5*zeta_24^3 + zeta_24 - 5)*y2*y3 + 1/12*(3*zeta_24^7 - 2*zeta_24^6 + 3*zeta_24^5 + zeta_24^4 - zeta_24^3 - zeta_24^2 - 2*zeta_24 - 1)*y3^2 + 
+    1/18*(2*zeta_24^7 + 2*zeta_24^5 - zeta_24^3 + 2*zeta_24)*y1*y4 + 1/12*(3*zeta_24^7 - 2*zeta_24^6 - 3*zeta_24^5 - zeta_24^4 - 3*zeta_24^3 - 3*zeta_24^2 + 2*zeta_24 - 1)*y2*y4 + 
+    1/12*(3*zeta_24^7 - 4*zeta_24^6 - zeta_24^5 - 3*zeta_24^4 + zeta_24^3 + 5*zeta_24^2 + 2*zeta_24 + 5)*y3*y4 + 1/12*(-zeta_24^6 - zeta_24^5 + zeta_24^3 + 3*zeta_24 - 1)*y4^2 + 
+    1/18*(-4*zeta_24^7 + zeta_24^5 + 2*zeta_24^3 + zeta_24)*y1*y5 + 1/12*(3*zeta_24^7 - zeta_24^6 + 2*zeta_24^5 - 3*zeta_24^4 - 4*zeta_24^3 + 5*zeta_24^2 - zeta_24 - 2)*y2*y5 + 
+    1/12*(-3*zeta_24^7 - 5*zeta_24^6 - 2*zeta_24^5 + zeta_24^4 + 3*zeta_24^2 + 3*zeta_24 - 2)*y3*y5 + 1/6*(zeta_24^6 - zeta_24^5 - 2*zeta_24^3 + zeta_24 - 1)*y4*y5 + 1/12*(zeta_24^6 + 
+    3*zeta_24^5 - zeta_24^3 - zeta_24 + 1)*y5^2 - 1/6*zeta_24^6*y1*y6 + 1/6*(4*zeta_24^7 + zeta_24^6 + 2*zeta_24^5 - 2*zeta_24^4 - 2*zeta_24^3 + zeta_24^2 + 2*zeta_24 + 1)*y2*y6 + 
+    1/6*(4*zeta_24^7 - zeta_24^6 - 2*zeta_24^5 + zeta_24^4 - 2*zeta_24^3 + 2*zeta_24^2 - 2*zeta_24 + 1)*y3*y6 + 1/12*(zeta_24^6 - zeta_24^5 - 6*zeta_24^4 - 3*zeta_24^3 - 2*zeta_24^2 - 
+    zeta_24 + 3)*y4*y6 + 1/12*(2*zeta_24^7 + 3*zeta_24^6 - 3*zeta_24^5 + 2*zeta_24^4 - zeta_24^3 - 6*zeta_24^2 + 3*zeta_24 - 1)*y5*y6 + 1/2*zeta_24^6*y6^2 + 1/6*(-zeta_24^6 - 1)*y1*y7 + 
+    1/6*(-2*zeta_24^7 - 4*zeta_24^6 + 2*zeta_24^5 - zeta_24^4 + zeta_24^3 + 5*zeta_24^2 - zeta_24 - 1)*y2*y7 + 1/6*(zeta_24^7 + zeta_24^6 + zeta_24^5 + 5*zeta_24^4 + zeta_24^3 + zeta_24^2 + 
+    zeta_24 - 4)*y3*y7 + 1/12*(-6*zeta_24^7 - zeta_24^6 - zeta_24^5 + 6*zeta_24^4 + 3*zeta_24^3 + 8*zeta_24^2 - zeta_24 - 3)*y4*y7 + 1/12*(2*zeta_24^7 - 3*zeta_24^6 - 3*zeta_24^5 - 
+    8*zeta_24^4 - zeta_24^3 + 6*zeta_24^2 - 3*zeta_24 + 1)*y5*y7 + (-zeta_24^5 + zeta_24)*y6*y7 + 1/2*(zeta_24^5 + zeta_24^3 - zeta_24 + 1)*y7^2 + 1/3*(-2*zeta_24^7 - zeta_24^5 + zeta_24^3 -
+    zeta_24)*y2*y8 + 1/3*(-2*zeta_24^7 + zeta_24^5 + zeta_24^3 + zeta_24)*y3*y8 + 1/3*(zeta_24^5 + zeta_24)*y4*y8 + 1/3*(-2*zeta_24^7 + zeta_24^3)*y5*y8 - zeta_24^6*y6*y8 - y7*y9 + 
+    1/3*(-zeta_24^5 - zeta_24)*y2*y10 + 1/3*(-2*zeta_24^7 + zeta_24^3)*y3*y10 + 1/3*(2*zeta_24^7 - zeta_24^5 - zeta_24^3 - zeta_24)*y4*y10 + 1/3*(2*zeta_24^7 + zeta_24^5 - zeta_24^3 + 
+    zeta_24)*y5*y10 - zeta_24^6*y7*y10,
+1/6*y1*y3 + 1/12*(2*zeta_24^7 - zeta_24^6 - zeta_24^5 - zeta_24^3 + 2*zeta_24^2 - zeta_24 - 3)*y2*y3 + 1/12*(-2*zeta_24^7 + 3*zeta_24^6 - zeta_24^5 + 2*zeta_24^4 + zeta_24^3 - zeta_24 - 
+    1)*y3^2 - 1/6*zeta_24^6*y1*y4 + 1/12*(-3*zeta_24^7 - 2*zeta_24^6 + zeta_24^5 - zeta_24^4 + 3*zeta_24^3 + zeta_24^2 - 2*zeta_24 - 1)*y2*y4 + 1/12*(-3*zeta_24^7 - 3*zeta_24^5 - zeta_24^4 +
+    3*zeta_24^3 + 3*zeta_24^2 + 6*zeta_24 - 1)*y3*y4 + 1/12*(zeta_24^7 + zeta_24^5 + zeta_24^4 + zeta_24^3 + 3*zeta_24^2 - 2*zeta_24 + 1)*y4^2 + 1/6*zeta_24^6*y1*y5 + 1/12*(-zeta_24^7 + 
+    zeta_24^6 + 2*zeta_24^5 - 3*zeta_24^4 + 2*zeta_24^3 + zeta_24^2 - zeta_24)*y2*y5 + 1/12*(zeta_24^7 + zeta_24^6 - 2*zeta_24^5 - zeta_24^4 + 4*zeta_24^3 + zeta_24^2 + zeta_24 + 2)*y3*y5 + 
+    1/6*(zeta_24^7 + zeta_24^6 + zeta_24^5 - 2*zeta_24^4 - 2*zeta_24^3 + zeta_24^2 - 2*zeta_24 + 1)*y4*y5 + 1/12*(3*zeta_24^7 + 2*zeta_24^6 - zeta_24^5 - zeta_24^4 - 3*zeta_24^3 - zeta_24^2 
+    + 2*zeta_24 - 1)*y5^2 - 1/2*y3*y6 + 1/4*(-zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 + 1)*y4*y6 + 1/4*(zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 + 1)*y5*y6 + 1/2*zeta_24^3*y3*y7 + 
+    1/4*(-zeta_24^6 + zeta_24^5 + zeta_24^3 - zeta_24 + 1)*y4*y7 + 1/4*(-zeta_24^6 - zeta_24^5 + zeta_24^3 + zeta_24 + 1)*y5*y7 + y3*y8 - y4*y9 - y5*y10,
+1/6*y1*y2 + 1/12*(2*zeta_24^7 - zeta_24^6 - zeta_24^5 - zeta_24^3 + 2*zeta_24^2 - zeta_24 - 3)*y2^2 + 1/12*(-2*zeta_24^7 + 3*zeta_24^6 - zeta_24^5 + 2*zeta_24^4 + zeta_24^3 - zeta_24 - 
+    1)*y2*y3 + 1/12*(-2*zeta_24^7 - zeta_24^6 - 3*zeta_24^5 - 2*zeta_24^4 + zeta_24^3 + 2*zeta_24^2 + 3*zeta_24 + 1)*y2*y4 + 1/12*(zeta_24^6 - zeta_24^5 - 2*zeta_24^4 + 3*zeta_24^3 - 
+    2*zeta_24^2 - zeta_24 + 1)*y2*y5 - 1/2*y2*y6 + 1/2*zeta_24^3*y2*y7 + y2*y8 + y5*y9 - y4*y10,
+y4*y6 - y2*y7 + y1*y9,
+1/6*zeta_24^6*y1^2 + 1/12*(-zeta_24^7 + zeta_24^6 + 2*zeta_24^5 - 3*zeta_24^4 + 2*zeta_24^3 + zeta_24^2 - zeta_24)*y1*y2 + 1/12*(zeta_24^7 - zeta_24^5 + zeta_24^4 + zeta_24^3 + 3*zeta_24^2 +
+    2*zeta_24 + 1)*y1*y3 + 1/12*(zeta_24^7 + zeta_24^6 - zeta_24^4 - 2*zeta_24^3 + zeta_24^2 - 3*zeta_24 + 2)*y1*y4 + 1/3*(-2*zeta_24^7 - zeta_24^5 + zeta_24^3 - zeta_24)*y2*y4 + 
+    1/3*(-2*zeta_24^7 + zeta_24^5 + zeta_24^3 + zeta_24)*y3*y4 + 1/3*(zeta_24^5 + zeta_24)*y4^2 + 1/12*(3*zeta_24^7 + 2*zeta_24^6 - zeta_24^5 - zeta_24^4 - 3*zeta_24^3 - zeta_24^2 + 
+    2*zeta_24 - 1)*y1*y5 + 1/3*(-2*zeta_24^7 + zeta_24^3)*y4*y5 + 1/4*(zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 + 1)*y1*y6 - zeta_24^6*y4*y6 + 1/4*(-zeta_24^6 - zeta_24^5 + zeta_24^3 + 
+    zeta_24 + 1)*y1*y7 - y3*y7 - y1*y10,
+1/3*(2*zeta_24^7 + zeta_24^5 - zeta_24^3 + zeta_24)*y2^2 + 1/3*(2*zeta_24^7 - zeta_24^5 - zeta_24^3 - zeta_24)*y2*y3 + 1/3*(-zeta_24^5 - zeta_24)*y2*y4 + 1/3*(2*zeta_24^7 - zeta_24^3)*y2*y5 
+    + zeta_24^6*y2*y6 + y3*y6 + y1*y8,
+1/6*zeta_24^6*y1^2 + 1/12*(3*zeta_24^7 + 2*zeta_24^6 - zeta_24^5 + zeta_24^4 - 3*zeta_24^3 - zeta_24^2 + 2*zeta_24 + 1)*y1*y2 + 1/12*(zeta_24^7 - zeta_24^6 - zeta_24^4 - 2*zeta_24^3 - 
+    zeta_24^2 - 3*zeta_24 + 2)*y1*y3 + 1/3*(-zeta_24^5 - zeta_24)*y2*y3 + 1/3*(-2*zeta_24^7 + zeta_24^3)*y3^2 + 1/12*(-zeta_24^7 - zeta_24^5 - zeta_24^4 - zeta_24^3 - 3*zeta_24^2 + 2*zeta_24
+    - 1)*y1*y4 + 1/3*(2*zeta_24^7 - zeta_24^5 - zeta_24^3 - zeta_24)*y3*y4 + 1/12*(-zeta_24^7 - zeta_24^6 - 2*zeta_24^5 + 3*zeta_24^4 + 2*zeta_24^3 - zeta_24^2 + zeta_24)*y1*y5 + 
+    1/3*(-2*zeta_24^7 - zeta_24^5 + zeta_24^3 - zeta_24)*y2*y5 + 1/3*(2*zeta_24^5 + 2*zeta_24)*y3*y5 + 1/3*(zeta_24^5 + zeta_24)*y4*y5 + 1/3*(-2*zeta_24^7 + zeta_24^3)*y5^2 + 1/4*(zeta_24^6 
+    + zeta_24^5 + zeta_24^3 - zeta_24 - 1)*y1*y6 - zeta_24^6*y5*y6 + 1/4*(zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 - 1)*y1*y7 - zeta_24^6*y3*y7 + y1*y9,
+1/6*zeta_24^6*y1*y2 + 1/12*(3*zeta_24^7 + 2*zeta_24^6 - zeta_24^5 + zeta_24^4 - 3*zeta_24^3 - zeta_24^2 + 2*zeta_24 + 1)*y2^2 + 1/12*(zeta_24^7 - zeta_24^6 - zeta_24^4 - 2*zeta_24^3 - 
+    zeta_24^2 - 3*zeta_24 + 2)*y2*y3 + 1/12*(-zeta_24^7 - zeta_24^5 - zeta_24^4 - zeta_24^3 - 3*zeta_24^2 + 2*zeta_24 - 1)*y2*y4 + 1/12*(-zeta_24^7 - zeta_24^6 - 2*zeta_24^5 + 3*zeta_24^4 + 
+    2*zeta_24^3 - zeta_24^2 + zeta_24)*y2*y5 + 1/4*(zeta_24^6 + zeta_24^5 + zeta_24^3 - zeta_24 - 1)*y2*y6 + 1/4*(zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 - 1)*y2*y7 + y5*y8 + y2*y9 - 
+    y3*y10,
+1/6*zeta_24^6*y1*y6 + 1/12*(3*zeta_24^7 + 2*zeta_24^6 - zeta_24^5 + zeta_24^4 - 3*zeta_24^3 - zeta_24^2 + 2*zeta_24 + 1)*y2*y6 + 1/12*(zeta_24^7 - zeta_24^6 - zeta_24^4 - 2*zeta_24^3 - 
+    zeta_24^2 - 3*zeta_24 + 2)*y3*y6 + 1/12*(-zeta_24^7 - zeta_24^5 - zeta_24^4 - zeta_24^3 - 3*zeta_24^2 + 2*zeta_24 - 1)*y4*y6 + 1/12*(-zeta_24^7 - zeta_24^6 - 2*zeta_24^5 + 3*zeta_24^4 + 
+    2*zeta_24^3 - zeta_24^2 + zeta_24)*y5*y6 + 1/4*(zeta_24^6 + zeta_24^5 + zeta_24^3 - zeta_24 - 1)*y6^2 + 1/4*(zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 - 1)*y6*y7 + 1/3*(zeta_24^5 + 
+    zeta_24)*y2*y8 + 1/3*(2*zeta_24^7 - zeta_24^3)*y3*y8 + 1/3*(-2*zeta_24^7 + zeta_24^5 + zeta_24^3 + zeta_24)*y4*y8 + 1/3*(-2*zeta_24^7 - zeta_24^5 + zeta_24^3 - zeta_24)*y5*y8 + 
+    zeta_24^6*y7*y8 + y6*y9 + 1/3*(2*zeta_24^7 + zeta_24^5 - zeta_24^3 + zeta_24)*y2*y10 + 1/3*(2*zeta_24^7 - zeta_24^5 - zeta_24^3 - zeta_24)*y3*y10 + 1/3*(-zeta_24^5 - zeta_24)*y4*y10 + 
+    1/3*(2*zeta_24^7 - zeta_24^3)*y5*y10 + zeta_24^6*y6*y10,
+1/3*(-zeta_24^5 - zeta_24)*y2^2 + 1/3*(-2*zeta_24^7 + zeta_24^3)*y2*y3 + 1/3*(2*zeta_24^7 - zeta_24^5 - zeta_24^3 - zeta_24)*y2*y4 + 1/3*(2*zeta_24^7 + zeta_24^5 - zeta_24^3 + zeta_24)*y2*y5
+    + y5*y6 - zeta_24^6*y2*y7 + y1*y10,
+1/6*y1^2 + 1/12*(2*zeta_24^7 - zeta_24^6 - zeta_24^5 - zeta_24^3 + 2*zeta_24^2 - zeta_24 - 3)*y1*y2 + 1/12*(-2*zeta_24^7 + 3*zeta_24^6 - zeta_24^5 + 2*zeta_24^4 + zeta_24^3 - zeta_24 - 
+    1)*y1*y3 + 1/12*(-2*zeta_24^7 - zeta_24^6 - 3*zeta_24^5 - 2*zeta_24^4 + zeta_24^3 + 2*zeta_24^2 + 3*zeta_24 + 1)*y1*y4 + 1/3*(-zeta_24^5 - zeta_24)*y2*y4 + 1/3*(-2*zeta_24^7 + 
+    zeta_24^3)*y3*y4 + 1/3*(2*zeta_24^7 - zeta_24^5 - zeta_24^3 - zeta_24)*y4^2 + 1/12*(zeta_24^6 - zeta_24^5 - 2*zeta_24^4 + 3*zeta_24^3 - 2*zeta_24^2 - zeta_24 + 1)*y1*y5 + 
+    1/3*(2*zeta_24^7 + zeta_24^5 - zeta_24^3 + zeta_24)*y4*y5 - 1/2*y1*y6 + 1/2*zeta_24^3*y1*y7 - zeta_24^6*y4*y7 + y5*y7 + y1*y8,
+1/6*zeta_24^6*y1*y2 + 1/12*(-zeta_24^7 + zeta_24^6 + 2*zeta_24^5 - 3*zeta_24^4 + 2*zeta_24^3 + zeta_24^2 - zeta_24)*y2^2 + 1/12*(zeta_24^7 - zeta_24^5 + zeta_24^4 + zeta_24^3 + 3*zeta_24^2 +
+    2*zeta_24 + 1)*y2*y3 + 1/12*(zeta_24^7 + zeta_24^6 - zeta_24^4 - 2*zeta_24^3 + zeta_24^2 - 3*zeta_24 + 2)*y2*y4 + 1/12*(3*zeta_24^7 + 2*zeta_24^6 - zeta_24^5 - zeta_24^4 - 3*zeta_24^3 - 
+    zeta_24^2 + 2*zeta_24 - 1)*y2*y5 + 1/4*(zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 + 1)*y2*y6 + 1/4*(-zeta_24^6 - zeta_24^5 + zeta_24^3 + zeta_24 + 1)*y2*y7 + y4*y8 - y3*y9 - y2*y10,
+1/6*y1*y6 + 1/12*(2*zeta_24^7 - zeta_24^6 - zeta_24^5 - zeta_24^3 + 2*zeta_24^2 - zeta_24 - 3)*y2*y6 + 1/12*(-2*zeta_24^7 + 3*zeta_24^6 - zeta_24^5 + 2*zeta_24^4 + zeta_24^3 - zeta_24 - 
+    1)*y3*y6 + 1/12*(-2*zeta_24^7 - zeta_24^6 - 3*zeta_24^5 - 2*zeta_24^4 + zeta_24^3 + 2*zeta_24^2 + 3*zeta_24 + 1)*y4*y6 + 1/12*(zeta_24^6 - zeta_24^5 - 2*zeta_24^4 + 3*zeta_24^3 - 
+    2*zeta_24^2 - zeta_24 + 1)*y5*y6 - 1/2*y6^2 + 1/2*zeta_24^3*y6*y7 + y6*y8 + 1/3*(zeta_24^5 + zeta_24)*y2*y9 + 1/3*(2*zeta_24^7 - zeta_24^3)*y3*y9 + 1/3*(-2*zeta_24^7 + zeta_24^5 + 
+    zeta_24^3 + zeta_24)*y4*y9 + 1/3*(-2*zeta_24^7 - zeta_24^5 + zeta_24^3 - zeta_24)*y5*y9 + zeta_24^6*y7*y9 - y7*y10
+
+
+The group action on X is generated by 2 10x10 matrices
+
+[-1,0,0,0,0,0,0,0,0,0,0,1/6*(zeta_24^5 + zeta_24),1/6*(4*zeta_24^7 + zeta_24^5 - 2*zeta_24^3 + zeta_24),1/6*(2*zeta_24^7 - zeta_24^3),
+1/6*(2*zeta_24^7 - 2*zeta_24^5 - zeta_24^3 - 2*zeta_24),1/2,-1/2*zeta_24^6,1/24*(-3*zeta_24^7 - zeta_24^6 + 4*zeta_24^5 + zeta_24^4 - zeta_24^2 + zeta_24 + 4),
+1/24*(-zeta_24^7 - 4*zeta_24^6 - 3*zeta_24^5 + 5*zeta_24^4 - zeta_24^3 - zeta_24^2 - 1),
+1/24*(4*zeta_24^7 + zeta_24^6 - 3*zeta_24^5 + 4*zeta_24^4 - 5*zeta_24^3 - 2*zeta_24^2 + 3*zeta_24 + 1),0,1/6*(2*zeta_24^7 - zeta_24^3),
+1/6*(2*zeta_24^7 - 2*zeta_24^5 - zeta_24^3 - 2*zeta_24),1/6*(-zeta_24^5 - zeta_24),1/6*(-4*zeta_24^7 - zeta_24^5 + 2*zeta_24^3 - zeta_24),
+-1/2,-1/2*zeta_24^6,1/24*(5*zeta_24^7 - 4*zeta_24^6 + 3*zeta_24^5 - zeta_24^4 - zeta_24^3 - zeta_24^2 - 1),
+1/24*(-3*zeta_24^7 + zeta_24^6 + 2*zeta_24^5 - zeta_24^4 - 5*zeta_24^2 - zeta_24 - 4),1/24*(-zeta_24^6 + zeta_24^5 - 2*zeta_24^4 - 3*zeta_24^3 - 4*zeta_24^2 - 5*zeta_24 + 1),
+0,1/6*(-2*zeta_24^7 - 2*zeta_24^5 + zeta_24^3 - 2*zeta_24),1/6*(2*zeta_24^7 - zeta_24^3),1/6*(-4*zeta_24^7 + zeta_24^5 + 2*zeta_24^3 + zeta_24),
+1/6*(-zeta_24^5 - zeta_24),1/2*zeta_24^6,1/2,1/24*(zeta_24^7 + 3*zeta_24^6 + 4*zeta_24^5 + 5*zeta_24^4 - 2*zeta_24^3 - 3*zeta_24^2 - 5*zeta_24 - 4),
+1/24*(-zeta_24^7 - 2*zeta_24^6 + zeta_24^5 + 3*zeta_24^4 + 5*zeta_24^3 + zeta_24^2 + 4*zeta_24 - 3),
+1/24*(-2*zeta_24^7 - zeta_24^6 - zeta_24^5 + zeta_24^3 - 4*zeta_24^2 + 5*zeta_24 - 3),0,1/6*(4*zeta_24^7 - zeta_24^5 - 2*zeta_24^3 - zeta_24),
+1/6*(zeta_24^5 + zeta_24),1/6*(-2*zeta_24^7 - 2*zeta_24^5 + zeta_24^3 - 2*zeta_24),1/6*(2*zeta_24^7 - zeta_24^3),-1/2*zeta_24^6,1/2,
+1/24*(zeta_24^7 - 4*zeta_24^6 - zeta_24^5 + 3*zeta_24^4 - 5*zeta_24^3 + 5*zeta_24^2 + 2*zeta_24 - 3),
+1/24*(-5*zeta_24^7 - 3*zeta_24^6 + 4*zeta_24^5 - zeta_24^4 + 4*zeta_24^3 + 3*zeta_24^2 - 5*zeta_24 + 2),
+1/24*(-4*zeta_24^7 - 3*zeta_24^6 - zeta_24^5 + 4*zeta_24^4 + 5*zeta_24^3 - zeta_24 + 1),0,1/2*(zeta_24^6 + 1),1/2*(zeta_24^6 - 1),1/2*(-zeta_24^6 - 1),
+1/2*(zeta_24^6 - 1),0,0,1/8*(zeta_24^6 - zeta_24^5 + zeta_24^3 + zeta_24 + 3),1/8*(-3*zeta_24^6 + zeta_24^5 + zeta_24^3 - zeta_24 - 1),
+1/4*(zeta_24^5 + zeta_24^3 - zeta_24 - 1),0,1/2*(zeta_24^6 + 1),1/2*(zeta_24^6 - 1),1/2*(zeta_24^6 + 1),1/2*(-zeta_24^6 + 1),0,0,
+1/8*(zeta_24^6 + zeta_24^5 - 3*zeta_24^3 - zeta_24 + 1),1/8*(zeta_24^6 + 3*zeta_24^5 - zeta_24^3 - 3*zeta_24 - 1),
+1/4*(zeta_24^6 - zeta_24^3 - 1),0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0]
+
+
+[1,0,0,0,0,0,0,-1/6,0,1/6*zeta_24^6,0,0,0,-zeta_24^3,0,1/3*(zeta_24^6 - 2*zeta_24^2),0,1/12*(-2*zeta_24^7 + zeta_24^6 + zeta_24^5 + zeta_24^3 - 2*zeta_24^2 + zeta_24 + 3),
+0,1/12*(3*zeta_24^7 + 2*zeta_24^6 - zeta_24^5 + zeta_24^4 - 3*zeta_24^3 - zeta_24^2 + 2*zeta_24 + 1),0,0,0,0,zeta_24^3,1/3*(-2*zeta_24^4 + 1),0,
+1/12*(2*zeta_24^7 - 3*zeta_24^6 + zeta_24^5 - 2*zeta_24^4 - zeta_24^3 + zeta_24 + 1),0,
+1/12*(zeta_24^7 - zeta_24^6 - zeta_24^4 - 2*zeta_24^3 - zeta_24^2 - 3*zeta_24 + 2),0,0,-zeta_24^3,0,0,1/3*(zeta_24^6 + 2*zeta_24^4 - 2*zeta_24^2 - 1),0,
+1/12*(2*zeta_24^7 + zeta_24^6 + 3*zeta_24^5 + 2*zeta_24^4 - zeta_24^3 - 2*zeta_24^2 - 3*zeta_24 - 1),0,
+1/12*(-zeta_24^7 - zeta_24^5 - zeta_24^4 - zeta_24^3 - 3*zeta_24^2 + 2*zeta_24 - 1),0,-zeta_24^3,0,0,0,1/3*(-zeta_24^6 + 2*zeta_24^4 + 2*zeta_24^2 - 1),0,
+1/12*(-zeta_24^6 + zeta_24^5 + 2*zeta_24^4 - 3*zeta_24^3 + 2*zeta_24^2 + zeta_24 - 1),0,
+1/12*(-zeta_24^7 - zeta_24^6 - 2*zeta_24^5 + 3*zeta_24^4 + 2*zeta_24^3 - zeta_24^2 + zeta_24),0,0,0,0,0,0,zeta_24^5 - zeta_24,1/2,0,
+1/4*(zeta_24^6 + zeta_24^5 + zeta_24^3 - zeta_24 - 1),0,0,0,0,0,-zeta_24^3,0,-1/2*zeta_24^3,0,
+1/4*(zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 - 1),0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,-1,0]
+
+
+The desired Klein four group action on Y and X are generated by 
+    [-1 0 0 0 0]
+    [0 1/3*(-zeta_24^6 + 2*zeta_24^2) 1/3*(zeta_24^6 - 2*zeta_24^4 - 2*zeta_24^2
+        + 1) 0 0]
+    [0 1/3*(zeta_24^6 + 2*zeta_24^4 - 2*zeta_24^2 - 1) 1/3*(zeta_24^6 - 
+        2*zeta_24^2) 0 0]
+    [0 0 0 -1 0]
+    [0 0 0 0 -1]
+
+    [ 1  0  0  0  0]
+    [ 0 -1  0  0  0]
+    [ 0  0 -1  0  0]
+    [ 0  0  0  1  0]
+    [ 0  0  0  0  1]
+
+and
+
+[-1,0,0,0,0,0,0,1/6,0,-1/6*zeta_24^6,0,0,1/3*(2*zeta_24^4 - 1),0,1/3*(-zeta_24^6 - 2*zeta_24^4 + 2*zeta_24^2 + 1),0,
+-zeta_24^5 + zeta_24,1/12*(2*zeta_24^7 - zeta_24^6 - zeta_24^5 - zeta_24^3 + 2*zeta_24^2 - zeta_24 - 3),0,
+1/12*(zeta_24^7 - zeta_24^6 - 2*zeta_24^5 + 3*zeta_24^4 - 2*zeta_24^3 - zeta_24^2 + zeta_24),0,0,1/3*(zeta_24^6 - 2*zeta_24^2),0,
+1/3*(-zeta_24^6 + 2*zeta_24^4 + 2*zeta_24^2 - 1),0,0,1/12*(-2*zeta_24^7 + 3*zeta_24^6 - zeta_24^5 + 2*zeta_24^4 + zeta_24^3 - zeta_24 - 1),
+0,1/12*(-zeta_24^7 + zeta_24^5 - zeta_24^4 - zeta_24^3 - 3*zeta_24^2 - 2*zeta_24 - 1),0,0,1/3*(-zeta_24^6 + 2*zeta_24^4 + 2*zeta_24^2 - 1),0,
+1/3*(2*zeta_24^4 - 1),-zeta_24^5 + zeta_24,0,1/12*(-2*zeta_24^7 - zeta_24^6 - 3*zeta_24^5 - 2*zeta_24^4 + zeta_24^3 + 2*zeta_24^2 + 3*zeta_24 + 1),0,
+1/12*(-zeta_24^7 - zeta_24^6 + zeta_24^4 + 2*zeta_24^3 - zeta_24^2 + 3*zeta_24 - 2),0,0,1/3*(-zeta_24^6 - 2*zeta_24^4 + 2*zeta_24^2 + 1),0,
+1/3*(-zeta_24^6 + 2*zeta_24^2),0,0,1/12*(zeta_24^6 - zeta_24^5 - 2*zeta_24^4 + 3*zeta_24^3 - 2*zeta_24^2 - zeta_24 + 1),0,
+1/12*(-3*zeta_24^7 - 2*zeta_24^6 + zeta_24^5 + zeta_24^4 + 3*zeta_24^3 + zeta_24^2 - 2*zeta_24 + 1),0,0,0,zeta_24^3,-zeta_24^5 + zeta_24,0,0,-1/2,0,
+1/4*(-zeta_24^6 + zeta_24^5 + zeta_24^3 - zeta_24 - 1),0,zeta_24^3,zeta_24^5 - zeta_24,0,0,0,0,1/2*zeta_24^3,0,
+1/4*(zeta_24^6 + zeta_24^5 - zeta_24^3 - zeta_24 - 1),0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0,1]
+
+
+[1,0,0,0,0,0,0,0,-1/6*zeta_24^6,1/6*zeta_24^6,0,0,zeta_24^6,0,0,1/3*(-2*zeta_24^7 + zeta_24^5 + zeta_24^3 + zeta_24),1/3*(-2*zeta_24^7 + zeta_24^3),0,
+1/12*(-3*zeta_24^7 - 2*zeta_24^6 + zeta_24^5 - zeta_24^4 + 3*zeta_24^3 + zeta_24^2 - 2*zeta_24 - 1),
+1/12*(-zeta_24^7 + zeta_24^6 + 2*zeta_24^5 - 3*zeta_24^4 + 2*zeta_24^3 + zeta_24^2 - zeta_24),0,-zeta_24^6,0,0,0,
+1/3*(2*zeta_24^7 + zeta_24^5 - zeta_24^3 + zeta_24),1/3*(zeta_24^5 + zeta_24),0,1/12*(-zeta_24^7 + zeta_24^6 + zeta_24^4 + 2*zeta_24^3 + zeta_24^2 + 3*zeta_24 - 2),
+1/12*(zeta_24^7 - zeta_24^5 + zeta_24^4 + zeta_24^3 + 3*zeta_24^2 + 2*zeta_24 + 1),0,0,0,0,-zeta_24^6,1/3*(2*zeta_24^7 - zeta_24^3),
+1/3*(-2*zeta_24^7 - zeta_24^5 + zeta_24^3 - zeta_24),0,1/12*(zeta_24^7 + zeta_24^5 + zeta_24^4 + zeta_24^3 + 3*zeta_24^2 - 2*zeta_24 + 1),
+1/12*(zeta_24^7 + zeta_24^6 - zeta_24^4 - 2*zeta_24^3 + zeta_24^2 - 3*zeta_24 + 2),0,0,0,zeta_24^6,0,1/3*(zeta_24^5 + zeta_24),
+1/3*(2*zeta_24^7 - zeta_24^5 - zeta_24^3 - zeta_24),0,1/12*(zeta_24^7 + zeta_24^6 + 2*zeta_24^5 - 3*zeta_24^4 - 2*zeta_24^3 + zeta_24^2 - zeta_24),
+1/12*(3*zeta_24^7 + 2*zeta_24^6 - zeta_24^5 - zeta_24^4 - 3*zeta_24^3 - zeta_24^2 + 2*zeta_24 - 1),0,0,0,0,0,1,0,0,
+1/4*(-zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 + 1),1/4*(zeta_24^6 - zeta_24^5 - zeta_24^3 + zeta_24 + 1),0,0,0,0,0,0,1,0,
+1/4*(-zeta_24^6 + zeta_24^5 + zeta_24^3 - zeta_24 + 1),1/4*(-zeta_24^6 - zeta_24^5 + zeta_24^3 + zeta_24 + 1),0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,
+-1,0,0,0,0,0,0,0,0,0,0,-1]
+
+
+The fixed loci of X and Y are computed over finite field of size 3457^6 via magma,
+
+on the cubic Y it is 
+<"1.   C2^2,  C2^2,  1,  3", <[ 1, 0 ], [ 1, 1 ]>>
+<"2.   C2^2,  C2^2,  0,  1", <[ 1, 1 ], [ 0, 1 ], [ 1, 1 ]>>
+<"3.   C2^2,  C2^2,  0,  1", <[ 1, 0 ], [ 0, 1 ], [ 1, 0 ]>>
+<"4.   C2,  C2^2,  2,  3", <[ 1 ]>>
+<"5.   C2,  C2^2,  2,  3", <[ 1 ]>>
+<"6.   C2,  C2^2,  1,  1", <[ 1 ], [ 1 ]>>
+6
+
+on X it is
+<"1.   C2,  C2^2,  1,  6", <[ 1 ], [ 1 ]>>
+<"2.   C2,  C2,  0,  1", <[ 1 ], [ 1 ], [ 1 ]>>
+<"3.   C2,  C2,  1,  1", <[ 1 ], [ 1 ]>>
+<"4.   C2,  C2,  0,  1", <[ 1 ], [ 1 ], [ 1 ]>>
+<"5.   C2,  C2,  0,  1", <[ 1 ], [ 1 ], [ 1 ]>>
+<"6.   C2,  C2,  0,  1", <[ 1 ], [ 1 ], [ 1 ]>>
+<"7.   C2,  C2,  1,  1", <[ 1 ], [ 1 ]>>
+<"8.   C2,  C2,  0,  1", <[ 1 ], [ 1 ], [ 1 ]>>
+<"9.   C2,  C2,  0,  1", <[ 1 ], [ 1 ], [ 1 ]>>
+<"10.   C2,  C2,  0,  1", <[ 1 ], [ 1 ], [ 1 ]>>
+10
+
+
+</pre>
 </body>
 </html>
