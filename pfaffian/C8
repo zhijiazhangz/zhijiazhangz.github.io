@@ -1,0 +1,124 @@
+K:=CyclotomicField(8);
+
+
+P1<y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15>:=PolynomialRing(K,15);
+P2<x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15>:=PolynomialRing(K,15);
+e8:=RootOfUnity(8);
+M:=GL(6,K);
+gen:=DiagonalMatrix(K,6,[1,e8,e8^7,e8^6,e8^3,e8^4]);
+
+G:=sub<M|gen>;
+
+
+//W is the 6-dimensional representation we started with. Its action is given by generator of G=C8
+W:=GModule(G);
+Wf:=Representation(W);
+G:=Domain(Wf);
+Wd:=GModule(G,[Transpose(Wf(G.i)^(-1)):i in [1..Ngens(G)]]);
+Wdf:=Representation(Wd);
+
+W2:=ExteriorPower(W,2);//Wedge2 W
+W2f:=Representation(W2);
+Wd2:=ExteriorPower(Wd,2);//Wegde2 W^dual
+Wd2f:=Representation(Wd2);
+
+
+
+
+y1:=Matrix(K,1,15,[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+y2:=Matrix(K,1,15,[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]);
+
+y3:=Matrix(K,1,15,[0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]);
+y4:=Matrix(K,1,15,[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+y5:=Matrix(K,1,15,[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
+
+y6:=Matrix(K,1,15,[0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+y7:=Matrix(K,1,15,[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0]);
+
+y8:=Matrix(K,1,15,[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+y9:=Matrix(K,1,15,[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]);
+
+y10:=Matrix(K,1,15,[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]);
+y11:=Matrix(K,1,15,[0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]);
+
+y12:=Matrix(K,1,15,[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]);
+y13:=Matrix(K,1,15,[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]);
+
+y14:=Matrix(K,1,15,[0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+
+y15:=Matrix(K,1,15,[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+
+mm1:=y1+2*y2;
+
+mm2:=y3+7*y4+8*y5;
+mm3:=y6+9*y7;
+mm4:=y8-34*y9;
+mm5:=y10-3*y11;
+//mm1...mm5 generate a 5 dimension subspace A of Wedge2 W dual
+
+mt:=(Matrix(K,[[(y):y in Eltseq(x)]: x in [mm1,mm2,mm3,mm4,mm5]]));
+Ap:=Kernel(Transpose(mt));
+Apm:=sub<W2|Ap>;
+//Apm is the annihilator of A
+m1:=Matrix(K,15,15, &cat[[Eltseq(x):x in [mm1,mm2,mm3,mm4,mm5]] cat [Eltseq(x):x in Basis(Ap) ]]);  
+
+
+            
+Determinant(m1);
+
+nac:=[m1*x*m1^(-1):x in [ActionGroup(Wd2).i:i in [1..1]]];//This is the generators of the G action in wedge 2 W dual in the newbasis given by m1
+nac10:=[m1*x*m1^(-1):x in [ActionGroup(W2).i:i in [1..1]]];//This is the generators of the G action in wedge 2 W in the newbasis given by m1
+
+P1<y1,y2,y3,y4,y5,y6,y7,y8,y9,y10,y11,y12,y13,y14,y15>:=PolynomialRing(K,15);
+P2<x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15>:=PolynomialRing(K,15);
+
+f:=y1*y10*y15 - y1*y11*y14 + y1*y12*y13 - y2*y7*y15 + y2*y8*y14 - y2*y9*y13 + y3*y6*y15 - y3*y8*y12 +
+    y3*y9*y11 - y4*y6*y14 + y4*y7*y12 - y4*y9*y10 + y5*y6*y13 - y5*y7*y11 + y5*y8*y10;
+
+
+var:=[x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12,x13,x14,x15];
+im:=[&+[Eltseq(Rows(Transpose(m1))[j])[i]*var[i]:i in [1..15]]:j in [1..15]];
+ch:=hom<P1->P2|im>;
+g:=ch(f);
+ng:=f^Transpose(m1);
+proj:=hom<P2->P2|[x1,x2,x3,x4,x5,0,0,0,0,0,0,0,0,0,0]>;
+proj(ch(f));//This spits out the equation of the intersection of A with Pfaffian cubic form, it is a smooth cubic threefold
+ Monomials( proj(ch(f)));
+Coefficients( proj(ch(f)));
+P<x1,x2,x3,x4,x5>:=ProjectiveSpace(K,4);
+
+Y:=Scheme(P,2*x1^2*x5 - 56*x2^3 + 9*x2*x3^2 - 706*x2*x4*x5 - 306*x3*x4^2 + 3*x3*x5^2
+);//This is the smooth cubic threefold
+
+M5:=GL(5,K);
+A5:=sub<M5|[Submatrix(x,[1..5],[1..5]):x in nac]>;
+//This is the G action on the smooth cubic threefold above
+
+
+P14<u01,u02,u03,u04,u05,u12,u13,u14,u15,u23,u24,u25,u34,u35,u45>:=ProjectiveSpace(K,14);
+mat:=Matrix([
+[0,   u01,u02,u03,u04,u05],
+[-u01, 0 ,u12,u13,u14,u15],
+[-u02,-u12,0, u23,u24,u25],
+[-u03,-u13,-u23,0,u34,u35],
+[-u04,-u14,-u24,-u34,0,u45],
+[-u05,-u15,-u25,-u35,-u45,0]]);
+
+
+
+
+Gr:=Scheme(P14,Pfaffians(mat,4));
+
+Grdef:=DefiningEquations(Gr);
+nGrdef:=[x^(Transpose(m1)):x in Grdef];
+PP14:=CoordinateRing(P14);
+P9<y1,y2,y3,y4,y5,y6,y7,y8,y9,y10>:=ProjectiveSpace(K,9);
+PP9:=CoordinateRing(P9);
+projmp:=hom<PP14->PP9|[0,0,0,0,0,y1,y2,y3,y4,y5,y6,y7,y8,y9,y10]>;
+X14eq:=[projmp(x):x in nGrdef];
+X:=Scheme(P9,X14eq);
+//X is the dual degree 14 Fano
+
+M10:=GL(10,K);
+A10:=sub<M10|[Submatrix(x,[6..15],[6..15]):x in nac10]>;
+//A10 is the G-action on X
