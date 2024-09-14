@@ -1,4 +1,3 @@
-
 //Input: G: a finite group, GG: a Schur Cover of G. 
 //Then GM,K:=find(GG,G,6); gives all projective 6-dimensional representation of G over a large finite field K.
 //for each G-module W in GM (e.g. W:=GM[1]), the function r:=X14(G,W,K); gives all possible smooth Pfaffian cubic threefold from the Pfaffian-Grassmanian construction
@@ -1304,7 +1303,7 @@ for i in [1..#find5] do
         Append(~newcomb,comb[i]);
     end if;
 end for;comb:=newcomb;
-decomp(Wd2);
+//decomp(Wd2);
 for ttf in [1..#nfind5] do 
 A:=nfind5[ttf];
 tf,Acom:=HasComplement(Wd2,A);
@@ -1388,32 +1387,32 @@ end if;
     if IsSingular(Y) then 
         continue ttf;
     end if;
-    comb[ttf];
-IntegerToString(#res+1) cat ". Six dimensional representation of " cat GroupName(ActionGroup(W)); 
-for x in Decomposition(W) do
-    <x,BrauerCharacter(x)>;
-end for;
-"Action of " cat GroupName(NewAG/FindScalar(NewAG)) cat " on Y given by ";
-for x in Decomposition(A) do 
-<x,BrauerCharacter(x)>;
-end for;//Y;
+    //comb[ttf];
+//IntegerToString(#res+1) cat ". Six dimensional representation of " cat GroupName(ActionGroup(W)); 
+//for x in Decomposition(W) do
+ //   <x,BrauerCharacter(x)>;
+//end for;
+//"Action of " cat GroupName(NewAG/FindScalar(NewAG)) cat " on Y given by ";
+//for x in Decomposition(A) do 
+//<x,BrauerCharacter(x)>;
+//end for;//Y;
 
 if IsIrreducible(Y) then isir:=" is irreducible "; else isir:=" is NOT irreducible "; end if;
 
-"Dimension of Y: " cat IntegerToString(Dimension(Y)) cat ";     Degree of Y is " cat IntegerToString(Degree(Y)) cat ";    Y" cat isir;  
+//"Dimension of Y: " cat IntegerToString(Dimension(Y)) cat ";     Degree of Y is " cat IntegerToString(Degree(Y)) cat ";    Y" cat isir;  
 
 
-"";
-"";
-"Action of " cat GroupName(NewApG/FindScalar(NewApG)) cat " on X";
+//"";
+//"";
+//"Action of " cat GroupName(NewApG/FindScalar(NewApG)) cat " on X";
 
-"Dimension of X: " cat IntegerToString(Dimension(X)) cat ";     Degree of X is " cat IntegerToString(Degree(X)) cat ";    X";  
+//"Dimension of X: " cat IntegerToString(Dimension(X)) cat ";     Degree of X is " cat IntegerToString(Degree(X)) cat ";    X";  
 
 
-"";
-"";
-"";
-"--------------------------------------";
+//"";
+//"";
+//"";
+//"--------------------------------------";
 Append(~res,<<Y,ActionGroup(NewA)>,<X,ActionGroup(NewAp)>>);
 end for;
 
@@ -1422,8 +1421,8 @@ end function;
 
 
 
-G:=Sym(5);
-GG:=PermutationGroup(FPGroup(SmallGroup(240,90)));//schurcover of G
+G:=Sym(4);
+GG:=PermutationGroup(SchurCoveringGroup(G));//schurcover of G
 GM,K:=find(GG,G,6);//Find all six dimensional representation of GG gives a projective representation of G
 res:=<>;
 for W in GM do 
@@ -1431,7 +1430,7 @@ for W in GM do
     Append(~res,r);//for each six dimensional representaiton in GM, record the output Pfaffian cubic
 end for;
 for x in res do 
-    #x;//See how many output we get. If all of them are 0, S5 does not admit equivariant Pfaffian actions
+    #x;//See how many output we get. If all of them are 0, S4 does not admit equivariant Pfaffian actions
 end for;
 
 
@@ -1458,4 +1457,29 @@ end for;
 end for;
 
 //We find weight (1, 1, 1, −1, zeta_4) is not realized, thus not equivariant pfaffian
+
+
+
+
+S3:=Sym(3);
+G:=sub<S3|S3!(1,2,3)>;//G=C3
+GG:=G;//Schur cover is itself for cyclic group
+GM,K:=find(G,G,6);//Find all faithful six dimensional projective representation of G
+res:=<>;
+for W in GM do 
+    r:=X14(G,W,K);
+    Append(~res,r);//for each six dimensional representaiton in GM, record the output Pfaffian cubic
+end for;
+
+for x in res do 
+    for y in x do 
+        for z in Decomposition(GModule(y[1][2])) do
+    BrauerCharacter(z);//For each output, we see the weights it acts on ambient P^5
+end for;
+"--------------------------";
+end for;
+end for;
+
+//We find only weight (1, zeta_3, zeta_3, zeta_3^2, zeta_3^2) is realized, thus C3 with other weights not equivariant pfaffian
+
 
