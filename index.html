@@ -12,14 +12,21 @@
 A:link {TEXT-DECORATION:none; }
 a:visited {TEXT-DECORATION:none; }
 a:active { text-decoration:none; }
-</STYLE>
+</STYLE
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <body text="#000000" LINK="#0000F0" VLINK="#000090"  style="background-color:#F3F2F0">
 
 <style> A:link {TEXT-DECORATION:"none"}
         A:visited {TEXT-DECORATION:"none"}
 </STYLE>
-
+<style>
+    /* css handles the parentheses/brackets */
+    .laparent ol { counter-reset: item }
+    .laparent li { display: block ; counter-increment: item; }
+    /* replace the counter before list item with
+              open parenthesis + counter + close parenthesis */
+    .laparent li:before { content: " [" counter(item,lower-alpha) "] "; }
+</style>
    <TITLE>Zhijia Zhang 张智嘉</TITLE>
 </HEAD>
 <body text="#000000" bgcolor="#FFFFFF">
@@ -68,6 +75,10 @@ CV</a>.<small>
   <br>
    <br>
   <br>
+  <ol class="laparent">
+      <li> <A href="https://zhijiazhangz.github.io/Brquo.pdf" style="color:#334EAC"> Computing the equivariant Brauer group</A>, (with A. Pirutka), 40 pp., <em>submitted</em>, (2024)  [<A href="https://arxiv.org/abs/2410.05072" style="color:#503C09">arxiv</A>] </li>
+      <li> <A href="https://zhijiazhangz.github.io/vol.pdf" style="color:#334EAC">   Birational invariants of volume preserving maps</A>, (with K. Loginov), 34 pp., <em>submitted</em>, (2024)  [<A href="https://arxiv.org/abs/2410.05036" style="color:#503C09">arxiv</A>] </li>
+  </ol>
 <b><font size="+1" style="color:#1E2E67">Papers</font></b> (my <A href="https://arxiv.org/a/zhang_z_27.html" style="color:#B31B1B">arxiv page</A>)
 <br>
    <p>[10]  <A href="https://zhijiazhangz.github.io/Brquo.pdf" style="color:#334EAC"> Computing the equivariant Brauer group</A>, (with A. Pirutka), 40 pp., <em>submitted</em>, (2024)  [<A href="https://arxiv.org/abs/2410.05072" style="color:#503C09">arxiv</A>]
