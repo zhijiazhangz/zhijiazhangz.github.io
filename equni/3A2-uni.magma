@@ -1,0 +1,148 @@
+//C3*S3 
+K:=CyclotomicField(3);e:=RootOfUnity(3);
+C<a>:=FunctionField(K);
+P4<x1,x2,x3,x4,x5>:=ProjectiveSpace(K,4);
+PP4:=CoordinateRing(P4);
+a:=Random([-1000..1000]);
+
+s123:=Matrix(K,5,5,[0,0,1,0,0,
+                      1,0,0,0,0,
+                      0,1,0,0,0,
+                      0,0,0,1,0,
+                      0,0,0,0,1]);
+s23:=Matrix(K,5,5,[1,0,0,0,0,
+                      0,0,1,0,0,
+                      0,1,0,0,0,
+                      0,0,0,1,0,
+                      0,0,0,0,1]);
+eta1:=DiagonalMatrix(K,5,[1,1,1,1,e]);
+X:=Scheme(P4,x1*x2*x3 + x4^2*(x1+x2+x3)+a*x4^3+x5^3 );
+
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+M:=GL(5,K);
+G:=sub<M|eta1,s123,s23>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G action on X
+checkab(G,X,K);//check condition A on X
+S:=Scheme(X,x5);//invariant hyperplane
+[Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);//check condition A on S
+
+
+//C6*S3 
+K:=CyclotomicField(3);e:=RootOfUnity(3);
+C<a>:=FunctionField(K);
+P4<x1,x2,x3,x4,x5>:=ProjectiveSpace(K,4);
+PP4:=CoordinateRing(P4);
+a:=Random([-1000..1000]);
+
+s123:=Matrix(K,5,5,[0,0,1,0,0,
+                      1,0,0,0,0,
+                      0,1,0,0,0,
+                      0,0,0,1,0,
+                      0,0,0,0,1]);
+s23:=Matrix(K,5,5,[1,0,0,0,0,
+                      0,0,1,0,0,
+                      0,1,0,0,0,
+                      0,0,0,1,0,
+                      0,0,0,0,1]);
+eta2:=DiagonalMatrix(K,5,[1,1,1,-1,e]);
+X:=Scheme(P4,x1*x2*x3 + x4^2*(x1+x2+x3)+x5^3 );
+
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+
+M:=GL(5,K);
+G:=sub<M|eta2,s123,s23>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G action on X
+checkab(G,X,K);//check condition A on X
+S:=Scheme(X,x5);//invariant hyperplane
+[Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);//check condition A on S
+
+
+
+
+//S3 
+K:=CyclotomicField(3);e:=RootOfUnity(3);
+C<a>:=FunctionField(K);
+P4<x1,x2,x3,x4,x5>:=ProjectiveSpace(K,4);
+PP4:=CoordinateRing(P4);
+a:=Random([-1000..1000]);
+
+s123:=Matrix(K,5,5,[0,0,1,0,0,
+                      1,0,0,0,0,
+                      0,1,0,0,0,
+                      0,0,0,1,0,
+                      0,0,0,0,1]);
+s23:=Matrix(K,5,5,[1,0,0,0,0,
+                      0,0,1,0,0,
+                      0,1,0,0,0,
+                      0,0,0,1,0,
+                      0,0,0,0,1]);
+a:=Random([-100..100]);
+b:=Random([-100..100]);
+c:=Random([-100..100]);
+
+X:=Scheme(P4,x1*x2*x3 + x4^2*(x1+x2+x3)+a*x4^3+b*x4^2*x5+c*x4*x5^2+x5^3 );
+
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+M:=GL(5,K);
+G:=sub<M|s123,s23>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G action on X
+checkab(G,X,K);//check condition A on X
+S:=Scheme(X,x5);//invariant hyperplane
+[Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);//check condition A on S
+
+
+
+//C3 
+K:=CyclotomicField(3);e:=RootOfUnity(3);
+C<a>:=FunctionField(K);
+P4<x1,x2,x3,x4,x5>:=ProjectiveSpace(K,4);
+PP4:=CoordinateRing(P4);
+a:=Random([-1000..1000]);
+
+s123:=Matrix(K,5,5,[0,0,1,0,0,
+                      1,0,0,0,0,
+                      0,1,0,0,0,
+                      0,0,0,1,0,
+                      0,0,0,0,1]);
+eta1:=DiagonalMatrix(K,5,[1,1,1,1,e]);
+
+a:=Random([-1000..1000]);
+b:=Random([-1000..1000]);
+c:=Random([-1000..1000]);
+f3:=Random([a*x4^3+b*x5^3,c*x4^3,c*x5^3]);
+X:=Scheme(P4,x1*x2*x3 +(x1*(x4+x5)^2+x2*(x4+e*x5)^2+x3*(x4+e^2*x5)^2)+f3 );
+
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+M:=GL(5,K);
+G:=sub<M|s123*eta1>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G action on X
+checkab(G,X,K);//check condition A on X
+S:=Scheme(X,x5);//invariant hyperplane
+[Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);//check condition A on S
+
+
+

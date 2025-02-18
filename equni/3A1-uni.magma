@@ -1,0 +1,1397 @@
+//relevant codes start from line 1070
+function findsumfine(L,r)
+    res:=[[i]: i in [0..#L[1]]];
+    rk:=1;
+    while rk ne #L do 
+        rk+:=1;
+        nres:=[];
+        for x in res do 
+            for i in [0..#L[rk]] do 
+                Append(~nres,x cat [i]);
+            end for;
+        end for;
+        res:=nres;
+    end while;
+    real:=[];
+        for x in res do 
+            if &+[x[i]*L[i][1]:i in [1..#L]] eq r then 
+            Append(~real,x);
+            end if;
+        end for;
+    return real;
+end function;
+
+function findsum(ls,s)// Given a chain of integers ls=[a1,a2,a3..an] and an integer s, return chains [i1,i2..ir] where a_i1+..+a_ir=k, allowing repetition but not permutation 
+    re:=<>;
+    cand:=[];
+    for i in [1..#ls] do 
+        if ls[i] eq s then 
+            Append(~re, [i]);
+        else
+            Append(~cand, [ls[i],i]);
+        end if;
+    end for;
+    while #cand ne 0 do
+        newc:=[];
+        for x in cand do
+            i:=x[#x];
+            for j in [i..#ls] do
+                newx:=x cat [j];
+                newx[1]+:=ls[j];
+                if newx[1] eq s then 
+                    Remove(~newx, 1);
+                    Append(~re,newx);                    
+                elif newx[1] lt s then
+                    Append(~newc,newx);
+                end if;
+            end for;
+        end for;
+        cand:=newc;
+    end while;
+    return re;
+end function;
+
+
+function findsumnorep(ls,s)// Given a chain of integers ls=[a1,a2,a3..an] and an integer s, return chains [i1,i2..ir] where a_i1+..+a_ir=k, allowing repetition but not permutation 
+    re:=<>;
+    cand:=[];
+    for i in [1..#ls] do 
+        if ls[i] eq s then 
+            Append(~re, [i]);
+        else
+            Append(~cand, [ls[i],i]);
+        end if;
+    end for;
+    while #cand ne 0 do
+        newc:=[];
+        for x in cand do
+            i:=x[#x];
+            for j in [i+1..#ls] do
+                newx:=x cat [j];
+                newx[1]+:=ls[j];
+                if newx[1] eq s then 
+                    Remove(~newx, 1);
+                    Append(~re,newx);                    
+                elif newx[1] lt s then
+                    Append(~newc,newx);
+                end if;
+            end for;
+        end for;
+        cand:=newc;
+    end while;
+    return re;
+end function;
+
+
+
+
+function FindScalar(G)
+    n:=Ngens(G);
+    gen:=[Identity(G)];
+    for g in G do 
+        if IsScalar(g) then
+            Append(~gen,g);
+        end if;
+    end for;
+
+    return sub<G|gen>;
+end function;
+
+function FindEigenspace(M)
+    egspace:=<>;
+    for lam in SetToSequence(Eigenvalues(M)) do
+        ev:=lam[1];
+        Append(~egspace,<Eigenspace(M,ev),<ev>>);
+    end for;
+    return egspace;
+end function;
+
+ function Findsckernel(f)
+ G:=Domain(f);
+    g:=[];
+    for x in G do 
+        if IsScalar(f(x)) then
+            Append(~g,x);
+        end if;
+    end for;
+    return sub<G|g>;
+end function;
+
+
+function Findkernel(f)
+    G:=Domain(f);
+    g:=[];
+    for x in G do 
+        if IsIdentity(f(x)) then
+            Append(~g,x);
+        end if;
+    end for;
+    return sub<G|g>;
+end function;
+
+function EigenspaceIntersection(G,k)
+    if #G eq 1 then 
+        return <<VectorSpace(BaseRing(G),Degree(G)),<>>>;
+    end if;
+    if k eq 1 then 
+        return FindEigenspace(G.1);
+    else
+        tempegs:=EigenspaceIntersection(G,k-1);
+        newegs:=FindEigenspace(G.k);
+        resegs:=<>;
+        for i in [1..#newegs] do
+            for j in [1..#tempegs] do
+                V:=tempegs[j][1] meet newegs[i][1];
+                if Dimension(V) gt 0 then
+                    Append(~resegs,<V,tempegs[j][2] cat newegs[i][2] >);
+                end if;
+            end for;
+        end for;
+        return resegs;
+    end if;
+end function;
+
+function Findfixlocus(G)
+    KK:=BaseRing(G);
+    n:=Ngens(G);
+    egs:=EigenspaceIntersection(G,n);
+    char:=<>;
+    for y in egs do
+        x:=[[i]:i in y[2]];
+        S:=GModule(G, MatrixAlgebra<KK,1|x>);
+        Append(~char, y cat <Representation(S)>);
+    end for;
+
+        return char;
+end function;
+
+
+
+function SchurMult(x)
+    r:=[];
+    for p in PrimesUpTo(#x) do
+        if pMultiplicator(x, p)[1] ne 1 then
+        r:=r cat [pMultiplicator(x, p)];
+        end if;
+    end for;
+    if r eq [] then
+        r:=[[1]];
+    end if;
+    return r;
+    end function;
+
+//Given x(GrpPC), Return Q(GrpPC):the Shcur covering group, 
+//and [v(GrpPC)]:a list of subgroups of Z(Q) which are isomorphic to the Schur Multiplier 
+function FindMult(x)
+    G2:=FPGroup(x);
+    G1:=PermutationGroup(G2);
+    r:=pCover(G1,G2,2);
+    i:=SchurMult(G1);
+    C:=AbelianGroup(GrpPC, i[1]);
+    Q:=PCGroup(r);//restricted to small soluable group only
+    Z:=Center(Q);
+    result:=[];
+
+    for v in AllSubgroups(Z) do
+        if result ne [] and #v gt #C then
+                break v;
+            end if;
+        if IsNormal(Q,v) and IsIsomorphic(v,C) then
+            if IsIsomorphic(quo<Q|v>, x) then
+                result:=result cat [v];
+            end if;
+            
+        end if;
+    end for;
+    if IsIsomorphic(Z,C) then
+        centerschu:=true;
+    else
+        centerschu:=false;
+    end if;
+
+
+return Q,result,centerschu;
+end function;
+
+
+
+
+function SubPerm(G)
+    for x in AllSubgroups(G) do
+        if #x eq 1 then
+            f,G:=CosetAction(G,x);
+        end if;
+    end for;
+    return G;
+end function;
+
+
+
+function SchurCoveringGroup(G)
+        G2:=FPGroup(G);
+        G1:=PermutationGroup(G2);
+    t,f:=IsIsomorphic(G1,G);t;
+    r:=pCover(G1,G2,2);
+return r;
+end function;
+
+
+function vstops(V,P,KK)
+    n:=Dimension(P);
+    F:=VectorSpace(KK,n+1);
+    W:=OrthogonalComplement(F,V);
+    b:=Basis(W);
+    res:=[];
+    
+    for x in b do
+        sum:=0;
+        coef:=Eltseq(x);
+        for i in [1..n+1] do
+            sum+:=coef[i]*P.i;
+        end for;
+        Append(~res,sum);
+    end for;
+    return Scheme(P,res);
+end function;
+
+function Schemefixlocus(X,G,KK)
+    P:=AmbientSpace(X);
+    Vs:=Findfixlocus(G);
+    res:=[];
+    for Vl in Vs do  
+        V:=Vl[1];
+        PV:=vstops(V,P,KK);
+        fl:=PV meet X;
+        if Dimension(fl) gt (-1) then 
+            res:=res cat IrreducibleComponents(fl);
+        end if;
+    end for;
+    return res;
+end function;
+
+function schememove(X,g)
+
+Pp:=AmbientSpace(X);
+kx:=CoordinateRing(Pp);
+
+image:=[];
+for i in [1..Dimension(Pp)+1] do
+se:=Eltseq(Transpose(Matrix(g^(-1)))[i]);
+poly:=0;
+for j in [1..#se] do
+poly+:=se[j]*kx.j;
+end for;
+Append(~image, poly);
+end for;
+fp:=hom<kx->kx|image>;
+defpoly:=DefiningPolynomials(X);
+newpoly:=[fp(pol):pol in defpoly];
+newscheme:=Scheme(Pp,newpoly);
+
+return newscheme;
+end function;
+
+
+function checkschemeinvariant(X,gp)
+    for g in Generators(gp) do
+    newscheme:=schememove(X,g);
+    if not newscheme eq X then 
+        return false;
+    end if;
+    end for;    
+    return true;
+end function;
+
+function schemeorbit(X,gp)
+    orb:={@@};
+    for g in gp do
+    newscheme:=schememove(X,g);
+    if not newscheme in orb then 
+        Include(~orb, newscheme);
+    end if;
+    end for;    
+    return orb;
+end function;
+
+
+
+function st(X,G,KK)
+    fpg,f1:=FPGroup(G);
+      pg,f2:=PermutationGroup(fpg);
+    l:=SubgroupLattice(pg); len:=#l;
+    Gfix:=Schemefixlocus(X,G,KK);
+    stratification:=<>;
+    locus:={@@};
+    for x in Gfix do
+        Append(~stratification, <G,x>);
+        Include(~locus, x);
+    end for;
+
+    for i in [1..len-2] do 
+        H:=f1(l[len-i]@@f2); Hconj:=Conjugates(G,H);
+        Hfix:=Schemefixlocus(X,H,KK);
+        addHlocus:=false;
+        for Y in Hfix do
+            if not Y in locus then
+                addHlocus:=true;
+                Append(~stratification, <H,Y>);
+            end if;
+        end for;
+        if addHlocus then 
+            for Hp in Hconj do
+                Hpfix:=Schemefixlocus(X,Hp,KK);
+                for adlo in Hpfix do
+                    Include(~locus, adlo); 
+                end for;
+            end for;
+        end if;
+    end for;
+    
+    recc:=<>;
+    for x in stratification do 
+        for y in recc do
+            if y[1] eq x[1] then
+                
+                if x[2] in schemeorbit(y[2], G) then
+                    continue x;
+                end if;
+                
+            end if;     
+        end for;
+        Append(~recc, x);
+    end for;
+
+
+    return stratification,recc;
+end function;
+
+
+function vstops(V,P,KK)
+    n:=Dimension(P);
+    F:=VectorSpace(KK,n+1);
+    W:=OrthogonalComplement(F,V);
+    b:=Basis(W);
+    res:=[];
+    
+    for x in b do
+        sum:=0;
+        coef:=Eltseq(x);
+        for i in [1..n+1] do
+            sum+:=coef[i]*P.i;
+        end for;
+        Append(~res,sum);
+    end for;
+    SCX:=Scheme(P,res);
+    if not Dimension(SCX) eq Dimension(V)-1 then 
+        "vstops wrong, dimension does not match";
+        return "vstops wrong, dimension does not match";
+    end if;
+    return SCX;
+end function;
+
+function findcoeffoflinearpoly(polyn,n,KK)
+res:=[];
+for i in [1..n] do 
+    s:=Coefficients(polyn,i);
+    if #s eq 1 then 
+        Append(~res,KK!0);
+    else 
+        Append(~res,KK!s[2]);
+    end if;
+end for;
+return res;
+end function;
+
+function pstovs(X,P,KK)//Only for linear space
+    n:=Dimension(P);
+    F:=VectorSpace(KK,n+1);
+    po:=DefiningPolynomials(X);
+    bas:=[F!(findcoeffoflinearpoly(x,n+1,KK)):x in po];
+    W:=sub<F|bas>;
+    V:=OrthogonalComplement(F,W);
+    if not (Dimension(V)-1) eq Dimension(X) then 
+        "pstovs wrong, dimension does not match";
+        return "pstovs wrong, dimension does not match";
+    end if;
+    return V;
+end function;
+
+function indtangetact(Y,X,P,KK,gp)//Y\subset X\subset P, Y is fixed locus of gp
+    f:=GModule(gp);fd:=false;
+    for i in [1..1000] do 
+    nY:=Scheme(Y,[&+[Random([-1000..1000])*P.j:j in [1..Dimension(P)+1]]:i in [1..Dimension(Y)]]);
+    a:=Points(nY);
+    if #a eq 0 then continue i;end if;
+    a:=a[1];fd:=true;break i;
+    end for;
+    if not fd then "no point found";return "n";end if;
+    Ty:=TangentSpace(Y,a);
+    Tx:=TangentSpace(X,a);
+    TY:=pstovs(Ty,P,KK);  
+    TX:=pstovs(Tx,P,KK);    
+    TYgmod:=sub<f|TY>;
+    TYdecom:=Decomposition(TYgmod);
+    checktriv:=DirectSum([TYdecom[1]: i in [1..Dimension(TYgmod)]]);
+    if not IsIsomorphic(TYgmod, checktriv) then 
+        "action on Y is not trivial";
+    end if;
+    Tycha:=TYdecom[1];
+    TXgmod:=sub<f|TX>;
+    stat,TXqY:=HasComplement(TXgmod,TYgmod);
+    if not stat then 
+       "no complement of TY in TX";
+    end if;
+    return Tycha, TXqY;
+end function;
+function FindBlowupTangetAct(s,X,P,KK)//Y\subset X\subset P, Y is fixed locus of gp
+    Y:=s[2];
+    gp:=s[1];
+    f:=GModule(gp);
+    a:=Points(Y)[1];
+    Ty:=TangentSpace(Y,a);
+    Tx:=TangentSpace(X,a);
+    TY:=pstovs(Ty,P,KK);  
+    TX:=pstovs(Tx,P,KK);    
+    TYgmod:=sub<f|TY>;
+    TYdecom:=Decomposition(TYgmod);
+    checktriv:=DirectSum([TYdecom[1]: i in [1..Dimension(TYgmod)]]);
+    if not IsIsomorphic(TYgmod, checktriv) then 
+        "action on Y is not trivial";
+    end if;
+    Tycha:=Representation(TYdecom[1]);
+    TXgmod:=sub<f|TX>;
+    stat,TXqY:=HasComplement(TXgmod,TYgmod);
+    if not stat then 
+       "no complement of TY in TX";
+    end if;
+    TangAct:=Decomposition(TXqY);
+    ker:=gp;
+    for decpmrep in TangAct do 
+        if Dimension(decpmrep) eq 1 then 
+            actrep:=Representation(decpmrep);
+            ke:=[];
+            for elmt in gp do 
+                if ((Tycha(elmt)[1][1])^(-1))*actrep(elmt) eq 1 then 
+                    Append(~ke,elmt);
+                end if;
+            end for;
+            GroupName( sub<gp|ke>);
+            ker:=ker meet sub<gp|ke>;
+        end if;
+    end for;
+    return ker;
+end function;
+
+
+
+function finfld(r,d,K)//In finite field K, we have r (in K) living in Z/d 
+    G,f:=MultiplicativeGroup(K);
+    g:=Eltseq(r@@f)[1];
+    n:=#G;
+    return (g*d) div n;
+end function;
+
+function ftimesg(f,g)//f*g
+    H:=Domain(f);
+    K:=BaseRing(Codomain(f));
+    S:=GModule(H, MatrixAlgebra<K,1|[[(f(H.i)[1][1])*(g(H.i)[1][1])]:i in [1..Ngens(H)]]>);
+    return Representation(S);
+end function;
+
+function fminusone(f)//f^(-1)
+    H:=Domain(f);
+    K:=BaseRing(Codomain(f));
+    S:=GModule(H, MatrixAlgebra<K,1|[[(f(H.i)[1][1])^(-1)]:i in [1..Ngens(H)]]>);
+    return Representation(S);
+end function;
+
+function fginverse(f,g)//f*g-1, g nonzero
+    return ftimesg(f,fminusone(g));
+end function;
+
+
+function charread(f)
+    G:=Domain(f);//Have to be abelian 
+    PCG,m:=PCGroup(G);//m:G->PCG
+    if #PCG ne #G then
+        return "charread wrong";
+    end if;
+    Ab,mm:=AbelianGroup(PCG);//mm:PCG->Ab
+    n:=Ngens(Ab);
+    K:=BaseRing(Codomain(f));
+    cha:=[];
+    gen:=[];
+    for i in [1..n] do
+        d:=Order(Ab.i);
+        x:=(Ab.i@@mm)@@m;
+        if Order(x) ne d then 
+            return "charread wrong";
+        end if;
+        r:=f(x);
+        Append(~gen, x);
+        Append(~cha, finfld(r[1][1],d,K));
+    end for;
+    return cha,gen;
+end function;
+
+function betaread(Y,X,P,KK,gp)
+    gtriv,gtang:=indtangetact(Y,X,P,KK,gp);
+    ftriv:=Representation(gtriv);
+    gtang:=Decomposition(gtang);
+    beta:=<>;
+    for x in gtang do 
+        f:=fginverse(Representation(x),ftriv);
+        Append(~beta,f);
+    end for;
+    return beta;
+end function;
+
+
+
+
+function gpinf(gp)
+for x in AbelianSubgroups(gp) do
+    GroupName(x`subgroup) cat "     " cat GroupName(Centralizer(gp,x`subgroup)) cat "      " cat GroupName(Centralizer(gp,x`subgroup)/x`subgroup);
+    end for;
+return "done";
+end function;
+
+
+
+
+function findactgp(Gm,Hm,V1) //V2>V1
+    gen:=[Gm!Hm.i:i in [1..Ngens(Hm)]];
+    for x in Gm do 
+        if not x in Hm then 
+            if schememove(V1,x) eq V1 then 
+                Append(~gen, x);
+            end if;
+        end if;
+    end for;
+    res:=sub<Gm|gen>;
+    return res;
+end function;
+
+function dp(strat,gp,Xs)
+    PP:=AmbientSpace(Xs);
+    K:=BaseRing(gp);
+    scgp:=FindScalar(gp);
+    gpq,fq:=gp/scgp;
+    c:=0;
+    for x in strat do 
+    c+:=1;
+    if IsAbelian(x[1]) then
+    b:=betaread(x[2],Xs,PP,K,x[1]);
+    res:=<>;
+    for y in b do 
+        thg:=Domain(y);
+        realg,qm:=thg/scgp;
+        newy:=Inverse(qm)*y;
+        re:=charread(newy);                                                   
+        Append(~res,re);
+    end for;
+
+    Zg:=findactgp(gp,x[1],x[2]);
+
+    <IntegerToString(c) cat ".   " cat  GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))  cat ",  "cat IntegerToString(Dimension(x[2])) cat ",  "cat IntegerToString(Degree(x[2])), res>;
+    else
+    Zg:=findactgp(gp,x[1],x[2]);
+    <IntegerToString(c) cat ".   " cat GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))  cat ",  "cat IntegerToString(Dimension(x[2])) cat ",  "cat IntegerToString(Degree(x[2]))>;
+    end if;
+        end for;
+    return c;
+end function;
+
+
+function ndp(strat,gp,Xs)
+    PP:=AmbientSpace(Xs);
+    K:=BaseRing(gp);
+    scgp:=FindScalar(gp);
+    gpq,fq:=gp/scgp;
+    c:=0;
+    for x in strat do 
+    c+:=1;
+    if IsAbelian(x[1]) then
+    
+    Zg:=findactgp(gp,x[1],x[2]);
+
+    <IntegerToString(c) cat ".   " cat  GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))  cat ",  "cat IntegerToString(Dimension(x[2])) cat ",  "cat IntegerToString(Degree(x[2]))>;
+    else
+    Zg:=findactgp(gp,x[1],x[2]);
+    <IntegerToString(c) cat ".   " cat GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))  cat ",  "cat IntegerToString(Dimension(x[2]))cat ",  "cat IntegerToString(Degree(x[2]))>;
+    end if;
+        end for;
+    return c;
+end function;
+
+
+function pttops(p,P,K)
+    V:=VectorSpaceWithBasis([Vector(Eltseq(p))]);
+    return vstops(V,P,K);
+end function;
+
+
+function checkab(G,X,K)
+    rG,qm:=G/FindScalar(G);
+    for x in AbelianSubgroups(rG) do 
+        if #x`subgroup ne 1 and #Schemefixlocus(X,(x`subgroup)@@qm,K) eq 0 then 
+            return false,(x`subgroup)@@qm;
+        end if;
+    end for;
+    return true,"";
+end function;
+
+function plorbi(gp,pl)
+taken:=[];
+allorb:=[];
+rem:=[1..#pl];
+for x in rem do 
+    if not x in taken then
+    orb:=[];
+    for g in gp do 
+        j:=Position(pl,schememove(pl[x],g));
+        Include(~orb,j);
+        Append(~taken,j);
+    end for;
+    Include(~allorb, orb);
+    end if;
+end for;
+return allorb;
+end function;
+
+
+function gptr(G,M)
+    gen:=[];
+    for x in Generators(G) do
+        Append(~gen, Transpose(x));
+        end for;
+    return sub<M|gen>;
+end function;
+
+function span(p,P,K)
+n:=Dimension(P)+1;
+V:=VectorSpace(K,n);
+W:=sub<V|[Eltseq(x):x in p]>;
+return vstops(W,P,K);
+end function;
+
+
+
+
+function choose(n,k)//choose k elements without permutation in a list ls
+    
+    if k eq 1 then  
+        return [[x]:x in [1..n]];
+    end if;
+    t:=choose(n,k-1);
+    res:=[];
+    for x in t do 
+        for y in [x[k-1]+1..n] do 
+            Append(~res,x cat [y]);
+        end for;
+    end for;
+    return res;
+end function;
+
+
+
+
+function findorthogonalcompelement(R,U,Rd)
+    K:=BaseRing(R);
+    n:=Dimension(R);
+    V:=VectorSpace(K,n);
+    ubasis:=[Eltseq(R!U.i):i in [1..Dimension(U)]];
+    UV:=sub<V|ubasis>;
+    OV:=OrthogonalComplement(V,UV);
+    Om:=sub<Rd|[Rd!Eltseq(x):x in Basis(OV)]>;
+    return Om;
+end function;
+
+
+function find(G,GG,s)
+rG:=G;
+ex:=Exponent(G)*5*3*14*16;
+p:=3;
+sto:=true;
+while sto do 
+    if ((p-1) mod ex) eq 0 then 
+        KK:=GF(p);
+        sto:=false;
+    else 
+        p:=NextPrime(p);
+    end if;
+end while;
+l:=IrreducibleModules(G,KK);
+ls:=[];
+for i in l do 
+    Append(~ls,Dimension(i));
+end for;
+sm:=findsum(ls,s);
+r:=[];
+for x in sm do 
+    md:=l[x[1]];
+    for i in [2..#x] do
+        md:=DirectSum(md,l[x[i]]);
+    end for;
+        GMD:=ActionGroup(md);
+        if GroupName(GMD/FindScalar(GMD)) eq GroupName(GG) then
+            Append(~r,md);
+        end if;
+end for;
+    
+
+ondim:=[];
+for x in l do 
+    if Dimension(x) eq 1 then 
+        Append(~ondim,x);
+    end if;
+end for;
+res:=[];
+for x in r do
+    for y in res do 
+        for onee in ondim do
+            if IsIsomorphic(TensorProduct(y,onee),x) then 
+                continue x;
+            end if;
+        end for;
+    end for;
+    Append(~res,x);
+end for;
+
+
+return res,KK;
+end function;
+
+
+function findir(G,GG,s)
+rG:=G;
+ex:=Exponent(G)*5*3*14*16;
+p:=3;
+sto:=true;
+while sto do 
+    if ((p-1) mod ex) eq 0 then 
+        KK:=GF(p);
+        sto:=false;
+    else 
+        p:=NextPrime(p);
+    end if;
+end while;
+l:=IrreducibleModules(G,KK);
+ls:=[];
+for i in l do 
+    Append(~ls,Dimension(i));
+end for;
+r:=[];
+for x in l do 
+    if Dimension(x) eq s then 
+        md:=x;
+        GMD:=ActionGroup(md);
+        if GroupName(GMD/FindScalar(GMD)) eq GroupName(GG) then
+            Append(~r,md);
+        end if;
+    end if;
+end for;
+    
+
+ondim:=[];
+for x in l do 
+    if Dimension(x) eq 1 then 
+        Append(~ondim,x);
+    end if;
+end for;
+res:=[];
+for x in r do
+    for y in res do 
+        for onee in ondim do
+            if IsIsomorphic(TensorProduct(y,onee),x) then 
+                continue x;
+            end if;
+        end for;
+    end for;
+    Append(~res,x);
+end for;
+
+
+return res,KK;
+end function;
+
+
+function invd(P,d,G)
+    PP:=CoordinateRing(P);
+    mon:=MonomialsOfDegree(PP,d);
+    n:=Dimension(P)+1;
+    v:=Matrix(PP,1,n,[PP.i:i in [1..n]]);
+    K:=BaseRing(G);
+    gen:=[];
+    for i in [1..Ngens(G)] do
+        g:=Transpose(G.i);
+        m:=[];
+        for j in [1..#mon] do 
+            nf:=mon[j]^g;
+            nfcoe:=Coefficients(nf);
+            nfmon:=Monomials(nf);
+            vv:=[K!0:i in [1..#mon]];
+        
+            for nm in [1..#nfmon] do 
+    
+                vv[Position(mon,nfmon[nm])]:=nfcoe[nm];
+            end for;
+            m:=m cat vv;
+        end for;
+        ma:=(Matrix(K,#mon,#mon,m));
+        Append(~gen,ma);
+    end for;
+    GM:=GModule(G,gen);
+    cm:=CohomologyModule(G,GM);
+    AG:=ActionGroup(GM);
+    fx:=Findfixlocus(AG);
+    poly:=[];
+    vect:=<>;cahr:=<>;
+    for x in fx do 
+        V:=x[1];Append(~cahr,x[2]);
+        bas:=Basis(V);
+        po:=[&+[mon[i]*xx[i]: i in [1..#mon]]: xx in bas];
+        Append(~vect,V);
+        Append(~poly,po);
+    end for;
+
+return poly,vect,mon,cahr;
+
+end function;
+function readrelations(p,R)
+n:=Rank(R);
+v:=[Derivative(p,R.i): i in [1..n]];
+return v,[ConstantTerm(p)];
+end function;
+
+
+function canonicaldecom(W,char)
+    rho:=Representation(W);
+    n:=Dimension(W);
+    K:=BaseRing(W);
+    G:=Domain(rho);
+    res:=[];
+    for i in char do 
+        pi:=ZeroMatrix(K,n,n);
+        for t in G do 
+            pi+:=ScalarMatrix(K,n,i(t^(-1)))*rho(t);
+        end for;
+        pi:=ScalarMatrix(K,n,i(1)/#G)*pi;
+
+        rrr:=sub<W|[W!Eltseq(x):x in Basis(RowSpace(pi))]>;
+        if Dimension(rrr) ne 0 then Append(~res,rrr);end if;
+    end for;
+return res;
+end function;
+
+function decompnum(M)
+    char:=CharacterTable(Group(M));
+    d:=canonicaldecom(M,char);
+    rec:=[];
+    for V in d do 
+        trm:=[];
+    gen:=[V.1];
+    res:=sub<V|gen>;
+    while res ne V do
+        resc,tf:=RelativeDecomposition(V,res);
+        Append(~gen,V!resc.1);
+        res:=sub<M|gen>;
+    end while;
+
+    for x in gen do 
+        Append(~trm,sub<M|M!x>);
+    end for;
+    Append(~rec,trm);
+end for;
+    return rec;
+end function;
+
+function decomp(M)
+    res:=[];
+    D:=Decomposition(M);
+    for x in D do
+        for yi in [1..#res] do
+            for z in res[yi] do
+                if IsIsomorphic(x,z) then 
+                    res[yi]:=res[yi] cat [x];continue x;
+                end if; 
+            end for; 
+        end for; 
+        Append(~res,[x]);
+    end for;
+    return res;
+end function;
+
+function realdecomp(V,M);
+    i:=1;
+    W:=V[1];
+    Vi:=sub<M|V>;dd:=Dimension(M);
+    rho:=Representation(M);
+    r:=Representation(W);
+    rG:=Domain(r);
+    pp:=[];
+    n:=Dimension(W);
+    K:=BaseRing(W);
+    Ve:=VectorSpace(K,dd);
+    for a in [1..n] do
+        pa1:=ZeroMatrix(K,dd,dd);
+        for t in rG do 
+            pa1+:=ScalarMatrix(K,dd,r(t^(-1))[a,1])*rho(t);
+        end for;
+        pa1:=pa1*ScalarMatrix(K,dd,n/#rG);
+        Append(~pp,pa1);
+    end for;
+    paa:=ZeroMatrix(K,dd,dd);
+        for t in rG do 
+            paa+:=ScalarMatrix(K,dd,r(t^(-1))[1,1])*rho(t);
+        end for;
+        paa:=paa*ScalarMatrix(K,dd,n/#rG);
+    nb:=[];
+    for bb in [Matrix(K,1,dd,Eltseq(M!x)):x in Basis(M)] do
+        Append(~nb,Eltseq(bb*paa));
+    end for;
+    Vi1:=sub<Ve|nb>;res:=[];
+    for nbas in [1..Dimension(Vi1)] do
+    x1j:=Eltseq(&+[Random([-10000..10000])*x:x in Basis(Vi1)]);
+    gen:=[];
+        for p in pp do
+            Append(~gen,Matrix(K,1,dd,Eltseq(x1j))*p);
+        end for;
+        Append(~res,Eltseq(gen));
+    end for;
+    return res;
+end function;
+
+
+function findrandsubmod(M,r)
+    L:=decomp(M);
+    LL:=[[Dimension(L[i][1]):j in [1..#L[i]]]: i in [1..#L]];
+    bss:=[];
+    for x in L do 
+        Append(~bss,realdecomp(x,M));
+    end for;
+    F:=findsumfine(LL,r);
+    rr:=[];
+    for x in F do
+        res:=[];
+        donee:=false;tryn:=0;
+            while not donee do
+                tryn+:=1;
+        for i in [1..#x] do
+            
+            for ct in [1..x[i]] do 
+                ce:=[Random([-10000..10000]):yy in [1..#L[i]]];
+                
+                res:=res cat [&+[ce[j]*M!(Eltseq(bss[i][j][k])):j in [1..#L[i]]]:k in [1..Dimension(L[i][1])]];
+            end for;
+            
+        end for;
+        nM:=sub<M|res>;
+        if Dimension(nM) eq r then 
+           Append(~rr,nM); donee:=true;
+        end if;
+        if tryn eq 1000 then 
+            "!!!!TOO MUCH ATTEMPT, DIMENSION DOESNT MATCH!!!!!!!!!";
+            continue x;
+        end if;
+        end while;
+    end for;
+    return rr;
+end function;
+
+
+function actionmap(G,f)
+    D:=Domain(f);
+    T:=Codomain(f);
+    n1:=Dimension(D);
+    n2:=Dimension(T);
+
+    gen:=[];
+    K:=BaseRing(D);
+    for gg in Generators(G) do 
+    rel:=[];
+    P<[t]>:=PolynomialRing(K,(n2+1)*(n2+1));
+    mt:=Matrix(P,n2+1,n2+1,[t[i]:i in [1..(n2+1)*(n2+1)]]);
+    m:=Matrix(K,rel);
+    ke:=Kernel(Transpose(m));
+    while Dimension(ke) ne 1 do
+        p:=[Random([-10000..10000]):i in [1..n1+1]];
+        vv:=Matrix(P,1,n1+1,p);
+        tarp:=f(D!p);
+        g:=ChangeRing(gg,P);
+        newp:=Eltseq(vv*g);
+        newtarp:=Eltseq(f(D!newp));
+        destarp:=Eltseq(Matrix(P,1,n2+1,Eltseq(tarp))*mt);
+        for i in [2..n2+1] do 
+           addr:=readrelations(destarp[i]*newtarp[1]-destarp[1]*newtarp[i],P);
+           Append(~rel,addr);
+        end for;
+         m:=Matrix(K,rel);
+        ke:=Kernel(Transpose(m));
+    end while;
+    sol:=Matrix(K,n2+1,n2+1,Eltseq(ke.1));
+    Append(~gen,sol);
+    end for;
+    return sol;
+end function;
+
+
+function fo(X,G,n,KK)
+   ag,quo:=G/FindScalar(G);
+   if n eq 1 then 
+       res:=Schemefixlocus(X,G,KK);
+     
+    return res,<>;
+   end if;
+   L:=SubgroupLattice(ag);
+   for i in [0..#L-3] do
+    H:=L[#L-1];
+    if #ag/#H eq n then 
+        s:=Schemefixlocus(X,H@@quo,KK);
+        if #s ne 0 then 
+            l,s:=st(X,G,KK);
+            res:=[];
+            for x in s do 
+                
+                if #(ag)/#(quo(x[1])) eq n then 
+                    Append(~res,x);
+                end if;
+            end for;
+           
+            return res,s;
+        end if;
+    end if;
+   end for;
+   return <>,<>;
+end function;
+
+
+
+K:=CyclotomicField(6);
+K:=GF(5281^12);;
+P<T>:=PolynomialRing(K);
+b:=Roots(T^2+2)[1][1];
+e:=K!1404;
+iota:=DiagonalMatrix(K,5,[1,1,1,-1,-1]);
+s1:=Matrix(K,5,5,[0,0,1,0,0,
+			      1,0,0,0,0,
+			      0,1,0,0,0,
+			      0,0,0,1,0,
+			      0,0,0,0,e^2]);
+s2:=Matrix(K,5,5,[0,0,1,0,0,
+			      1,0,0,0,0,
+			      0,1,0,0,0,
+			      0,0,0,1,0,
+			      0,0,0,0,e]);
+s3:=Matrix(K,5,5,[0,e^4,0,0,0,
+				  e^2,0,0,0,0,
+				  0,0,1,0,0,
+				  0,0,0,0,e^2,
+				  0,0,0,e^4,0]);
+s9:=Matrix(K,5,5,[0,e^5,0,0,0,
+				  1,0,0,0,0,
+				  0,0,e,0,0,
+				  0,0,0,e*b/(1-e^2),e/(1-e^2),
+				  0,0,0,1/(1-e^2),b/(1-e^2)]);
+s4:=Matrix(K,5,5,[0,0,1,0,0,
+			      1,0,0,0,0,
+			      0,1,0,0,0,
+			      0,0,0,1,0,
+			      0,0,0,0,1]);
+s5:=Matrix(K,5,5,[0,1,0,0,0,
+			      1,0,0,0,0,
+			      0,0,1,0,0,
+			      0,0,0,1,0,
+			      0,0,0,0,1]);
+s6:=Matrix(K,5,5,[1,0,0,0,0,
+			      0,1,0,0,0,
+			      0,0,1,0,0,
+			      0,0,0,0,1,
+			      0,0,0,1,0]);
+s7:=Matrix(K,5,5,[0,e^2,0,0,0,
+				  e^4,0,0,0,0,
+				  0,0,1,0,0,
+				  0,0,0,0,e^4,
+				  0,0,0,e^2,0]);
+s8:=Matrix(K,5,5,[1,0,0,0,0,
+				  0,1,0,0,0,
+				  0,0,1,0,0,
+				  0,0,0,e^2,0,
+				  0,0,0,0,e^4]);
+M:=GL(5,K);
+P4<x1,x2,x3,x4,x5>:=ProjectiveSpace(K,4);
+//1.1
+q1:=x4*(x4+x5);
+q2:=x4*(x4+e^2*x5);
+q3:=x4*(x4+e^4*x5);
+a:=Random([-100..100]);
+b:=Random([-100..100]);
+c:=(a*x4+b*x5)*(a*x4+b*e^2*x5)*(a*x4+b*e^4*x5);
+X:=Scheme(P4,x1*x2*x3+x1*q1+x2*q2+x3*q3+c);
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+G:=sub<M|s1>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+checkab(G,X,K);//check condition A on X
+S:=Scheme(X,x5);//invariant hyperplane
+[Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);//check condition A on S
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G on X
+
+//1.2
+a:=Random([-100..100]);
+b:=Random([-100..100]);
+c:=Random([Random([-100..100])*x4^3,Random([-100..100])*x5^3,Random([-100..100])*(x4^3+Random([-100..100])*x5^3)]);
+q1:=x4^2+b*x4*x5+x5^2;
+q2:=x4^2+e^2*b*x4*x5+e^4*x5^2;
+q3:=x4^2+e^4*b*x4*x5+e^2*x5^2;
+
+X:=Scheme(P4,x1*x2*x3+x1*q1+x2*q2+x3*q3+c);
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+G:=sub<M|s1>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+
+checkab(G,X,K);//check condition A on X
+S:=Scheme(X,x5);//invariant hyperplane
+[Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);//check condition A on S
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G on X
+
+
+//1.3
+a:=Random([-100..100]);
+b:=Random([-100..100]);
+d:=Random([-100..100]);
+t:=Random([-100..100]);
+c:=(d*x4+t*x5)*(d*x4+e^2*t*x5)*(d*x4+t*e^4*x5);
+q1:=x4^2+b*x4*x5+x5^2;
+q2:=x4^2+e^2*b*x4*x5+e^4*x5^2;
+q3:=x4^2+e^4*b*x4*x5+e^2*x5^2;
+
+X:=Scheme(P4,x1*x2*x3+x1*q1+x2*q2+x3*q3+c);
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+#schemeorbit(X,G);
+checkab(G,X,K);//check condition A on X
+
+S:=Scheme(X,x5);//invariant hyperplane
+[Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);//check condition A on S
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G on X
+
+
+//2
+a:=Random([-100..100]);
+b:=Random([-100..100]);
+c:=Random([a*x4^3]);
+q1:=x4^2+x5^2;
+q2:=x4^2+e^2*x5^2;
+q3:=x4^2+e^4*x5^2;
+
+X:=Scheme(P4,x1*x2*x3+x1*q1+x2*q2+x3*q3+c);
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+G:=sub<M|s2>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+checkab(G,X,K);//check condition A on X
+S:=Scheme(X,x5);//invariant hyperplane
+[Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);//check condition A on S
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G on X
+
+
+//3
+
+a:=Random([-100..100]);
+b:=Random([-100..100]);
+c:=a*(x4+x5)*(x4+e^2*x5)*(x4+e^4*x5);
+b:=Random([-100..100]);
+
+q1:=x4^2+b*x4*x5+x5^2;
+q2:=x4^2+e^2*b*x4*x5+e^4*x5^2;
+q3:=x4^2+e^4*b*x4*x5+e^2*x5^2;
+
+X:=Scheme(P4,x1*x2*x3+x1*q1+x2*q2+x3*q3+c);
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+
+
+G:=sub<M|s1,s3>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+checkab(G,X,K);//check condition A on X
+ S:=Scheme(X,x1+e^2*x2+e^4*x3); //invariant hyperplane
+ [Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);//check condition A on S
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G on X
+
+
+
+
+//4
+
+a:=Random([-100..100]);
+b:=Random([-100..100]);
+c:=0;
+//b:=2;
+
+q1:=x4^2+b*x4*x5+x5^2;
+q2:=x4^2+e^2*b*x4*x5+e^4*x5^2;
+q3:=x4^2+e^4*b*x4*x5+e^2*x5^2;
+
+X:=Scheme(P4,x1*x2*x3+x1*q1+x2*q2+x3*q3+c);
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+
+G:=sub<M|s1,s3,iota>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+
+
+checkab(G,X,K);//check condition A on X
+ S:=Scheme(X,x1+e^2*x2+e^4*x3); //invariant hyperplane
+ [Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);//check condition A on S
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G on X
+
+
+//5
+
+a:=1;
+b:=1;
+c:=Random([(x4+x5)*(a*x4+b*x5)*(b*x4+a*x5)]);
+q1:=x4*x5;
+q2:=x4*x5;
+q3:=x4*x5;
+X:=Scheme(P4,x1*x2*x3+x1*q1+x2*q2+x3*q3+c);
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+
+
+
+G:=sub<M|s4,s6,s5>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+checkab(G,X,K);//check condition A on X
+ S:=Scheme(X,x4+x5); //invariant hyperplane
+ [Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);//check condition A on S
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G on X
+
+//6
+
+a:=Random([-100..100]);
+b:=Random([-100..100]);
+c:=0;
+q1:=x4^2+x5^2;
+q2:=x4^2+e^2*x5^2;
+q3:=x4^2+e^4*x5^2;
+X:=Scheme(P4,x1*x2*x3+x1*q1+x2*q2+x3*q3+c);
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+G:=sub<M|s2,s7>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+checkab(G,X,K);//check condition A on X
+ S:=Scheme(X,x1+e^4*x2+e^2*x3); //invariant hyperplane
+ [Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);//check condition A on S
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G on X
+
+
+//7
+
+a:=Random([-100..100]);
+b:=Random([-100..100]);
+c:=(x4+x5)*(x4+e^2*x5)*(x4+e^4*x5);
+q1:=x4*x5;
+q2:=x4*x5;
+q3:=x4*x5;
+X:=Scheme(P4,x1*x2*x3+x1*q1+x2*q2+x3*q3+c);
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+G:=sub<M|s4,s5,s6,s8>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+
+checkab(G,X,K);//check condition A on X
+
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G on X
+//8
+
+a:=Random([-100..100]);
+PP<X>:=PolynomialRing(K);
+b:=Roots(X^2+2)[1][1];
+PP4<x1,x2,x3,x4,x5>:=ProjectiveSpace(K,4);
+c:=0;
+q1:=x4^2+b*x4*x5+x5^2;
+q2:=x4^2+e^2*b*x4*x5+e^4*x5^2;
+q3:=x4^2+e^4*b*x4*x5+e^2*x5^2;
+X:=Scheme(PP4,x1*x2*x3+x1*q1+x2*q2+x3*q3+c);
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+
+G:=sub<M|iota,s1,s3,s9>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+
+checkab(G,X,K);//check condition A on X
+
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G on X, one can see the invariant line here
+
+
+
+
+
+
+//9
+
+a:=Random([-100..100]);
+b:=Random([-100..100]);
+c:=(x4+Random([-100..100])*x5)*(x4+Random([-100..100])*x5)*(x4+Random([-100..100])*x5);
+q1:=x4*x5;
+q2:=x4*x5;
+q3:=x4*x5;
+X:=Scheme(P4,x1*x2*x3+x1*q1+x2*q2+x3*q3+c);
+[Dimension(SingularSubscheme(X)),Degree(SingularSubscheme(X))];
+G:=sub<M|s4,s5>;
+GroupName(G/FindScalar(G));
+#schemeorbit(X,G);
+
+checkab(G,X,K);//check condition A on X
+
+S:=Scheme(X,x1+x2+x3); //invariant hyperplane
+ [Degree(SingularSubscheme(S)),Dimension(SingularSubscheme(S)),#SingularPoints(S)];
+//singularity type of S
+#schemeorbit(S,G);//check S is invariant
+checkab(G,S,K);// check condition A on S
+
+l,s:=st(X,G,K);
+ndp(s,G,X);//fix loci stratification of G on X
+
+
+
+
+
+
+
