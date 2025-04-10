@@ -1,0 +1,69 @@
+
+
+<HTML>
+<HEAD>
+
+<style type="text/css">
+A:link {TEXT-DECORATION:none; }
+a:visited {TEXT-DECORATION:none; }
+a:active { text-decoration:none; }
+</STYLE>
+
+<body text="#000000" LINK="#0000F0" VLINK="#000090">
+
+<style> A:link {TEXT-DECORATION:"none"}
+        A:visited {TEXT-DECORATION:"none"}
+</STYLE>
+
+<TITLE>Kummer</TITLE>
+</HEAD>
+
+
+
+<h1>Kummer double solid</h1>
+
+<br>
+
+<font size="5">
+
+</font>
+
+</body>
+</html>
+
+The following codes recover the computation of delta_3 in Theorem 6. The output is 
+  <pre>
+<79, "Have fixed point", false, "H1:", 2>
+[ false ]
+[ true ]
+<79, "Have fixed point", false, "H1:", 2>
+<79, "Have fixed point", false, "H1:", 2>
+[ false ]
+<79, "Have fixed point", false, "H1:", 2>
+[ false ]
+[ true ]
+<79, "Have fixed point", false, "H1:", 2>
+<87, "Have fixed point", true, "H1:", 2>
+[ true ]
+<87, "Have fixed point", true, "H1:", 2>
+[ true ]
+[ true ]
+<87, "Have fixed point", true, "H1:", 2>
+<87, "Have fixed point", true, "H1:", 2>
+[ true ]
+[ true ]
+<87, "Have fixed point", true, "H1:", 2>
+<131, "Have fixed point", false, "H1:", 1>
+[ false ]
+<131, "Have fixed point", false, "H1:", 1>
+<131, "Have fixed point", false, "H1:", 1>
+<131, "Have fixed point", false, "H1:", 1>
+<131, "Have fixed point", false, "H1:", 1>
+  </pre>
+This includes information on all subgroups Q8, specified as <index in subgroup lattice, have fixed point or not, H^1(G,Pic(\tilde X))>.
+  </br></br>
+[false] or [true] indicates whether or not the image of a class in H1(G,Pic(\tilde X)) in H^3(G,k^\times) is trivial or not, in the case of the line above it. 
+  </br></br>
+In particular, we read that the Q8 with no fixed points have nontrivial delta_3, indicated by [false]. The Q8 with a fixed point have trivial delta_3.
+  </br></br>
+Note that the indices of the group in the subgroup lattice might vary each time the code is run. And we do not compute the image for each case, we omit cases where the relevant polynomials have high degree, resulting in long running time.
