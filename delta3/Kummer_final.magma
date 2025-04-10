@@ -1,0 +1,2259 @@
+
+
+
+function findsumfine(L,r)
+    res:=[[i]: i in [0..#L[1]]];
+    rk:=1;
+    while rk ne #L do 
+        rk+:=1;
+        nres:=[];
+        for x in res do 
+            for i in [0..#L[rk]] do 
+                Append(~nres,x cat [i]);
+            end for;
+        end for;
+        res:=nres;
+    end while;
+    real:=[];
+        for x in res do 
+            if &+[x[i]*L[i][1]:i in [1..#L]] eq r then 
+            Append(~real,x);
+            end if;
+        end for;
+    return real;
+end function;
+
+function findsum(ls,s)// Given a chain of integers ls=[a1,a2,a3..an] and an integer s, return chains [i1,i2..ir] where a_i1+..+a_ir=k, allowing repetition but not permutation 
+    re:=<>;
+    cand:=[];
+    for i in [1..#ls] do 
+        if ls[i] eq s then 
+            Append(~re, [i]);
+        else
+            Append(~cand, [ls[i],i]);
+        end if;
+    end for;
+    while #cand ne 0 do
+        newc:=[];
+        for x in cand do
+            i:=x[#x];
+            for j in [i..#ls] do
+                newx:=x cat [j];
+                newx[1]+:=ls[j];
+                if newx[1] eq s then 
+                    Remove(~newx, 1);
+                    Append(~re,newx);                    
+                elif newx[1] lt s then
+                    Append(~newc,newx);
+                end if;
+            end for;
+        end for;
+        cand:=newc;
+    end while;
+    return re;
+end function;
+
+
+function findsumnorep(ls,s)// Given a chain of integers ls=[a1,a2,a3..an] and an integer s, return chains [i1,i2..ir] where a_i1+..+a_ir=k, allowing repetition but not permutation 
+    re:=<>;
+    cand:=[];
+    for i in [1..#ls] do 
+        if ls[i] eq s then 
+            Append(~re, [i]);
+        else
+            Append(~cand, [ls[i],i]);
+        end if;
+    end for;
+    while #cand ne 0 do
+        newc:=[];
+        for x in cand do
+            i:=x[#x];
+            for j in [i+1..#ls] do
+                newx:=x cat [j];
+                newx[1]+:=ls[j];
+                if newx[1] eq s then 
+                    Remove(~newx, 1);
+                    Append(~re,newx);                    
+                elif newx[1] lt s then
+                    Append(~newc,newx);
+                end if;
+            end for;
+        end for;
+        cand:=newc;
+    end while;
+    return re;
+end function;
+
+
+
+
+function FindScalar(G)
+    n:=Ngens(G);
+    gen:=[Identity(G)];
+    for g in G do 
+        if IsScalar(g) then
+            Append(~gen,g);
+        end if;
+    end for;
+
+    return sub<G|gen>;
+end function;
+
+function FindEigenspace(M)
+    egspace:=<>;
+    for lam in SetToSequence(Eigenvalues(M)) do
+        ev:=lam[1];
+        Append(~egspace,<Eigenspace(M,ev),<ev>>);
+    end for;
+    return egspace;
+end function;
+
+ function Findsckernel(f)
+ G:=Domain(f);
+    g:=[];
+    for x in G do 
+        if IsScalar(f(x)) then
+            Append(~g,x);
+        end if;
+    end for;
+    return sub<G|g>;
+end function;
+
+
+function Findkernel(f)
+    G:=Domain(f);
+    g:=[];
+    for x in G do 
+        if IsIdentity(f(x)) then
+            Append(~g,x);
+        end if;
+    end for;
+    return sub<G|g>;
+end function;
+
+function EigenspaceIntersection(G,k)
+    if #G eq 1 then 
+        return <<VectorSpace(BaseRing(G),Degree(G)),<>>>;
+    end if;
+    if k eq 1 then 
+        return FindEigenspace(G.1);
+    else
+        tempegs:=EigenspaceIntersection(G,k-1);
+        newegs:=FindEigenspace(G.k);
+        resegs:=<>;
+        for i in [1..#newegs] do
+            for j in [1..#tempegs] do
+                V:=tempegs[j][1] meet newegs[i][1];
+                if Dimension(V) gt 0 then
+                    Append(~resegs,<V,tempegs[j][2] cat newegs[i][2] >);
+                end if;
+            end for;
+        end for;
+        return resegs;
+    end if;
+end function;
+
+function Findfixlocus(G)
+    KK:=BaseRing(G);
+    n:=Ngens(G);
+    egs:=EigenspaceIntersection(G,n);
+    char:=<>;
+    for y in egs do
+        x:=[[i]:i in y[2]];
+        S:=GModule(G, MatrixAlgebra<KK,1|x>);
+        Append(~char, y cat <Representation(S)>);
+    end for;
+
+        return char;
+end function;
+
+
+
+function SchurMult(x)
+    r:=[];
+    for p in PrimesUpTo(#x) do
+        if pMultiplicator(x, p)[1] ne 1 then
+        r:=r cat [pMultiplicator(x, p)];
+        end if;
+    end for;
+    if r eq [] then
+        r:=[[1]];
+    end if;
+    return r;
+    end function;
+
+//Given x(GrpPC), Return Q(GrpPC):the Shcur covering group, 
+//and [v(GrpPC)]:a list of subgroups of Z(Q) which are isomorphic to the Schur Multiplier 
+function FindMult(x)
+    G2:=FPGroup(x);
+    G1:=PermutationGroup(G2);
+    r:=pCover(G1,G2,2);
+    i:=SchurMult(G1);
+    C:=AbelianGroup(GrpPC, i[1]);
+    Q:=PCGroup(r);//restricted to small soluable group only
+    Z:=Center(Q);
+    result:=[];
+
+    for v in AllSubgroups(Z) do
+        if result ne [] and #v gt #C then
+                break v;
+            end if;
+        if IsNormal(Q,v) and IsIsomorphic(v,C) then
+            if IsIsomorphic(quo<Q|v>, x) then
+                result:=result cat [v];
+            end if;
+            
+        end if;
+    end for;
+    if IsIsomorphic(Z,C) then
+        centerschu:=true;
+    else
+        centerschu:=false;
+    end if;
+
+
+return Q,result,centerschu;
+end function;
+
+
+
+
+function SubPerm(G)
+    for x in AllSubgroups(G) do
+        if #x eq 1 then
+            f,G:=CosetAction(G,x);
+        end if;
+    end for;
+    return G;
+end function;
+
+
+
+function SchurCoveringGroup(G)
+        G2:=FPGroup(G);
+        G1:=PermutationGroup(G2);
+    t,f:=IsIsomorphic(G1,G);t;
+    r:=pCover(G1,G2,2);
+return r;
+end function;
+
+
+function vstops(V,P,KK)
+    n:=Dimension(P);
+    F:=VectorSpace(KK,n+1);
+    W:=OrthogonalComplement(F,V);
+    b:=Basis(W);
+    res:=[];
+    
+    for x in b do
+        sum:=0;
+        coef:=Eltseq(x);
+        for i in [1..n+1] do
+            sum+:=coef[i]*P.i;
+        end for;
+        Append(~res,sum);
+    end for;
+    return Scheme(P,res);
+end function;
+
+function Schemefixlocus(X,G,KK)
+    P:=AmbientSpace(X);
+    Vs:=Findfixlocus(G);
+    res:=[];
+    for Vl in Vs do  
+        V:=Vl[1];
+        PV:=vstops(V,P,KK);
+        fl:=PV meet X;
+        if Dimension(fl) gt (-1) then 
+            res:=res cat IrreducibleComponents(fl);
+        end if;
+    end for;
+    return res;
+end function;
+
+function schememove(X,g)
+
+Pp:=AmbientSpace(X);
+kx:=CoordinateRing(Pp);
+
+image:=[];
+for i in [1..Dimension(Pp)+1] do
+se:=Eltseq(Transpose(Matrix(g^(-1)))[i]);
+poly:=0;
+for j in [1..#se] do
+poly+:=se[j]*kx.j;
+end for;
+Append(~image, poly);
+end for;
+fp:=hom<kx->kx|image>;
+defpoly:=DefiningPolynomials(X);
+newpoly:=[fp(pol):pol in defpoly];
+newscheme:=Scheme(Pp,newpoly);
+
+return newscheme;
+end function;
+
+
+function checkschemeinvariant(X,gp)
+    for g in Generators(gp) do
+    newscheme:=schememove(X,g);
+    if not newscheme eq X then 
+        return false;
+    end if;
+    end for;    
+    return true;
+end function;
+
+function schemeorbit(X,gp)
+    orb:={@@};
+    for g in gp do
+    newscheme:=schememove(X,g);
+    if not newscheme in orb then 
+        Include(~orb, newscheme);
+    end if;
+    end for;    
+    return orb;
+end function;
+
+
+
+function st(X,G,KK)
+    fpg,f1:=FPGroup(G);
+      pg,f2:=PermutationGroup(fpg);
+    l:=SubgroupLattice(pg); len:=#l;
+    Gfix:=Schemefixlocus(X,G,KK);
+    stratification:=<>;
+    locus:={@@};
+    for x in Gfix do
+        Append(~stratification, <G,x>);
+        Include(~locus, x);
+    end for;
+
+    for i in [1..len-2] do 
+        H:=f1(l[len-i]@@f2); Hconj:=Conjugates(G,H);
+        Hfix:=Schemefixlocus(X,H,KK);
+        addHlocus:=false;
+        for Y in Hfix do
+            if not Y in locus then
+                addHlocus:=true;
+                Append(~stratification, <H,Y>);
+            end if;
+        end for;
+        if addHlocus then 
+            for Hp in Hconj do
+                Hpfix:=Schemefixlocus(X,Hp,KK);
+                for adlo in Hpfix do
+                    Include(~locus, adlo); 
+                end for;
+            end for;
+        end if;
+    end for;
+    
+    recc:=<>;
+    for x in stratification do 
+        for y in recc do
+            if y[1] eq x[1] then
+                
+                if x[2] in schemeorbit(y[2], G) then
+                    continue x;
+                end if;
+                
+            end if;     
+        end for;
+        Append(~recc, x);
+    end for;
+
+
+    return stratification,recc;
+end function;
+
+
+function vstops(V,P,KK)
+    n:=Dimension(P);
+    F:=VectorSpace(KK,n+1);
+    W:=OrthogonalComplement(F,V);
+    b:=Basis(W);
+    res:=[];
+    
+    for x in b do
+        sum:=0;
+        coef:=Eltseq(x);
+        for i in [1..n+1] do
+            sum+:=coef[i]*P.i;
+        end for;
+        Append(~res,sum);
+    end for;
+    SCX:=Scheme(P,res);
+    if not Dimension(SCX) eq Dimension(V)-1 then 
+        "vstops wrong, dimension does not match";
+        return "vstops wrong, dimension does not match";
+    end if;
+    return SCX;
+end function;
+
+function findcoeffoflinearpoly(polyn,n,KK)
+res:=[];
+for i in [1..n] do 
+    s:=Coefficients(polyn,i);
+    if #s eq 1 then 
+        Append(~res,KK!0);
+    else 
+        Append(~res,KK!s[2]);
+    end if;
+end for;
+return res;
+end function;
+
+function pstovs(X,P,KK)//Only for linear space
+    n:=Dimension(P);
+    F:=VectorSpace(KK,n+1);
+    po:=DefiningPolynomials(X);
+    bas:=[F!(findcoeffoflinearpoly(x,n+1,KK)):x in po];
+    W:=sub<F|bas>;
+    V:=OrthogonalComplement(F,W);
+    if not (Dimension(V)-1) eq Dimension(X) then 
+        "pstovs wrong, dimension does not match";
+        return "pstovs wrong, dimension does not match";
+    end if;
+    return V;
+end function;
+
+function indtangetact(Y,X,P,KK,gp)//Y\subset X\subset P, Y is fixed locus of gp
+    f:=GModule(gp);fd:=false;
+    for i in [1..1000] do 
+    nY:=Scheme(Y,[&+[Random([-1000..1000])*P.j:j in [1..Dimension(P)+1]]:i in [1..Dimension(Y)]]);
+    a:=Points(nY);
+    if #a eq 0 then continue i;end if;
+    a:=a[1];fd:=true;break i;
+    end for;
+    if not fd then "no point found";return "n";end if;
+    Ty:=TangentSpace(Y,a);
+    Tx:=TangentSpace(X,a);
+    TY:=pstovs(Ty,P,KK);  
+    TX:=pstovs(Tx,P,KK);    
+    TYgmod:=sub<f|TY>;
+    TYdecom:=Decomposition(TYgmod);
+    checktriv:=DirectSum([TYdecom[1]: i in [1..Dimension(TYgmod)]]);
+    if not IsIsomorphic(TYgmod, checktriv) then 
+        "action on Y is not trivial";
+    end if;
+    Tycha:=TYdecom[1];
+    TXgmod:=sub<f|TX>;
+    stat,TXqY:=HasComplement(TXgmod,TYgmod);
+    if not stat then 
+       "no complement of TY in TX";
+    end if;
+    return Tycha, TXqY;
+end function;
+function FindBlowupTangetAct(s,X,P,KK)//Y\subset X\subset P, Y is fixed locus of gp
+    Y:=s[2];
+    gp:=s[1];
+    f:=GModule(gp);
+    a:=Points(Y)[1];
+    Ty:=TangentSpace(Y,a);
+    Tx:=TangentSpace(X,a);
+    TY:=pstovs(Ty,P,KK);  
+    TX:=pstovs(Tx,P,KK);    
+    TYgmod:=sub<f|TY>;
+    TYdecom:=Decomposition(TYgmod);
+    checktriv:=DirectSum([TYdecom[1]: i in [1..Dimension(TYgmod)]]);
+    if not IsIsomorphic(TYgmod, checktriv) then 
+        "action on Y is not trivial";
+    end if;
+    Tycha:=Representation(TYdecom[1]);
+    TXgmod:=sub<f|TX>;
+    stat,TXqY:=HasComplement(TXgmod,TYgmod);
+    if not stat then 
+       "no complement of TY in TX";
+    end if;
+    TangAct:=Decomposition(TXqY);
+    ker:=gp;
+    for decpmrep in TangAct do 
+        if Dimension(decpmrep) eq 1 then 
+            actrep:=Representation(decpmrep);
+            ke:=[];
+            for elmt in gp do 
+                if ((Tycha(elmt)[1][1])^(-1))*actrep(elmt) eq 1 then 
+                    Append(~ke,elmt);
+                end if;
+            end for;
+            GroupName( sub<gp|ke>);
+            ker:=ker meet sub<gp|ke>;
+        end if;
+    end for;
+    return ker;
+end function;
+
+
+
+function finfld(r,d,K)//In finite field K, we have r (in K) living in Z/d 
+    G,f:=MultiplicativeGroup(K);
+    g:=Eltseq(r@@f)[1];
+    n:=#G;
+    return (g*d) div n;
+end function;
+
+function ftimesg(f,g)//f*g
+    H:=Domain(f);
+    K:=BaseRing(Codomain(f));
+    S:=GModule(H, MatrixAlgebra<K,1|[[(f(H.i)[1][1])*(g(H.i)[1][1])]:i in [1..Ngens(H)]]>);
+    return Representation(S);
+end function;
+
+function fminusone(f)//f^(-1)
+    H:=Domain(f);
+    K:=BaseRing(Codomain(f));
+    S:=GModule(H, MatrixAlgebra<K,1|[[(f(H.i)[1][1])^(-1)]:i in [1..Ngens(H)]]>);
+    return Representation(S);
+end function;
+
+function fginverse(f,g)//f*g-1, g nonzero
+    return ftimesg(f,fminusone(g));
+end function;
+
+
+function charread(f)
+    G:=Domain(f);//Have to be abelian 
+    PCG,m:=PCGroup(G);//m:G->PCG
+    if #PCG ne #G then
+        return "charread wrong";
+    end if;
+    Ab,mm:=AbelianGroup(PCG);//mm:PCG->Ab
+    n:=Ngens(Ab);
+    K:=BaseRing(Codomain(f));
+    cha:=[];
+    gen:=[];
+    for i in [1..n] do
+        d:=Order(Ab.i);
+        x:=(Ab.i@@mm)@@m;
+        if Order(x) ne d then 
+            return "charread wrong";
+        end if;
+        r:=f(x);
+        Append(~gen, x);
+        Append(~cha, finfld(r[1][1],d,K));
+    end for;
+    return cha,gen;
+end function;
+
+function betaread(Y,X,P,KK,gp)
+    gtriv,gtang:=indtangetact(Y,X,P,KK,gp);
+    ftriv:=Representation(gtriv);
+    gtang:=Decomposition(gtang);
+    beta:=<>;
+    for x in gtang do 
+        f:=fginverse(Representation(x),ftriv);
+        Append(~beta,f);
+    end for;
+    return beta;
+end function;
+
+
+
+
+function gpinf(gp)
+for x in AbelianSubgroups(gp) do
+    GroupName(x`subgroup) cat "     " cat GroupName(Centralizer(gp,x`subgroup)) cat "      " cat GroupName(Centralizer(gp,x`subgroup)/x`subgroup);
+    end for;
+return "done";
+end function;
+
+
+
+
+function findactgp(Gm,Hm,V1) //V2>V1
+    gen:=[Gm!Hm.i:i in [1..Ngens(Hm)]];
+    for x in Gm do 
+        if not x in Hm then 
+            if schememove(V1,x) eq V1 then 
+                Append(~gen, x);
+            end if;
+        end if;
+    end for;
+    res:=sub<Gm|gen>;
+    return res;
+end function;
+
+function dp(strat,gp,Xs)
+    PP:=AmbientSpace(Xs);
+    K:=BaseRing(gp);
+    scgp:=FindScalar(gp);
+    gpq,fq:=gp/scgp;
+    c:=0;
+    for x in strat do 
+    c+:=1;
+    if IsAbelian(x[1]) then
+    b:=betaread(x[2],Xs,PP,K,x[1]);
+    res:=<>;
+    for y in b do 
+        thg:=Domain(y);
+        realg,qm:=thg/scgp;
+        newy:=Inverse(qm)*y;
+        re:=charread(newy);                                                   
+        Append(~res,re);
+    end for;
+
+    Zg:=findactgp(gp,x[1],x[2]);
+
+    <IntegerToString(c) cat ".   " cat  GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))  cat ",  "cat IntegerToString(Dimension(x[2])) cat ",  "cat IntegerToString(Degree(x[2])), res>;
+    else
+    Zg:=findactgp(gp,x[1],x[2]);
+    <IntegerToString(c) cat ".   " cat GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))  cat ",  "cat IntegerToString(Dimension(x[2])) cat ",  "cat IntegerToString(Degree(x[2]))>;
+    end if;
+        end for;
+    return c;
+end function;
+
+
+function ndp(strat,gp,Xs)
+    PP:=AmbientSpace(Xs);
+    K:=BaseRing(gp);
+    scgp:=FindScalar(gp);
+    gpq,fq:=gp/scgp;
+    c:=0;
+    for x in strat do 
+    c+:=1;
+    if IsAbelian(x[1]) then
+    
+    Zg:=findactgp(gp,x[1],x[2]);
+
+    <IntegerToString(c) cat ".   " cat  GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))  cat ",  "cat IntegerToString(Dimension(x[2])) cat ",  "cat IntegerToString(Degree(x[2]))>;
+    else
+    Zg:=findactgp(gp,x[1],x[2]);
+    <IntegerToString(c) cat ".   " cat GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))  cat ",  "cat IntegerToString(Dimension(x[2]))cat ",  "cat IntegerToString(Degree(x[2]))>;
+    end if;
+        end for;
+    return c;
+end function;
+
+
+function pttops(p,P,K)
+    V:=VectorSpaceWithBasis([Vector(Eltseq(p))]);
+    return vstops(V,P,K);
+end function;
+
+
+function checkab(G,X,K)
+    rG,qm:=G/FindScalar(G);
+    for x in AbelianSubgroups(rG) do 
+        if #x`subgroup ne 1 and #Schemefixlocus(X,(x`subgroup)@@qm,K) eq 0 then 
+            return false,(x`subgroup)@@qm;
+        end if;
+    end for;
+    return true,"";
+end function;
+
+function plorbi(gp,pl)
+taken:=[];
+allorb:=[];
+rem:=[1..#pl];
+for x in rem do 
+    if not x in taken then
+    orb:=[];
+    for g in gp do 
+        j:=Position(pl,schememove(pl[x],g));
+        Include(~orb,j);
+        Append(~taken,j);
+    end for;
+    Include(~allorb, orb);
+    end if;
+end for;
+return allorb;
+end function;
+
+
+function gptr(G,M)
+    gen:=[];
+    for x in Generators(G) do
+        Append(~gen, Transpose(x));
+        end for;
+    return sub<M|gen>;
+end function;
+
+function span(p,P,K)
+n:=Dimension(P)+1;
+V:=VectorSpace(K,n);
+W:=sub<V|[Eltseq(x):x in p]>;
+return vstops(W,P,K);
+end function;
+
+
+
+
+function choose(n,k)//choose k elements without permutation in a list ls
+    
+    if k eq 1 then  
+        return [[x]:x in [1..n]];
+    end if;
+    t:=choose(n,k-1);
+    res:=[];
+    for x in t do 
+        for y in [x[k-1]+1..n] do 
+            Append(~res,x cat [y]);
+        end for;
+    end for;
+    return res;
+end function;
+
+
+
+
+function findorthogonalcompelement(R,U,Rd)
+    K:=BaseRing(R);
+    n:=Dimension(R);
+    V:=VectorSpace(K,n);
+    ubasis:=[Eltseq(R!U.i):i in [1..Dimension(U)]];
+    UV:=sub<V|ubasis>;
+    OV:=OrthogonalComplement(V,UV);
+    Om:=sub<Rd|[Rd!Eltseq(x):x in Basis(OV)]>;
+    return Om;
+end function;
+
+
+function find(G,GG,s)
+rG:=G;
+ex:=Exponent(G)*5*3*14*16;
+p:=3;
+sto:=true;
+while sto do 
+    if ((p-1) mod ex) eq 0 then 
+        KK:=GF(p);
+        sto:=false;
+    else 
+        p:=NextPrime(p);
+    end if;
+end while;
+l:=IrreducibleModules(G,KK);
+ls:=[];
+for i in l do 
+    Append(~ls,Dimension(i));
+end for;
+sm:=findsum(ls,s);
+r:=[];
+for x in sm do 
+    md:=l[x[1]];
+    for i in [2..#x] do
+        md:=DirectSum(md,l[x[i]]);
+    end for;
+        GMD:=ActionGroup(md);
+        if GroupName(GMD/FindScalar(GMD)) eq GroupName(GG) then
+            Append(~r,md);
+        end if;
+end for;
+    
+
+ondim:=[];
+for x in l do 
+    if Dimension(x) eq 1 then 
+        Append(~ondim,x);
+    end if;
+end for;
+res:=[];
+for x in r do
+    for y in res do 
+        for onee in ondim do
+            if IsIsomorphic(TensorProduct(y,onee),x) then 
+                continue x;
+            end if;
+        end for;
+    end for;
+    Append(~res,x);
+end for;
+
+
+return res,KK;
+end function;
+
+
+function findir(G,GG,s)
+rG:=G;
+ex:=Exponent(G)*5*3*14*16;
+p:=3;
+sto:=true;
+while sto do 
+    if ((p-1) mod ex) eq 0 then 
+        KK:=GF(p);
+        sto:=false;
+    else 
+        p:=NextPrime(p);
+    end if;
+end while;
+l:=IrreducibleModules(G,KK);
+ls:=[];
+for i in l do 
+    Append(~ls,Dimension(i));
+end for;
+r:=[];
+for x in l do 
+    if Dimension(x) eq s then 
+        md:=x;
+        GMD:=ActionGroup(md);
+        if GroupName(GMD/FindScalar(GMD)) eq GroupName(GG) then
+            Append(~r,md);
+        end if;
+    end if;
+end for;
+    
+
+ondim:=[];
+for x in l do 
+    if Dimension(x) eq 1 then 
+        Append(~ondim,x);
+    end if;
+end for;
+res:=[];
+for x in r do
+    for y in res do 
+        for onee in ondim do
+            if IsIsomorphic(TensorProduct(y,onee),x) then 
+                continue x;
+            end if;
+        end for;
+    end for;
+    Append(~res,x);
+end for;
+
+
+return res,KK;
+end function;
+
+
+function invd(P,d,G)
+    PP:=CoordinateRing(P);
+    mon:=MonomialsOfDegree(PP,d);
+    n:=Dimension(P)+1;
+    v:=Matrix(PP,1,n,[PP.i:i in [1..n]]);
+    K:=BaseRing(G);
+    gen:=[];
+    for i in [1..Ngens(G)] do
+        g:=Transpose(G.i);
+        m:=[];
+        for j in [1..#mon] do 
+            nf:=mon[j]^g;
+            nfcoe:=Coefficients(nf);
+            nfmon:=Monomials(nf);
+            vv:=[K!0:i in [1..#mon]];
+        
+            for nm in [1..#nfmon] do 
+    
+                vv[Position(mon,nfmon[nm])]:=nfcoe[nm];
+            end for;
+            m:=m cat vv;
+        end for;
+        ma:=(Matrix(K,#mon,#mon,m));
+        Append(~gen,ma);
+    end for;
+    GM:=GModule(G,gen);
+    cm:=CohomologyModule(G,GM);
+    AG:=ActionGroup(GM);
+    fx:=Findfixlocus(AG);
+    poly:=[];
+    vect:=<>;cahr:=<>;
+    for x in fx do 
+        V:=x[1];Append(~cahr,x[2]);
+        bas:=Basis(V);
+        po:=[&+[mon[i]*xx[i]: i in [1..#mon]]: xx in bas];
+        Append(~vect,V);
+        Append(~poly,po);
+    end for;
+
+return poly,vect,mon,cahr;
+
+end function;
+function readrelations(p,R)
+n:=Rank(R);
+v:=[Derivative(p,R.i): i in [1..n]];
+return v,[ConstantTerm(p)];
+end function;
+
+
+function canonicaldecom(W,char)
+    rho:=Representation(W);
+    n:=Dimension(W);
+    K:=BaseRing(W);
+    G:=Domain(rho);
+    res:=[];
+    for i in char do 
+        pi:=ZeroMatrix(K,n,n);
+        for t in G do 
+            pi+:=ScalarMatrix(K,n,i(t^(-1)))*rho(t);
+        end for;
+        pi:=ScalarMatrix(K,n,i(1)/#G)*pi;
+
+        rrr:=sub<W|[W!Eltseq(x):x in Basis(RowSpace(pi))]>;
+        if Dimension(rrr) ne 0 then Append(~res,rrr);end if;
+    end for;
+return res;
+end function;
+
+function decompnum(M)
+    char:=CharacterTable(Group(M));
+    d:=canonicaldecom(M,char);
+    rec:=[];
+    for V in d do 
+        trm:=[];
+    gen:=[V.1];
+    res:=sub<V|gen>;
+    while res ne V do
+        resc,tf:=RelativeDecomposition(V,res);
+        Append(~gen,V!resc.1);
+        res:=sub<M|gen>;
+    end while;
+
+    for x in gen do 
+        Append(~trm,sub<M|M!x>);
+    end for;
+    Append(~rec,trm);
+end for;
+    return rec;
+end function;
+
+function decomp(M)
+    res:=[];
+    D:=Decomposition(M);
+    for x in D do
+        for yi in [1..#res] do
+            for z in res[yi] do
+                if IsIsomorphic(x,z) then 
+                    res[yi]:=res[yi] cat [x];continue x;
+                end if; 
+            end for; 
+        end for; 
+        Append(~res,[x]);
+    end for;
+    return res;
+end function;
+
+function realdecomp(V,M);
+    i:=1;
+    W:=V[1];
+    Vi:=sub<M|V>;dd:=Dimension(M);
+    rho:=Representation(M);
+    r:=Representation(W);
+    rG:=Domain(r);
+    pp:=[];
+    n:=Dimension(W);
+    K:=BaseRing(W);
+    Ve:=VectorSpace(K,dd);
+    for a in [1..n] do
+        pa1:=ZeroMatrix(K,dd,dd);
+        for t in rG do 
+            pa1+:=ScalarMatrix(K,dd,r(t^(-1))[a,1])*rho(t);
+        end for;
+        pa1:=pa1*ScalarMatrix(K,dd,n/#rG);
+        Append(~pp,pa1);
+    end for;
+    paa:=ZeroMatrix(K,dd,dd);
+        for t in rG do 
+            paa+:=ScalarMatrix(K,dd,r(t^(-1))[1,1])*rho(t);
+        end for;
+        paa:=paa*ScalarMatrix(K,dd,n/#rG);
+    nb:=[];
+    for bb in [Matrix(K,1,dd,Eltseq(M!x)):x in Basis(M)] do
+        Append(~nb,Eltseq(bb*paa));
+    end for;
+    Vi1:=sub<Ve|nb>;res:=[];
+    for nbas in [1..Dimension(Vi1)] do
+    x1j:=Eltseq(&+[Random([-10000..10000])*x:x in Basis(Vi1)]);
+    gen:=[];
+        for p in pp do
+            Append(~gen,Matrix(K,1,dd,Eltseq(x1j))*p);
+        end for;
+        Append(~res,Eltseq(gen));
+    end for;
+    return res;
+end function;
+
+
+function findrandsubmod(M,r)
+    L:=decomp(M);
+    LL:=[[Dimension(L[i][1]):j in [1..#L[i]]]: i in [1..#L]];
+    bss:=[];
+    for x in L do 
+        Append(~bss,realdecomp(x,M));
+    end for;
+    F:=findsumfine(LL,r);
+    rr:=[];
+    for x in F do
+        res:=[];
+        donee:=false;tryn:=0;
+            while not donee do
+                tryn+:=1;
+        for i in [1..#x] do
+            
+            for ct in [1..x[i]] do 
+                ce:=[Random([-10000..10000]):yy in [1..#L[i]]];
+                
+                res:=res cat [&+[ce[j]*M!(Eltseq(bss[i][j][k])):j in [1..#L[i]]]:k in [1..Dimension(L[i][1])]];
+            end for;
+            
+        end for;
+        nM:=sub<M|res>;
+        if Dimension(nM) eq r then 
+           Append(~rr,nM); donee:=true;
+        end if;
+        if tryn eq 1000 then 
+            "!!!!TOO MUCH ATTEMPT, DIMENSION DOESNT MATCH!!!!!!!!!";
+            continue x;
+        end if;
+        end while;
+    end for;
+    return rr;
+end function;
+
+
+function actionmap(G,f)
+    D:=Domain(f);
+    T:=Codomain(f);
+    n1:=Dimension(D);
+    n2:=Dimension(T);
+
+    gen:=[];
+    K:=BaseRing(D);
+    for gg in Generators(G) do 
+    rel:=[];
+    P<[t]>:=PolynomialRing(K,(n2+1)*(n2+1));
+    mt:=Matrix(P,n2+1,n2+1,[t[i]:i in [1..(n2+1)*(n2+1)]]);
+    m:=Matrix(K,rel);
+    ke:=Kernel(Transpose(m));
+    while Dimension(ke) ne 1 do
+        p:=[Random([-10000..10000]):i in [1..n1+1]];
+        vv:=Matrix(P,1,n1+1,p);
+        tarp:=f(D!p);
+        g:=ChangeRing(gg,P);
+        newp:=Eltseq(vv*g);
+        newtarp:=Eltseq(f(D!newp));
+        destarp:=Eltseq(Matrix(P,1,n2+1,Eltseq(tarp))*mt);
+        for i in [2..n2+1] do 
+           addr:=readrelations(destarp[i]*newtarp[1]-destarp[1]*newtarp[i],P);
+           Append(~rel,addr);
+        end for;
+         m:=Matrix(K,rel);
+        ke:=Kernel(Transpose(m));
+    end while;
+    sol:=Matrix(K,n2+1,n2+1,Eltseq(ke.1));
+    Append(~gen,sol);
+    end for;
+    return sol;
+end function;
+
+
+function fo(X,G,n,KK)
+   ag,quo:=G/FindScalar(G);
+   if n eq 1 then 
+       res:=Schemefixlocus(X,G,KK);
+     
+    return res,<>;
+   end if;
+   L:=SubgroupLattice(ag);
+   for i in [0..#L-3] do
+    H:=L[#L-1];
+    if #ag/#H eq n then 
+        s:=Schemefixlocus(X,H@@quo,KK);
+        if #s ne 0 then 
+            l,s:=st(X,G,KK);
+            res:=[];
+            for x in s do 
+                
+                if #(ag)/#(quo(x[1])) eq n then 
+                    Append(~res,x);
+                end if;
+            end for;
+           
+            return res,s;
+        end if;
+    end if;
+   end for;
+   return <>,<>;
+end function;
+
+
+K:=GF(5281^12);
+Ml,fm:=MultiplicativeGroup(K);
+e3:=fm((#Ml div 3)*Ml.1);
+e8:=fm((#Ml div 8)*Ml.1);
+e4:=fm((#Ml div 4)*Ml.1);
+P3<x1,x2,x3,x4>:=ProjectiveSpace(K,3);
+S:=Scheme(P3,x1^4+x2^4+x3^4+x4^4-4*e4*x1*x2*x3*x4);
+
+A1:=DiagonalMatrix(K,4,[-1,1,-1,1]);
+A2:=DiagonalMatrix(K,4,[-1,-1,1,1]);
+A3:=PermutationMatrix(K,[2,1,4,3]);
+A4:=PermutationMatrix(K,[4,3,2,1]);
+A5:=PermutationMatrix(K,[2,3,4,1]);
+A6:=PermutationMatrix(K,[2,1,3,4]);
+A7:=DiagonalMatrix(K,[e4,e4,-1,1]);
+
+M:=GL(4,K);
+J:=sub<M|[(x): x in [A1,A2,A3,A4,A5,A6,A7]]>;
+
+P<w,y1,y2,y3,y4>:=WeightedProjectiveSpace(K,[2,1,1,1,1]);
+P10<z1,z2,z3,z4,z5,z6,z7,z8,z9,z10,z11>:=ProjectiveSpace(K,10);
+PP10:=CoordinateRing(P10);
+pr:=map<P->P3|[y1,y2,y3,y4]>;
+embed:=map<P->P10|[w,y1^2,y1*y2,y1*y3,y1*y4,y2^2,y2*y3,y2*y4,y3^2,y3*y4,y4^2]>;
+f:=x1^4+x2^4+x3^4+x4^4-4*e4*x1*x2*x3*x4;
+sc:=[SquareRoot(f^Transpose(J.i)/f):i in [1..Ngens(J)]];
+GM2:=[SymmetricSquare(Matrix(x)):x in [A1,A2,A3,A4,A5,A6,A7]];
+M11:=GL(11,K);
+rGgen:=[DiagonalJoin(IdentityMatrix(K,1),(x)):x in GM2] cat [DiagonalMatrix(K,11,[-1,1,1,1,1,1,1,1,1,1,1])];
+rG:=sub<M11|rGgen>;
+gpmap:=hom<rG->J|[x: x in Generators(J)] cat [IdentityMatrix(K,4)]>;
+
+X:=Scheme(P,w^2-(y1^4+y2^4+y3^4+y4^4-4*e4*y1*y2*y3*y4));    
+rX:=embed(X);
+// Generators of Picard group
+Clgen:=[ PowerStructure(Sch) |
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 3223*z7 + 5103*z8 + 3223*z9 + 5103*z10 + 2058*z11,
+        z2 + 5280*z6 + 5279*z7 + 3346*z8 + 5280*z9 + 3346*z10 + z11,
+        z3 + z6 + z7 + 3608*z8,
+        z4 + z7 + z9 + 3608*z10,
+        z5 + z8 + z10 + 3608*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 2058*z7 + 178*z8 + 2058*z9 + 178*z10 + 3223*z11,
+        z2 + 5280*z6 + 5279*z7 + 3346*z8 + 5280*z9 + 3346*z10 + z11,
+        z3 + z6 + z7 + 3608*z8,
+        z4 + z7 + z9 + 3608*z10,
+        z5 + z8 + z10 + 3608*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 5103*z7 + 3223*z8 + 2058*z9 + 5103*z10 + 3223*z11,
+        z2 + 5280*z6 + 3346*z7 + 5279*z8 + z9 + 3346*z10 + 5280*z11,
+        z3 + z6 + 3608*z7 + z8,
+        z4 + z7 + 3608*z9 + z10,
+        z5 + z8 + 3608*z10 + z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 178*z7 + 2058*z8 + 3223*z9 + 178*z10 + 2058*z11,
+        z2 + 5280*z6 + 3346*z7 + 5279*z8 + z9 + 3346*z10 + 5280*z11,
+        z3 + z6 + 3608*z7 + z8,
+        z4 + z7 + 3608*z9 + z10,
+        z5 + z8 + 3608*z10 + z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 3223*z7 + 3223*z8 + 3223*z9 + 3223*z10 + 3223*z11,
+        z2 + z6 + 2*z7 + 2*z8 + z9 + 2*z10 + z11,
+        z3 + 1673*z6 + 1673*z7 + 1673*z8,
+        z4 + 1673*z7 + 1673*z9 + 1673*z10,
+        z5 + 1673*z8 + 1673*z10 + 1673*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 2058*z7 + 2058*z8 + 2058*z9 + 2058*z10 + 2058*z11,
+        z2 + z6 + 2*z7 + 2*z8 + z9 + 2*z10 + z11,
+        z3 + 1673*z6 + 1673*z7 + 1673*z8,
+        z4 + 1673*z7 + 1673*z9 + 1673*z10,
+        z5 + 1673*z8 + 1673*z10 + 1673*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 178*z7 + 178*z8 + 2058*z9 + 2058*z10 + 2058*z11,
+        z2 + z6 + 3346*z7 + 3346*z8 + 5280*z9 + 5279*z10 + 5280*z11,
+        z3 + 3608*z6 + z7 + z8,
+        z4 + 3608*z7 + z9 + z10,
+        z5 + 3608*z8 + z10 + z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 5103*z7 + 5103*z8 + 3223*z9 + 3223*z10 + 3223*z11,
+        z2 + z6 + 3346*z7 + 3346*z8 + 5280*z9 + 5279*z10 + 5280*z11,
+        z3 + 3608*z6 + z7 + z8,
+        z4 + 3608*z7 + z9 + z10,
+        z5 + 3608*z8 + z10 + z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 2058*z7 + 5103*z8 + 3223*z9 + 178*z10 + 2058*z11,
+        z2 + 5280*z6 + 2*z7 + 3346*z8 + 5280*z9 + 1935*z10 + z11,
+        z3 + 5280*z6 + z7 + 1673*z8,
+        z4 + 5280*z7 + z9 + 1673*z10,
+        z5 + 5280*z8 + z10 + 1673*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 3223*z7 + 178*z8 + 2058*z9 + 5103*z10 + 3223*z11,
+        z2 + 5280*z6 + 2*z7 + 3346*z8 + 5280*z9 + 1935*z10 + z11,
+        z3 + 5280*z6 + z7 + 1673*z8,
+        z4 + 5280*z7 + z9 + 1673*z10,
+        z5 + 5280*z8 + z10 + 1673*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 178*z7 + 3223*z8 + 2058*z9 + 178*z10 + 3223*z11,
+        z2 + 5280*z6 + 1935*z7 + 5279*z8 + z9 + 1935*z10 + 5280*z11,
+        z3 + 5280*z6 + 3608*z7 + 5280*z8,
+        z4 + 5280*z7 + 3608*z9 + 5280*z10,
+        z5 + 5280*z8 + 3608*z10 + 5280*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 5103*z7 + 2058*z8 + 3223*z9 + 5103*z10 + 2058*z11,
+        z2 + 5280*z6 + 1935*z7 + 5279*z8 + z9 + 1935*z10 + 5280*z11,
+        z3 + 5280*z6 + 3608*z7 + 5280*z8,
+        z4 + 5280*z7 + 3608*z9 + 5280*z10,
+        z5 + 5280*z8 + 3608*z10 + 5280*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 2058*z7 + 3223*z8 + 3223*z9 + 2058*z10 + 3223*z11,
+        z2 + z6 + 5279*z7 + 2*z8 + z9 + 5279*z10 + z11,
+        z3 + 3608*z6 + 1673*z7 + 3608*z8,
+        z4 + 3608*z7 + 1673*z9 + 3608*z10,
+        z5 + 3608*z8 + 1673*z10 + 3608*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 3223*z7 + 2058*z8 + 2058*z9 + 3223*z10 + 2058*z11,
+        z2 + z6 + 5279*z7 + 2*z8 + z9 + 5279*z10 + z11,
+        z3 + 3608*z6 + 1673*z7 + 3608*z8,
+        z4 + 3608*z7 + 1673*z9 + 3608*z10,
+        z5 + 3608*z8 + 1673*z10 + 3608*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 5103*z7 + 178*z8 + 2058*z9 + 3223*z10 + 2058*z11,
+        z2 + z6 + 1935*z7 + 3346*z8 + 5280*z9 + 2*z10 + 5280*z11,
+        z3 + 1673*z6 + z7 + 5280*z8,
+        z4 + 1673*z7 + z9 + 5280*z10,
+        z5 + 1673*z8 + z10 + 5280*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 178*z7 + 5103*z8 + 3223*z9 + 2058*z10 + 3223*z11,
+        z2 + z6 + 1935*z7 + 3346*z8 + 5280*z9 + 2*z10 + 5280*z11,
+        z3 + 1673*z6 + z7 + 5280*z8,
+        z4 + 1673*z7 + z9 + 5280*z10,
+        z5 + 1673*z8 + z10 + 5280*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 3223*z7 + 178*z8 + 3223*z9 + 178*z10 + 2058*z11,
+        z2 + 5280*z6 + 5279*z7 + 1935*z8 + 5280*z9 + 1935*z10 + z11,
+        z3 + 5280*z6 + 5280*z7 + 3608*z8,
+        z4 + 5280*z7 + 5280*z9 + 3608*z10,
+        z5 + 5280*z8 + 5280*z10 + 3608*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 2058*z7 + 5103*z8 + 2058*z9 + 5103*z10 + 3223*z11,
+        z2 + 5280*z6 + 5279*z7 + 1935*z8 + 5280*z9 + 1935*z10 + z11,
+        z3 + 5280*z6 + 5280*z7 + 3608*z8,
+        z4 + 5280*z7 + 5280*z9 + 3608*z10,
+        z5 + 5280*z8 + 5280*z10 + 3608*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 5103*z7 + 2058*z8 + 2058*z9 + 178*z10 + 3223*z11,
+        z2 + 5280*z6 + 3346*z7 + 2*z8 + z9 + 1935*z10 + 5280*z11,
+        z3 + 5280*z6 + 1673*z7 + z8,
+        z4 + 5280*z7 + 1673*z9 + z10,
+        z5 + 5280*z8 + 1673*z10 + z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 178*z7 + 3223*z8 + 3223*z9 + 5103*z10 + 2058*z11,
+        z2 + 5280*z6 + 3346*z7 + 2*z8 + z9 + 1935*z10 + 5280*z11,
+        z3 + 5280*z6 + 1673*z7 + z8,
+        z4 + 5280*z7 + 1673*z9 + z10,
+        z5 + 5280*z8 + 1673*z10 + z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 3223*z7 + 2058*z8 + 3223*z9 + 2058*z10 + 3223*z11,
+        z2 + z6 + 2*z7 + 5279*z8 + z9 + 5279*z10 + z11,
+        z3 + 3608*z6 + 3608*z7 + 1673*z8,
+        z4 + 3608*z7 + 3608*z9 + 1673*z10,
+        z5 + 3608*z8 + 3608*z10 + 1673*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 2058*z7 + 3223*z8 + 2058*z9 + 3223*z10 + 2058*z11,
+        z2 + z6 + 2*z7 + 5279*z8 + z9 + 5279*z10 + z11,
+        z3 + 3608*z6 + 3608*z7 + 1673*z8,
+        z4 + 3608*z7 + 3608*z9 + 1673*z10,
+        z5 + 3608*z8 + 3608*z10 + 1673*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 178*z7 + 5103*z8 + 2058*z9 + 3223*z10 + 2058*z11,
+        z2 + z6 + 3346*z7 + 1935*z8 + 5280*z9 + 2*z10 + 5280*z11,
+        z3 + 1673*z6 + 5280*z7 + z8,
+        z4 + 1673*z7 + 5280*z9 + z10,
+        z5 + 1673*z8 + 5280*z10 + z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 5103*z7 + 178*z8 + 3223*z9 + 2058*z10 + 3223*z11,
+        z2 + z6 + 3346*z7 + 1935*z8 + 5280*z9 + 2*z10 + 5280*z11,
+        z3 + 1673*z6 + 5280*z7 + z8,
+        z4 + 1673*z7 + 5280*z9 + z10,
+        z5 + 1673*z8 + 5280*z10 + z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 5103*z7 + 5103*z8 + 2058*z9 + 2058*z10 + 2058*z11,
+        z2 + z6 + 1935*z7 + 1935*z8 + 5280*z9 + 5279*z10 + 5280*z11,
+        z3 + 3608*z6 + 5280*z7 + 5280*z8,
+        z4 + 3608*z7 + 5280*z9 + 5280*z10,
+        z5 + 3608*z8 + 5280*z10 + 5280*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 178*z7 + 178*z8 + 3223*z9 + 3223*z10 + 3223*z11,
+        z2 + z6 + 1935*z7 + 1935*z8 + 5280*z9 + 5279*z10 + 5280*z11,
+        z3 + 3608*z6 + 5280*z7 + 5280*z8,
+        z4 + 3608*z7 + 5280*z9 + 5280*z10,
+        z5 + 3608*z8 + 5280*z10 + 5280*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 2058*z7 + 2058*z8 + 3223*z9 + 3223*z10 + 3223*z11,
+        z2 + z6 + 5279*z7 + 5279*z8 + z9 + 2*z10 + z11,
+        z3 + 1673*z6 + 3608*z7 + 3608*z8,
+        z4 + 1673*z7 + 3608*z9 + 3608*z10,
+        z5 + 1673*z8 + 3608*z10 + 3608*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 3223*z7 + 3223*z8 + 2058*z9 + 2058*z10 + 2058*z11,
+        z2 + z6 + 5279*z7 + 5279*z8 + z9 + 2*z10 + z11,
+        z3 + 1673*z6 + 3608*z7 + 3608*z8,
+        z4 + 1673*z7 + 3608*z9 + 3608*z10,
+        z5 + 1673*z8 + 3608*z10 + 3608*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 178*z7 + 2058*z8 + 2058*z9 + 5103*z10 + 3223*z11,
+        z2 + 5280*z6 + 1935*z7 + 2*z8 + z9 + 3346*z10 + 5280*z11,
+        z3 + z6 + 1673*z7 + 5280*z8,
+        z4 + z7 + 1673*z9 + 5280*z10,
+        z5 + z8 + 1673*z10 + 5280*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 5103*z7 + 3223*z8 + 3223*z9 + 178*z10 + 2058*z11,
+        z2 + 5280*z6 + 1935*z7 + 2*z8 + z9 + 3346*z10 + 5280*z11,
+        z3 + z6 + 1673*z7 + 5280*z8,
+        z4 + z7 + 1673*z9 + 5280*z10,
+        z5 + z8 + 1673*z10 + 5280*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 3223*z6 + 2058*z7 + 178*z8 + 3223*z9 + 5103*z10 + 2058*z11,
+        z2 + 5280*z6 + 2*z7 + 1935*z8 + 5280*z9 + 3346*z10 + z11,
+        z3 + z6 + 5280*z7 + 1673*z8,
+        z4 + z7 + 5280*z9 + 1673*z10,
+        z5 + z8 + 5280*z10 + 1673*z11
+    >,
+    Scheme(A, I) where A := ProjectiveSpace(Generic(I)) where I := 
+    ideal<PolynomialRing(GF(5281, 12), 11, "grevlex") |
+        z7^2 + 5280*z6*z9,
+        z7*z8 + 5280*z6*z10,
+        z8^2 + 5280*z6*z11,
+        z8*z9 + 5280*z7*z10,
+        z8*z10 + 5280*z7*z11,
+        z10^2 + 5280*z9*z11,
+        z1 + 2058*z6 + 3223*z7 + 5103*z8 + 2058*z9 + 178*z10 + 3223*z11,
+        z2 + 5280*z6 + 2*z7 + 1935*z8 + 5280*z9 + 3346*z10 + z11,
+        z3 + z6 + 5280*z7 + 1673*z8,
+        z4 + z7 + 5280*z9 + 1673*z10,
+        z5 + z8 + 5280*z10 + 1673*z11
+    >
+];
+Sin:=SingularPoints(S);
+rX:=embed(X);
+Sin:={@rX meet embed(x@@pr):x in Sin@};
+Sinloc:=&join Sin;
+Clgen:=[Scheme(P10,[PP10!x:x in DefiningEquations(y)]):y in Clgen];
+//L:=LinearSystem(P10,1);
+//rrel:=[];
+//ch:=choose(32,2);
+//for x in ch do 
+//    if #Sections(LinearSystem(L,&join[Clgen[i]:i in x])) ne 0 then 
+//        Append(~rrel,x);
+ //   end if;
+//end for;
+
+//4 surfaces which is cut off by a linear section of X embedded in P10
+rr:=[
+    [ 1, 2, 3, 4 ],
+    [ 1, 2, 5, 6 ],
+    [ 1, 2, 7, 8 ],
+    [ 1, 2, 9, 10 ],
+    [ 1, 2, 11, 12 ],
+    [ 1, 2, 13, 14 ],
+    [ 1, 2, 15, 16 ],
+    [ 1, 2, 17, 18 ],
+    [ 1, 2, 19, 20 ],
+    [ 1, 2, 21, 22 ],
+    [ 1, 2, 23, 24 ],
+    [ 1, 2, 25, 26 ],
+    [ 1, 2, 27, 28 ],
+    [ 1, 2, 29, 30 ],
+    [ 1, 2, 31, 32 ],
+    [ 1, 3, 5, 8 ],
+    [ 1, 3, 25, 28 ],
+    [ 1, 3, 29, 31 ],
+    [ 1, 5, 17, 21 ],
+    [ 1, 5, 20, 23 ],
+    [ 1, 8, 9, 16 ],
+    [ 1, 8, 12, 14 ],
+    [ 1, 9, 17, 31 ],
+    [ 1, 9, 23, 25 ],
+    [ 1, 12, 20, 31 ],
+    [ 1, 12, 21, 25 ],
+    [ 1, 14, 17, 28 ],
+    [ 1, 14, 23, 29 ],
+    [ 1, 16, 20, 28 ],
+    [ 1, 16, 21, 29 ],
+    [ 2, 4, 6, 7 ],
+    [ 2, 4, 26, 27 ],
+    [ 2, 4, 30, 32 ],
+    [ 2, 6, 18, 22 ],
+    [ 2, 6, 19, 24 ],
+    [ 2, 7, 10, 15 ],
+    [ 2, 7, 11, 13 ],
+    [ 2, 10, 18, 32 ],
+    [ 2, 10, 24, 26 ],
+    [ 2, 11, 19, 32 ],
+    [ 2, 11, 22, 26 ],
+    [ 2, 13, 18, 27 ],
+    [ 2, 13, 24, 30 ],
+    [ 2, 15, 19, 27 ],
+    [ 2, 15, 22, 30 ],
+    [ 3, 4, 5, 6 ],
+    [ 3, 4, 7, 8 ],
+    [ 3, 4, 9, 10 ],
+    [ 3, 4, 11, 12 ],
+    [ 3, 4, 13, 14 ],
+    [ 3, 4, 15, 16 ],
+    [ 3, 4, 17, 18 ],
+    [ 3, 4, 19, 20 ],
+    [ 3, 4, 21, 22 ],
+    [ 3, 4, 23, 24 ],
+    [ 3, 4, 25, 26 ],
+    [ 3, 4, 27, 28 ],
+    [ 3, 4, 29, 30 ],
+    [ 3, 4, 31, 32 ],
+    [ 3, 5, 10, 15 ],
+    [ 3, 5, 11, 13 ],
+    [ 3, 8, 18, 22 ],
+    [ 3, 8, 19, 24 ],
+    [ 3, 10, 18, 29 ],
+    [ 3, 10, 24, 28 ],
+    [ 3, 11, 19, 29 ],
+    [ 3, 11, 22, 28 ],
+    [ 3, 13, 18, 25 ],
+    [ 3, 13, 24, 31 ],
+    [ 3, 15, 19, 25 ],
+    [ 3, 15, 22, 31 ],
+    [ 4, 6, 9, 16 ],
+    [ 4, 6, 12, 14 ],
+    [ 4, 7, 17, 21 ],
+    [ 4, 7, 20, 23 ],
+    [ 4, 9, 17, 30 ],
+    [ 4, 9, 23, 27 ],
+    [ 4, 12, 20, 30 ],
+    [ 4, 12, 21, 27 ],
+    [ 4, 14, 17, 26 ],
+    [ 4, 14, 23, 32 ],
+    [ 4, 16, 20, 26 ],
+    [ 4, 16, 21, 32 ],
+    [ 5, 6, 7, 8 ],
+    [ 5, 6, 9, 10 ],
+    [ 5, 6, 11, 12 ],
+    [ 5, 6, 13, 14 ],
+    [ 5, 6, 15, 16 ],
+    [ 5, 6, 17, 18 ],
+    [ 5, 6, 19, 20 ],
+    [ 5, 6, 21, 22 ],
+    [ 5, 6, 23, 24 ],
+    [ 5, 6, 25, 26 ],
+    [ 5, 6, 27, 28 ],
+    [ 5, 6, 29, 30 ],
+    [ 5, 6, 31, 32 ],
+    [ 5, 8, 26, 27 ],
+    [ 5, 8, 30, 32 ],
+    [ 5, 10, 20, 26 ],
+    [ 5, 10, 21, 32 ],
+    [ 5, 11, 17, 26 ],
+    [ 5, 11, 23, 32 ],
+    [ 5, 13, 20, 30 ],
+    [ 5, 13, 21, 27 ],
+    [ 5, 15, 17, 30 ],
+    [ 5, 15, 23, 27 ],
+    [ 6, 7, 25, 28 ],
+    [ 6, 7, 29, 31 ],
+    [ 6, 9, 19, 25 ],
+    [ 6, 9, 22, 31 ],
+    [ 6, 12, 18, 25 ],
+    [ 6, 12, 24, 31 ],
+    [ 6, 14, 19, 29 ],
+    [ 6, 14, 22, 28 ],
+    [ 6, 16, 18, 29 ],
+    [ 6, 16, 24, 28 ],
+    [ 7, 8, 9, 10 ],
+    [ 7, 8, 11, 12 ],
+    [ 7, 8, 13, 14 ],
+    [ 7, 8, 15, 16 ],
+    [ 7, 8, 17, 18 ],
+    [ 7, 8, 19, 20 ],
+    [ 7, 8, 21, 22 ],
+    [ 7, 8, 23, 24 ],
+    [ 7, 8, 25, 26 ],
+    [ 7, 8, 27, 28 ],
+    [ 7, 8, 29, 30 ],
+    [ 7, 8, 31, 32 ],
+    [ 7, 10, 20, 28 ],
+    [ 7, 10, 21, 29 ],
+    [ 7, 11, 17, 28 ],
+    [ 7, 11, 23, 29 ],
+    [ 7, 13, 20, 31 ],
+    [ 7, 13, 21, 25 ],
+    [ 7, 15, 17, 31 ],
+    [ 7, 15, 23, 25 ],
+    [ 8, 9, 19, 27 ],
+    [ 8, 9, 22, 30 ],
+    [ 8, 12, 18, 27 ],
+    [ 8, 12, 24, 30 ],
+    [ 8, 14, 19, 32 ],
+    [ 8, 14, 22, 26 ],
+    [ 8, 16, 18, 32 ],
+    [ 8, 16, 24, 26 ],
+    [ 9, 10, 11, 12 ],
+    [ 9, 10, 13, 14 ],
+    [ 9, 10, 15, 16 ],
+    [ 9, 10, 17, 18 ],
+    [ 9, 10, 19, 20 ],
+    [ 9, 10, 21, 22 ],
+    [ 9, 10, 23, 24 ],
+    [ 9, 10, 25, 26 ],
+    [ 9, 10, 27, 28 ],
+    [ 9, 10, 29, 30 ],
+    [ 9, 10, 31, 32 ],
+    [ 9, 11, 13, 16 ],
+    [ 9, 11, 17, 19 ],
+    [ 9, 11, 22, 23 ],
+    [ 9, 13, 25, 30 ],
+    [ 9, 13, 27, 31 ],
+    [ 10, 12, 14, 15 ],
+    [ 10, 12, 18, 20 ],
+    [ 10, 12, 21, 24 ],
+    [ 10, 14, 26, 29 ],
+    [ 10, 14, 28, 32 ],
+    [ 11, 12, 13, 14 ],
+    [ 11, 12, 15, 16 ],
+    [ 11, 12, 17, 18 ],
+    [ 11, 12, 19, 20 ],
+    [ 11, 12, 21, 22 ],
+    [ 11, 12, 23, 24 ],
+    [ 11, 12, 25, 26 ],
+    [ 11, 12, 27, 28 ],
+    [ 11, 12, 29, 30 ],
+    [ 11, 12, 31, 32 ],
+    [ 11, 16, 26, 29 ],
+    [ 11, 16, 28, 32 ],
+    [ 12, 15, 25, 30 ],
+    [ 12, 15, 27, 31 ],
+    [ 13, 14, 15, 16 ],
+    [ 13, 14, 17, 18 ],
+    [ 13, 14, 19, 20 ],
+    [ 13, 14, 21, 22 ],
+    [ 13, 14, 23, 24 ],
+    [ 13, 14, 25, 26 ],
+    [ 13, 14, 27, 28 ],
+    [ 13, 14, 29, 30 ],
+    [ 13, 14, 31, 32 ],
+    [ 13, 16, 18, 20 ],
+    [ 13, 16, 21, 24 ],
+    [ 14, 15, 17, 19 ],
+    [ 14, 15, 22, 23 ],
+    [ 15, 16, 17, 18 ],
+    [ 15, 16, 19, 20 ],
+    [ 15, 16, 21, 22 ],
+    [ 15, 16, 23, 24 ],
+    [ 15, 16, 25, 26 ],
+    [ 15, 16, 27, 28 ],
+    [ 15, 16, 29, 30 ],
+    [ 15, 16, 31, 32 ],
+    [ 17, 18, 19, 20 ],
+    [ 17, 18, 21, 22 ],
+    [ 17, 18, 23, 24 ],
+    [ 17, 18, 25, 26 ],
+    [ 17, 18, 27, 28 ],
+    [ 17, 18, 29, 30 ],
+    [ 17, 18, 31, 32 ],
+    [ 17, 19, 21, 24 ],
+    [ 17, 24, 26, 31 ],
+    [ 17, 24, 28, 30 ],
+    [ 18, 20, 22, 23 ],
+    [ 18, 23, 25, 32 ],
+    [ 18, 23, 27, 29 ],
+    [ 19, 20, 21, 22 ],
+    [ 19, 20, 23, 24 ],
+    [ 19, 20, 25, 26 ],
+    [ 19, 20, 27, 28 ],
+    [ 19, 20, 29, 30 ],
+    [ 19, 20, 31, 32 ],
+    [ 19, 21, 25, 32 ],
+    [ 19, 21, 27, 29 ],
+    [ 20, 22, 26, 31 ],
+    [ 20, 22, 28, 30 ],
+    [ 21, 22, 23, 24 ],
+    [ 21, 22, 25, 26 ],
+    [ 21, 22, 27, 28 ],
+    [ 21, 22, 29, 30 ],
+    [ 21, 22, 31, 32 ],
+    [ 23, 24, 25, 26 ],
+    [ 23, 24, 27, 28 ],
+    [ 23, 24, 29, 30 ],
+    [ 23, 24, 31, 32 ],
+    [ 25, 26, 27, 28 ],
+    [ 25, 26, 29, 30 ],
+    [ 25, 26, 31, 32 ],
+    [ 25, 28, 30, 32 ],
+    [ 26, 27, 29, 31 ],
+    [ 27, 28, 29, 30 ],
+    [ 27, 28, 31, 32 ],
+    [ 29, 30, 31, 32 ]
+];
+rell:=[];
+for i in [2..#rr] do 
+    ad:=[0:i in [1..32]];
+    for x in rr[1] do ad[x]:=1;end for;
+    for y in rr[i] do ad[y]+:=-1;end for;
+    Append(~rell,ad);
+end for;
+L:=LinearSystem(P10,1);
+ KU<t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11>:=FunctionField(K,11);
+
+ sections:=AssociativeArray();//sections[i]: H cut out uninon of rr[i]
+ for i in [1..#rr] do 
+   sections[i]:=Sections(LinearSystem(L,&join[Clgen[j]:j in rr[i]]))[1];
+end for;
+
+//funcs[i] is the function corresponds to the relation rr[1]-rr[2]
+funcs:=[];
+rr1func:=KU!sections[1];
+for i in [2..31] do 
+    Append(~funcs,rr1func/(KU!sections[i]));
+end for;
+
+
+
+nrel:=[];
+for x in rell do 
+    sinct:=[0:i in [1..16]];
+    for y in [1..#x] do 
+        if x[y] ne 0 then 
+            for z in [1..#Sin] do 
+                if Dimension(Sin[z] meet Clgen[y]) ne -1 then
+                    sinct[z]+:=x[y]*1;
+                end if;
+            end for;
+        end if;
+    end for;
+    Append(~nrel,x cat sinct);
+end for;
+
+mm:=Matrix(Integers(),[nrel[x]:x in [1..30]]);
+
+
+//we choose rell[1...30] as a (dependent) basis of R
+
+//relationbasis is the basis of the relation space
+relationbasis:=mm;
+re:=RowSpace(mm);
+R:=RSpace(Integers(),32+16);
+
+Picm,qf:=R/re;
+
+
+Clgen:=Clgen cat [x:x in Sin];
+
+ngen:=[];
+
+for ii in [1..#rGgen] do
+    g:=rGgen[ii];
+    ng:=ZeroMatrix(Integers(),32+16,32+16);
+    for i in [1..32+16] do
+        ng[i,Position(Clgen,schememove(Clgen[i],g))]:=1;
+    end for;
+    Append(~ngen,ng);
+end for;
+Dgen:=ngen;
+M48:=GL(32+16,Integers());
+Daction:=sub<M48|Dgen>;
+
+
+Rgen:=[];
+bs:=Basis(re);
+dmatrix:=Matrix(Integers(),[Eltseq(x):x in bs]);
+for ii in [1..#ngen] do
+    g:=ngen[ii];
+    ng:=[];
+    for i in [1..25] do
+       Append(~ng,Eltseq(Solution(dmatrix,re!(bs[i]*g))));
+    end for;
+    Append(~Rgen,Matrix(Integers(),ng));
+end for;
+
+M25:=GL(25,Integers());
+Raction:=sub<M25|Rgen>;
+
+
+actualgen:=[];
+for ii in [1..#ngen] do 
+    ng:=[];g:=ngen[ii];
+    for i in [1..7+16] do 
+        Append(~ng,Eltseq(qf(Matrix(Integers(),1,32+16,Eltseq(Picm.i@@qf))*g)));
+    end for;
+    mm:=Matrix(Integers(),ng);
+    Append(~actualgen,mm);
+end for;
+
+M23:=GL(7+16,Integers());
+Pgen:=actualgen;
+Paction:=sub<M23|actualgen>;
+
+
+
+
+//representation of R,D,Pic
+//R is the relation, D is the G-module freely generated by generators of the Class group, P is the Picard module
+GtoR:=hom<rG->Raction|[<rGgen[i],Rgen[i]>:i in [1..#rGgen]]>;
+
+GtoD:=hom<rG->Daction|[<rGgen[i],Dgen[i]>:i in [1..#rGgen]]>;
+
+GtoP:=hom<rG->Paction|[<rGgen[i],Pgen[i]>:i in [1..#rGgen]]>;
+
+
+
+
+
+
+Picm:=GModule(Paction);
+CohoPic:=CohomologyModule(Paction,Picm);
+
+
+fff1,ftr1:=FPGroup(Paction);
+fff2,ftr2:=PermutationGroup(fff1);
+fmap:=hom<rG->Paction|actualgen>;
+L:=SubgroupLattice(fff2);
+rec:=[];
+h1:=[];
+
+//When the line 1942 and the line 1972 are removed, the following code will display all G-action on X where 
+//H^1(G,Pic(tilde X)) is nontrivial and G has no smooth fixed point on X, and G is a p-group not containing the Q8
+//It will be clear that all groups showing up have trivial B^3(G) except Q8. So the only candidate is Q8.
+if false then 
+Q8S:=[];
+for i in [2..#L] do 
+        for inde in Q8S do 
+            if L!i ge L!inde then continue i;
+        end if;
+        end for;
+        groupact:=(L[i]@@ftr2)@ftr1;
+        CR:=Restriction(CohoPic, groupact);
+        actG:=groupact@@fmap;
+   
+        CG1:=CohomologyGroup(CR,1);
+     ptf,pp,waste:=IsPrimePower(#groupact);
+
+        if ptf and not Degree(CG1) eq 0 and checkab(actG,rX,K) then 
+           fixlocus:=Schemefixlocus(rX,actG,K);
+           if #fixlocus eq 0 then 
+           <i, GroupName(groupact),IdentifyGroup( groupact),Dimension(CG1)>;
+           if GroupName(groupact) eq "Q8" then Append(~Q8S,i);end if;
+           else
+            fixlocusscheme:=&join fixlocus;
+            if fixlocusscheme meet Sinloc ne fixlocusscheme then 
+               continue i;
+            end if;
+             <i, GroupName(groupact),IdentifyGroup( groupact),Dimension(CG1)>;
+             if GroupName(groupact) eq "Q8" then Append(~Q8S,i);end if;
+           end if;
+
+    end if;
+end for;
+end if;
+
+
+
+
+HH:=[];
+
+for i in [1..#L] do
+    if GroupName(L[i]) eq "Q8" then 
+        Append(~HH,<i,(L[i]@@ftr2)@ftr1>);
+    end if;
+end for;
+
+for Hhind in [1,2,3] do 
+    Hh:=HH[Hhind];
+    for H in [[x:x in Conjugates(Paction,Hh[2])][i]:i in [2..6]] do
+       
+F<x,y>:=FreeGroup(2);
+R:=sub<F|{@x^4,y^4,x*y*x^(-1)*y,y*x*y^(-1)*x@}>;
+Q8,quoFP:=F/R;
+Q8,q8mp:=PermutationGroup(Q8);
+x:=Q8.1;
+y:=Q8.2;
+tf,idenmap:=IsIsomorphic(H,Q8);
+rx:=x@@idenmap;
+ry:=y@@idenmap;
+
+//find H1Pic
+
+Picm:=GModule(H);
+imf1:=[];
+for i in [1..23] do 
+    vv:=Vector(Picm.i);
+    Append(~imf1,Eltseq(-vv+vv*rx) cat Eltseq(-vv+vv*ry));
+end for;
+P2f1:=Matrix(Integers(),23,23*2,imf1);
+imaf1:=RowSpace(P2f1);
+
+imf2:=[];
+for i in [1..23] do 
+im:=[0:j in [1..23]];
+im[i]:=1;
+vv:=Vector(im);
+Append(~imf2,Eltseq(vv+vv*rx) cat Eltseq(vv+vv*(ry*rx)));
+
+end for;
+
+for i in [1..23] do 
+im:=[0:j in [1..23]];
+im[i]:=1;
+vv:=Vector(im);
+Append(~imf2,Eltseq(-vv-vv*(ry)) cat Eltseq(-vv+vv*(rx)));
+
+end for;
+
+P2f2:=Matrix(Integers(),46,46,imf2);
+//Vector([Random([-1000..1000]):i in [1..23]])*P2f1*P2f2;
+
+
+
+
+
+
+
+imf3:=[];
+for i in [1..23] do 
+im:=[0:j in [1..23]];
+im[i]:=1;
+vv:=Vector(im);
+Append(~imf3,Eltseq(-vv+vv*rx));
+
+end for;
+
+for i in [1..23] do 
+im:=[0:j in [1..23]];
+im[i]:=1;
+vv:=Vector(im);
+Append(~imf3,Eltseq(vv-vv*(ry*rx)));
+
+end for;
+
+P2f3:=Matrix(Integers(),46,23,imf3);
+//Vector([Random([-1000..1000]):i in [1..46]])*P2f2*P2f3;
+
+
+imaf1:=RowSpace(P2f1);
+kernelf2:=Kernel((P2f2));
+
+
+//H1P is H1(G,Pic(tilde X))
+H1P,quomp:=kernelf2/(imaf1 meet kernelf2);
+
+
+
+rxg:=rx@@GtoP;
+ryg:=ry@@GtoP;
+
+actG:=sub<rG|rxg,ryg>;
+<Hh[1],"Have fixed point", #Schemefixlocus(rX,actG,K) ne 0,"H1:",Degree(H1P)>;
+bbs:=Basis(H1P);
+for xxx in bbs do 
+bs:=Eltseq(xxx@@quomp);
+
+b1:=[bs[i]:i in [1..23]];
+b2:=[bs[i]:i in [24..46]];
+//Vector(bs)*P2f2;
+
+
+
+d1:=((Picm!b1)@@qf);
+d2:=(Picm!b2)@@qf;
+dd1:=[Eltseq(d1)[i]:i in [1..48]];
+dd2:=[Eltseq(d2)[i]:i in [1..48]];
+
+liftD:=Vector(Eltseq(dd1) cat Eltseq(dd2));
+
+
+
+
+rxD:=Submatrix(GtoD(rx@@GtoP),[1..48],[1..48]);
+ryD:=Submatrix(GtoD(ry@@GtoP),[1..48],[1..48]);
+
+
+
+imfd2:=[];
+for i in [1..48] do 
+im:=[0:j in [1..48]];
+im[i]:=1;
+vv:=Vector(im);
+Append(~imfd2,Eltseq(vv+vv*rxD) cat Eltseq(vv+vv*(ryD*rxD)));
+
+end for;
+
+for i in [1..48] do 
+im:=[0:j in [1..48]];
+im[i]:=1;
+vv:=Vector(im);
+Append(~imfd2,Eltseq(-vv-vv*(ryD)) cat Eltseq(-vv+vv*(rxD)));
+
+end for;
+
+
+D2f2:=Matrix(Integers(),48*2,48*2,imfd2);
+
+
+
+D:=(Eltseq(liftD*D2f2));
+
+
+
+
+
+imfd3:=[];
+for i in [1..48] do 
+im:=[0:j in [1..48]];
+im[i]:=1;
+vv:=Vector(im);
+Append(~imfd3,Eltseq(-vv+vv*rxD));
+
+end for;
+
+for i in [1..48] do 
+im:=[0:j in [1..48]];
+im[i]:=1;
+vv:=Vector(im);
+Append(~imfd3,Eltseq(vv-vv*(ryD*rxD)));
+
+end for;
+
+
+D2f3:=Matrix(Integers(),48*2,48,imfd3);
+
+
+//Vector(D)*D2f3;
+
+
+r1:=Vector([D[i]:i in [1..48]]);
+r2:=Vector([D[i]:i in [49..48*2]]);
+
+//relationbasis:=Submatrix(relationbasis,[1..30],[1..32]);
+//[ 0, 0, 0, 1, -1, 0, 1,
+
+
+
+fvec1:=Eltseq(Solution(relationbasis,r1));
+fvec2:=Eltseq(Solution(relationbasis,r2));
+
+
+
+if (#[x: x in fvec1|x gt 0] ge 6 or  #[x: x in fvec2|x gt 0] ge 6) then continue H;end if;
+
+
+
+f1:=&*[funcs[i]^fvec1[i]:i in [1..30]];
+f2:=&*[funcs[i]^fvec2[i]:i in [1..30]];
+
+
+xf1:=(Numerator(f1)^Transpose(rxg^(-1)))/(Denominator(f1)^Transpose(rxg^(-1)));
+
+
+xyf2:=(Numerator(f2)^Transpose((ryg*rxg)^(-1)))/(Denominator(f2)^Transpose((ryg*rxg)^(-1)));
+
+num1:=Factorization(Numerator(f1));
+num2:=Factorization(Numerator(xyf2));
+num3:=Factorization(Denominator(xf1));
+num4:=Factorization(Denominator(f2));
+den1:=Factorization(Denominator(f1));
+den2:=Factorization(Denominator(xyf2));
+den3:=Factorization(Numerator(xf1));
+den4:=Factorization(Numerator(f2));
+
+PX:=CoordinateRing(rX);
+polytrmp:=hom<KU->PX|[PX.i:i in [1..11]]>;
+
+candpolnum:=[Numerator(f1),Numerator(xyf2),Denominator(xf1),Denominator(f2)];
+candpolden:=[Denominator(f1),Denominator(xyf2),Numerator(xf1),Numerator(f2)];
+obtnum:=[num1,num2,num3,num4];
+obtden:=[den1,den2,den3,den4];
+
+//scc1:=&*([x[1]^x[2]:x in num1] cat [KU!1])/ Numerator(f1);
+//scc2:=&*([x[1]^x[2]:x in num2] cat [KU!1])/Numerator(xyf2);
+//scc3:=&*([x[1]^x[2]:x in num3] cat [KU!1])/ Denominator(xf1);
+//scc4:=&*([x[1]^x[2]:x in num4] cat [KU!1])/ Denominator(f2);
+//scc5:=&*([x[1]^x[2]:x in den1] cat [KU!1])/ Denominator(f1);
+//scc6:=&*([x[1]^x[2]:x in den2] cat [KU!1])/ Denominator(xyf2);
+//scc7:=&*([x[1]^x[2]:x in den3] cat [KU!1])/Numerator(xf1);
+//scc8:=&*([x[1]^x[2]:x in den4] cat [KU!1])/Numerator(f2);
+
+scalnum:=1;
+scalden:=1;
+
+for iind in [1..4] do 
+    addnum:=false;
+    adddeno:=false;
+    for scaand in [1,-1,e4,-e4] do 
+        if &*([x[1]^x[2]:x in obtnum[iind]] cat [KU!1]) eq scaand*candpolnum[iind] then 
+            scalnum*:=scaand;
+            addnum:=true;
+        end if;
+         if &*([x[1]^x[2]:x in obtden[iind]] cat [KU!1]) eq scaand*candpolden[iind] then 
+            scalden*:=scaand;
+             adddeno:=true;
+        end if;
+    end for;
+    if not (adddeno and addnum) then "WRONG!DIDNT FIND COEFFICIENTS!!!!"; end if;
+end for;
+//<scalnum,scalden>;
+
+
+
+poll:={@@};
+for x in [num1,num2,num3,num4,den1,den2,den3,den4] do 
+    for y in x do 
+        Include(~poll,y[1]);
+    end for;
+end for;
+
+
+polcoef:=[0:i in [1..#poll]];
+for x in [num1,num2,num3,num4] do 
+    for y in x do 
+           polcoef[Position(poll,y[1])]+:=y[2];
+    end for;
+end for;
+
+
+for x in [den1,den2,den3,den4] do 
+    for y in x do 
+           polcoef[Position(poll,y[1])]-:=y[2];
+    end for;
+end for;
+
+
+
+npoll:=[polytrmp(x):x in poll];
+
+
+a1:=PX!(1/scalnum)*(&*([PX!1] cat [npoll[i]^polcoef[i]:i in [1..#npoll]|polcoef[i] gt 0]));
+a2:=PX!(1/scalden)*(&*([PX!1] cat [npoll[i]^(-polcoef[i]):i in [1..#npoll]|polcoef[i] lt 0]));
+tf1:=a1 eq a2;
+//tf2:=a1 eq -a2;
+[tf1];
+if not tf1 then continue H;end if;
+//If tf1=false, then the 2 cocycle does not lift, and thus maps to a nontrivial element in H^3(G,k^\times)
+end for;
+
+end for;
+end for;
