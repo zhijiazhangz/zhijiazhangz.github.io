@@ -1,0 +1,100 @@
+#!/bin/sh
+#
+#  Mathematica 13.0.1 Kernel command file
+#  Copyright 1988-2022 Wolfram Research, Inc.
+
+# Is systemid being passed on the command-line?
+case "$1" in
+	-s|-systemid|-systemId|-systemID|-SystemId|-SystemID) _SystemID="${2}" ;;
+	*) ;;
+esac
+
+#  Determine the SystemID by examining the output of `uname -s` and 
+#  `uname -m`. Failsafe to SystemID=Unknown.
+if [ -z "${SystemIDList}" ]; then
+	case `uname -s` in
+		Linux)
+			case `uname -m` in
+				i?86)
+					SystemIDList="Linux";;
+				x86_64)
+					if [ "${_SystemID}" = "Linux" ]; then
+						SystemIDList="Linux Linux-x86-64"
+					else
+						SystemIDList="Linux-x86-64 Linux"
+					fi;;
+				armv?l)
+					SystemIDList="Linux-ARM";;
+				aarch64)
+					SystemIDList="Linux-ARM";;
+				*)
+					SystemIDList="Unknown";;
+			esac;;
+		*)
+			SystemIDList="Unknown";;
+	esac
+fi
+
+#  If we couldn't automatically determine the OS, print an error message and exit
+if [ "${SystemIDList}" = "Unknown" ]; then
+	echo "Cannot determine operating system."
+	exit 1
+fi
+
+# Follow all links until we get to the actual script file, assumed to be in
+# ${TopDirectory}/Executables, then extract the directory name twice.
+TopDirectory=$(dirname "$(dirname "`readlink -e "${0}"`")")
+
+for SystemID in $SystemIDList; do
+    # Check for WolframKernel, fail if the binary cannot be found.
+    KernelPath="SystemFiles/Kernel/Binaries/${SystemID}"
+    WolframKernel="${TopDirectory}/${KernelPath}/WolframKernel"
+    if [ ! -x "${WolframKernel}" ]; then
+	fail=1
+	continue
+    else
+	fail=0
+    fi
+
+    # Set up library paths
+    if [ -n "${USE_WOLFRAM_LD_LIBRARY_PATH}" ]; then
+        M_LIBRARY_PATH="${TopDirectory}/SystemFiles/Libraries/${SystemID}"
+        if [ -z "${LD_LIBRARY_PATH}" ]; then
+            LD_LIBRARY_PATH="${M_LIBRARY_PATH}:${M_LIBRARY_PATH}/Qt/lib"
+        else
+           LD_LIBRARY_PATH="${M_LIBRARY_PATH}:${M_LIBRARY_PATH}/Qt/lib:${LD_LIBRARY_PATH}"
+        fi
+        export LD_LIBRARY_PATH
+    fi
+
+    if [ "${fail}" = "0" ]; then
+    break
+    fi
+done
+
+# Workaround for bug 374323.
+if [ "${SystemIDList}" = "Linux-ARM" ] && [ -f /proc/device-tree/model ] && [ -f /proc/cpuinfo ]; then
+  model_check=`cat /proc/device-tree/model | cut -c14`
+  rev_check=`cat /proc/cpuinfo | grep Revision | cut -c12-`
+  # Only set OPENBLAS_NUM_THREADS on Pi 4, as defined by either model label or cpu revision
+  if [ "${model_check}" = "4" ] || [ "${rev_check}" = "c03111" ]; then
+    if [ -z "${OPENBLAS_NUM_THREADS}" ]; then
+      OPENBLAS_NUM_THREADS=1
+      export OPENBLAS_NUM_THREADS
+    fi
+  fi
+fi
+
+if [ ! "${fail}" = "0" ]; then
+    for SystemID in $SystemIDList; do
+        KernelPath="SystemFiles/Kernel/Binaries/${SystemID}"
+        WolframKernel="${TopDirectory}/${KernelPath}/WolframKernel"
+	echo "Mathematica kernel executable"
+	echo "${WolframKernel}"
+	echo "not found.  Your Mathematica installation may be incomplete"
+	echo "or corrupted."
+    done
+    exit 1
+fi
+
+exec "${WolframKernel}" "$@"
