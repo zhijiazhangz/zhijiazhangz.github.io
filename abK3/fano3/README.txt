@@ -1,5 +1,8 @@
 Finding possibilities of Fano 3-folds with actions from abelian groups of K3 types
 ==============================================
+The mail file is possible_baskets.magma 
+
+==============================================
 In a directory with all the files run
 
 $ magma possible_baskets.magma
