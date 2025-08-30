@@ -53,21 +53,27 @@ for x in pos1 do
     bas:=x;
         tf,tp,mut:=checkbasket(bas);//Apply Corollary 7.8, i.e. check if GCD(numbers of singularity of each type)=1
         if not tf or (#tp eq 1 and tp[1][1] eq 2) then continue x;end if;// skip the case when all singularities have type 1/2(1,1,1)
-        findgroup:=false;gp:=[];
+        findgroup:=false;gp:={@@};
         //Now we find possible groups
         if [mut[i] mod 8 : i in [1..#tp]] eq [0:i in [1..#tp]] then//cf Lemma 7.6
-                Append(~gp,"Z22222");
+                Include(~gp,"Z22222");
             end if;
             if [mut[i] mod 4 : i in [1..#tp]] eq [0:i in [1..#tp]] then//cf Lemma 7.7
-                Append(~gp,"Z4222");
+                Include(~gp,"Z4222");
             end if;
             if #tp eq 1 and mut[1] mod 2 eq 0 then//check transitivity cf Lemma 7.4
-                Append(~gp,"Z842");
+                Include(~gp,"Z842");
+            end if;
+            if #tp eq 2 and Sort([tp[1][1],tp[2][1]]) eq [2,4] and [mut[i] mod 2 : i in [1..#tp]] eq [0:i in [1..#tp]]  then//Allowing the case where the baskets consist of singularities of index 2 and 4
+                Include(~gp,"Z842");
             end if;
             if #tp eq 1 and mut[1] mod 3 eq 0 then//check transitivity cf Lemma 7.5
-                Append(~gp,"Z633");
+                Include(~gp,"Z633");
             end if;
-        if #gp ne 0 then Append(~bad,<bas,tp,mut>);Append(~Groups1,gp);end if;
+             if #tp eq 2 and Sort([tp[1][1],tp[2][1]]) eq [2,4] and [mut[i] mod 3 : i in [1..#tp]] eq [0:i in [1..#tp]]  then//Allowing the case where the baskets consist of singularities of index 2 and 4
+                Include(~gp,"Z633");
+            end if;
+        if #gp ne 0 then Append(~bad,<bas,tp,mut>);Append(~Groups1,[x:x in gp]);end if;
 end for;
 
 bad1:=[x[1]:x in bad];
@@ -87,25 +93,26 @@ bad22:=<>;
 Groups2:=[];
 for x in pos2 do 
      bas:=x;
-   
         tf,tp,mut:=checkbasket(bas);//Apply Corollary 7.8, i.e. check if GCD(numbers of singularity of each type)=1
         if not tf or (#tp eq 1 and tp[1][1] eq 2) then continue x;end if;// skip the case when all singularities have type 1/2(1,1,1)
-        findgroup:=false;gp:=[];
+        findgroup:=false;gp:={@@};
         //Now we find possible groups
         if [mut[i] mod 8 : i in [1..#tp]] eq [0:i in [1..#tp]] then//cf Lemma 7.6
-                Append(~gp,"Z22222");
+                Include(~gp,"Z22222");
             end if;
             if [mut[i] mod 4 : i in [1..#tp]] eq [0:i in [1..#tp]] then//cf Lemma 7.7
-                Append(~gp,"Z4222");
+                Include(~gp,"Z4222");
             end if;
-            if #tp eq 1 and mut[1] mod 2 eq 0 then//check transitivity cf Lemma 7.4
-                Append(~gp,"Z842");
+            if [mut[i] mod 2 : i in [1..#tp]] eq [0:i in [1..#tp]] then//check transitivity cf Lemma 7.4
+                Include(~gp,"Z842");
             end if;
-            if #tp eq 1 and mut[1] mod 3 eq 0 then//check transitivity cf Lemma 7.5
-                Append(~gp,"Z633");
+           
+            if [mut[i] mod 3 : i in [1..#tp]] eq [0:i in [1..#tp]]  then//check transitivity cf Lemma 7.5
+                Include(~gp,"Z633");
             end if;
-        if #gp ne 0 then Append(~bad22,<bas,tp,mut>);Append(~Groups2,gp);end if;
+            
 
+        if #gp ne 0 then Append(~bad22,<bas,tp,mut>);Append(~Groups2,[x:x in gp]);end if;
 end for;
 
 bad2:=[x[1]:x in bad22];
@@ -115,5 +122,5 @@ print("all possible baskets of singularities for index 2 Fano threefolds, regard
 
 bad2type;//all possible basket of singularities regardless of the genera!
 "";
-print("One can then check that only 2 x 1/11(4,7,2) and 3 x 1/7(3,4,2) are possible going through http://www.grdb.co.uk/forms/fano3");
+print("One can check that only cases realized on Fano threefolds are the ones listed in Table 7 in the paper, by going through http://www.grdb.co.uk/forms/fano3");
 print("cf. Table 7");
