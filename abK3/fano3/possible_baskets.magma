@@ -3,7 +3,7 @@ AttachSpec("fano3.spec");
 
 
 print "finding basket-genus pairs, index 1 ";
-Bus1,Gus1:= FanoBaskets(24,1 );  
+Bus1,Gus1:= FanoBaskets(24,1: Stable:=false );  
 
 
 pos1:=[];
@@ -18,7 +18,7 @@ end for;
 print "finding basket-genus pairs, index 2";
 print "==================================";
 "";
-Bus2,Gus2 := FanoBaskets(24,2);	
+Bus2,Gus2 := FanoBaskets(24,2: Stable:=false);	
 
 
 pos2:=Bus2;
@@ -124,3 +124,84 @@ bad2type;//all possible basket of singularities regardless of the genera!
 "";
 print("One can check that only cases realized on Fano threefolds are the ones listed in Table 7 in the paper, by going through http://www.grdb.co.uk/forms/fano3");
 print("cf. Table 7");
+
+
+
+
+
+
+
+
+function checkbasket(b)
+    pt:=b`points;
+    if #pt eq 0 then return false,[[0,0,0,0]],[0];end if;
+    mult:=AssociativeArray();
+    for x in pt do 
+        gp:=x`r;
+        ptelt:=Sort(PrincipalPolarisation(x));;
+        tp:=[gp] cat ptelt;
+        if tp in Keys(mult) then mult[tp]+:=1;
+            else mult[tp]:=1;
+        end if;
+    end for;
+    type:=Sort([x:x in Keys(mult)]);
+    multi:=[mult[x]:x in type];
+    if 1 in multi then return false,type,multi;end if;
+    if (GCD(multi) mod 2) ne 0 and (GCD(multi) mod 3) ne 0 then return false,type,multi;end if;
+    return true,type,multi;
+end function;
+
+
+
+function findgenus(b)
+
+    tf,tp,mt:=checkbasket(b);
+      if  tp eq [[0,0,0,0]] then return 1000;end if;
+    sm:=0;
+    for xxx in [1..#tp] do
+        x:=tp[xxx];
+        r:=x[1];
+        wt:=[x[i]:i in [2..4]];
+        if not 1 in wt then 
+            wt1:=wt[1];
+            for i in [2..r-1] do 
+                if i*wt1 mod r eq 1 then 
+                    wt1i:=i;
+                    break i;
+                end if;
+            end for;
+            wt:=[xx*wt1i mod r:xx in wt];
+        end if;
+    
+        a:=wt[2];
+        for i in [1..r-1] do 
+            if i*a mod r eq 1 then 
+                b:=i;
+            end if;
+        end for;
+
+        sm+:=mt[xxx]*b*(r-b)/r;
+       
+    end for;
+    
+    return Maximum(-2,Floor(1/2*(2-sm))+1);
+end function;
+
+
+
+
+for i in [3..20] do 
+Bus1,Gus1:= FanoBaskets(24,i : Stable:=false);  
+poss:=[];
+for x in Bus1 do 
+    min:=findgenus(x);
+    if min le -1 and checkbasket(x) then 
+        x;Append(~poss,x);
+    end if;
+end for;
+print "index-" cat IntegerToString(i) cat " possibilities:";
+if #poss ne 0 then poss;if i eq 3 then print "cf. Table 8"; elif i eq 4 then "cf. Table 9";end if;
+else "no possibilities:";
+end if;
+"=============================================";
+end for;
