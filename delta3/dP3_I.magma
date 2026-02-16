@@ -1179,3 +1179,42 @@ for i in [2..#L] do
      end if;
     
 end for;
+
+
+
+
+/////////////////////////////////////////////////////////
+//Below we display actions not in Table 3, and their generators
+elim:=[];
+
+for i in [2..#L] do 
+
+        groupact:=L[i];
+        CR:=Restriction(CH,L[i]);
+        CG:=CohomologyGroup(CR,0);
+        if IsPrimePower(#groupact) then 
+        if not Dimension(CG) eq 1 then <i,GroupName(L[i]),"Not minimal">;Append(~elim,i);continue i;end if;
+        if checkab(groupact@@fmap,X,K) then <i,GroupName(L[i]),"Condition A is satisfied">;Append(~elim,i);continue i; end if;
+       
+           CG1:=CohomologyGroup(CR,1);
+           if  Degree(CG1) eq 0 then 
+            <i,GroupName(L[i]),"H1(G,Pic) is trivial">;Append(~elim,i);
+             //for y in h1 do 
+         end if;
+          //  if L!i ge L!y then Append(~h1,i);continue i;
+       // end if;
+  //  end for;
+       // CG1:=CohomologyGroup(CR,1);
+      //   if Degree(CG1) ne 0 then  
+         //  Append(~h1,i);
+        //   <i,"CH!!", GroupName(L[i])>;CG1;
+        // end if;
+     end if;
+    
+end for;
+
+for i in elim do 
+<i,GroupName(L[i]),[x:x in Generators(L[i]@@fmap)|not IsScalar(x)]>;
+end for;
+
+
