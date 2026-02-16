@@ -611,20 +611,35 @@ function ndp(strat,gp,Xs)
     scgp:=FindScalar(gp);
     gpq,fq:=gp/scgp;
     c:=0;
+   "numbering,  stabilizer, maximal group that prevserves the stratum, dimension , genus";
     for x in strat do 
     c+:=1;
+    if not Dimension(x[2]) eq 1 then 
     if IsAbelian(x[1]) then
     
     Zg:=findactgp(gp,x[1],x[2]);
 
-    <IntegerToString(c) cat ".   " cat  GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))  cat ",  "cat IntegerToString(Dimension(x[2])) cat ",  "cat IntegerToString(Degree(x[2]))>;
+    <IntegerToString(c) cat ".   " cat  GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))  cat ",  "cat IntegerToString(Dimension(x[2])) >;
     else
     Zg:=findactgp(gp,x[1],x[2]);
-    <IntegerToString(c) cat ".   " cat GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))  cat ",  "cat IntegerToString(Dimension(x[2]))cat ",  "cat IntegerToString(Degree(x[2]))>;
+    <IntegerToString(c) cat ".   " cat GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))  cat ",  "cat IntegerToString(Dimension(x[2]))>;
+    end if;
+else
+     if IsAbelian(x[1]) then
+    
+    Zg:=findactgp(gp,x[1],x[2]);
+
+    <IntegerToString(c) cat ".   " cat  GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg))   cat ",  "cat IntegerToString(Dimension(x[2]))cat ",  "cat IntegerToString(Genus(Curve((x[2]))))>;
+    else
+    Zg:=findactgp(gp,x[1],x[2]);
+    <IntegerToString(c) cat ".   " cat GroupName(fq(x[1])) cat ",  "  cat GroupName(fq(Zg)) cat ",  "cat IntegerToString(Dimension(x[2]))cat ",  "cat IntegerToString(Genus(Curve((x[2]))))>;
+    end if;
+
     end if;
         end for;
     return c;
 end function;
+
 
 
 function pttops(p,P,K)
@@ -1199,12 +1214,34 @@ h2:=[];
 //The following codes recover the table on dP2 namely those minimal G-action on X such that 
 //G is a 2-group action, H1(G,Pic(X)) is nonzero, X^G is empty. The output are tuples:
 //<label in the subgroup lattice, name of G, gapID of G,Schur multiplier of G,rank of Pic^G,Degree of H1(G,Pic(X)), satisfying Condition A or not>;
+C22C4:=[];
+Q8:=[];
+for i in [2..#L] do 
+    if GroupName(L[i]) eq "C2*D4:C2" then
+        indi:=i;
+    end if;
+    if GroupName(L[i]) eq "C2^2*C4" then
+       Append(~C22C4, i);
+    end if;
+    if GroupName(L[i]) eq "Q8" then
+       Append(~Q8, i);
+    end if;
+end for;
 
 for i in [2..#L] do 
     //for y in tr do
 //if  L!i ge L!y then continue i;
 //end if;
-//end for;
+//end for; 
+for x in C22C4 do 
+    if L!x le L!i then continue i;
+    end if;
+end for;
+for x in Q8 do 
+    if L!x le L!i then continue i;
+    end if;
+end for;
+    if not L!i le L!indi then 
         groupact:=L[i];
         CR:=Restriction(CH,L[i]);
         actG:=groupact@@fmap;
@@ -1237,8 +1274,157 @@ for i in [2..#L] do
         //   <i,"CH!!", GroupName(L[i])>;CG1;
         // end if;
      end if;
-    
+    end if;
 end for;
+
+
+
+/////////////////////////////////////////////////////////
+//Below we display detail information on groups in Table 3, including H^1(G,Pic) and generators
+
+
+for i in [2..#L] do 
+    //for y in tr do
+//if  L!i ge L!y then continue i;
+//end if;
+//end for; 
+for x in C22C4 do 
+    if L!x le L!i then continue i;
+    end if;
+end for;
+for x in Q8 do 
+    if L!x le L!i then continue i;
+    end if;
+end for;
+    if not L!i le L!indi then 
+        groupact:=L[i];
+        CR:=Restriction(CH,L[i]);
+        actG:=groupact@@fmap;
+        if mini(all,actG) then 
+        CG:=CohomologyGroup(CR,0);
+           ptf,pp,waste:=IsPrimePower(#groupact);
+        if  #Schemefixlocus(X,actG,K) eq 0 and ptf then 
+           CG1:=CohomologyGroup(CR,1);
+           if not Degree(CG1) eq 0 then 
+            Append(~rec,<i, GroupName(L[i]),Dimension(CG1),Dimension(CG)>);
+           <i, GroupName(L[i]),IdentifyGroup(L[i]),"Schur mult: ", pMultiplicator(PermutationGroup(FPGroup(L[i])),pp),"H0:", Dimension(CG)>;
+           "";
+           "H1(G,Pic):";
+           CG1;
+           "";
+           "Generators:";
+            for x in Generators(actG) do 
+                ssma:=mmp(x);
+                ssma:=DiagonalJoin(ScalarMatrix(K,1,x[1,1]),ssma);
+                ssma;"";
+            end for;
+            l,s:=st(X,actG,K);"fixed loci stratification:";ndp(s,actG,X);
+             if Dimension(CG) eq 1 then 
+                Append(~h1, <i, GroupName(L[i]),IdentifyGroup(L[i]),pMultiplicator(PermutationGroup(FPGroup(L[i])),pp),"H0:", Dimension(CG),"H1:",Dimension(CG1),checkab(actG,X,K)>);
+             end if;   
+             if Dimension(CG) eq 2 then 
+                Append(~h2, <i, GroupName(L[i]),IdentifyGroup(L[i]),pMultiplicator(PermutationGroup(FPGroup(L[i])),pp),"H0:", Dimension(CG),"H1:",Dimension(CG1),checkab(actG,X,K)>);
+             end if;   
+             //for y in h
+             //for y in h1 do 
+             "----------------------------------------------------";
+         end if;
+     end if;
+          //  if L!i ge L!y then Append(~h1,i);continue i;
+       // end if;
+  //  end for;
+       // CG1:=CohomologyGroup(CR,1);
+      //   if Degree(CG1) ne 0 then  
+         //  Append(~h1,i);
+        //   <i,"CH!!", GroupName(L[i])>;CG1;
+        // end if;
+     end if;
+    end if;
+end for;
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////
+//Below are the groups not listed in Table 3 and their information
+
+
+elim:=[];
+//print elimintae group
+for i in [2..#L] do 
+    //for y in tr do
+//if  L!i ge L!y then continue i;
+//end if;
+//end for;
+for x in C22C4 do 
+    if L!x le L!i then  <i,GroupName(L[i]),"contain " cat "C2^2*C4" cat " with nontrivial Am3">;Append(~elim,i);continue i;
+    end if;
+end for;
+for x in Q8 do 
+    if L!x le L!i then <i,GroupName(L[i]),"contain " cat "Q8" cat " with nontrivial Am3">;Append(~elim,i);continue i;
+    end if;
+end for;
+  if not L!i le L!indi then 
+        groupact:=L[i];
+        CR:=Restriction(CH,L[i]);
+        actG:=groupact@@fmap;
+        if mini(all,actG) then 
+        CG:=CohomologyGroup(CR,0);
+           ptf,pp,waste:=IsPrimePower(#groupact);
+        if  #Schemefixlocus(X,actG,K) eq 0 and ptf then 
+           CG1:=CohomologyGroup(CR,1);
+           if  Degree(CG1) eq 0 then 
+            <i,GroupName(L[i]),"H1 is trivial">;Append(~elim,i);
+         end if;
+     else 
+        if ptf then 
+            <i,GroupName(L[i]),"Have fixed point">;Append(~elim,i);
+        end if;
+     end if;
+          //  if L!i ge L!y then Append(~h1,i);continue i;
+       // end if;
+  //  end for;
+       // CG1:=CohomologyGroup(CR,1);
+      //   if Degree(CG1) ne 0 then  
+         //  Append(~h1,i);
+        //   <i,"CH!!", GroupName(L[i])>;CG1;
+        // end if;
+    else
+         <i,GroupName(L[i]),"Not minimal">;Append(~elim,i);
+     end if;
+else 
+
+    <i,GroupName(L[i]),"Already in Type V">;Append(~elim,i);
+  end if;
+end for;
+
+function findgenmat(L,i,f,mm,K)
+    actG:=L[i]@@f;ngeg:=[];
+    for x in Generators(actG) do 
+                ssma:=mm(x);
+                ssma:=DiagonalJoin(ScalarMatrix(K,1,x[1,1]),ssma);
+                Append(~ngeg,ssma);
+    end for;
+    return ngeg;
+end function;
+
+"Generators of each group are listed below:";
+
+for i in elim do 
+<i,GroupName(L[i]),findgenmat(L,i,fmap,mmp,K)>;
+end for;
+
+
+
+
+
+
+
+
+
 
 
 
