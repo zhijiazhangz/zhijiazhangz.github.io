@@ -1,0 +1,457 @@
+
+
+
+
+
+<HTML>
+<HEAD>
+
+<style type="text/css">
+A:link {TEXT-DECORATION:none; }
+a:visited {TEXT-DECORATION:none; }
+a:active { text-decoration:none; }
+</STYLE>
+
+<body text="#000000" LINK="#0000F0" VLINK="#000090">
+
+<style> A:link {TEXT-DECORATION:"none"}
+        A:visited {TEXT-DECORATION:"none"}
+</STYLE>
+
+<TITLE>dP3</TITLE>
+</HEAD>
+
+
+
+<h1>del Pezzo surface of degree 3</h1>
+
+<br>
+
+<font size="5">
+
+</font>
+
+</body>
+</html>
+The <a ><a href="https://github.com/zhijiazhangz/zhijiazhangz.github.io/blob/main/delta3/dP4_H1.magma">code</a> here recovers Type I actions in Table 3. 
+    
+Below, we display Type I actions not in Table 3, the reasons why they are not, and their generators
+
+<pre>
+
+----------------------------------------------------------------
+<2, "C2", "Not minimal">
+<3, "C2", "Not minimal">
+<4, "C3", "Not minimal">
+<5, "C3", "Condition A is satisfied">
+<6, "C3", "Not minimal">
+<7, "C3", "Not minimal">
+<8, "C2^2", "Not minimal">
+<9, "C2^2", "Not minimal">
+<10, "C4", "Not minimal">
+<19, "C3^2", "Not minimal">
+<20, "C3^2", "Contained in Type IV">
+<22, "C3^2", "Contained in Type IV">
+<21, "C3^2", "Condition A is satisfied">
+<23, "C9", "Condition A is satisfied">
+<24, "D4", "Not minimal">
+<39, "He3", "H1(G,Pic) is trivial">
+<40, "C9:C3", "H1(G,Pic) is trivial">
+<50, "C3wrC3", "H1(G,Pic) is trivial">
+----------------------------------------------------------------
+
+Generators of each group are listed below:
+(The generators are listed as matrices in finite field of size 5281, so 5280=-1, 1403 and 3877 are primitive 3th root of unity)
+<
+    2,
+
+"C2"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 2 * 3
+    Generators:
+        [   0    0    1    0]
+        [   0    1    0    0]
+        [   1    0    0    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    3,
+
+"C2"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 2 * 3
+    Generators:
+        [   0    0    0    1]
+        [   0    0    1    0]
+        [   0    1    0    0]
+        [   1    0    0    0]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    4,
+
+"C3"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 3^2
+    Generators:
+        [3877    0    0    0]
+        [   0    1    0    0]
+        [   0    0 3877    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    5,
+
+"C3"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 3^2
+    Generators:
+        [1403    0    0    0]
+        [   0 1403    0    0]
+        [   0    0 1403    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    6,
+
+"C3"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 3^2
+    Generators:
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+
+        [3877    0    0    0]
+        [   0    1    0    0]
+        [   0    0 1403    0]
+        [   0    0    0    1]
+>
+<
+    7,
+
+"C3"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 3^2
+    Generators:
+        [   0    1    0    0]
+        [   0    0    1    0]
+        [   1    0    0    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    8,
+
+"C2^2"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 2^2 * 3
+    Generators:
+        [   0    0    0    1]
+        [   0    0    1    0]
+        [   0    1    0    0]
+        [   1    0    0    0]
+
+        [   0    0    1    0]
+        [   0    0    0    1]
+        [   1    0    0    0]
+        [   0    1    0    0]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    9,
+
+"C2^2"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 2^2 * 3
+    Generators:
+        [   0    0    1    0]
+        [   0    0    0    1]
+        [   1    0    0    0]
+        [   0    1    0    0]
+
+        [   0    0    1    0]
+        [   0    1    0    0]
+        [   1    0    0    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    10,
+
+"C4"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 2^2 * 3
+    Generators:
+        [   0    0    1    0]
+        [   0    0    0    1]
+        [   1    0    0    0]
+        [   0    1    0    0]
+
+        [   0    0    0 1403]
+        [1403    0    0    0]
+        [   0 1403    0    0]
+        [   0    0 1403    0]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    19,
+
+"C3^2"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 3^3
+    Generators:
+        [3877    0    0    0]
+        [   0 1403    0    0]
+        [   0    0 3877    0]
+        [   0    0    0    1]
+
+        [1403    0    0    0]
+        [   0    1    0    0]
+        [   0    0 3877    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    21,
+
+"C3^2"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 3^3
+    Generators:
+        [1403    0    0    0]
+        [   0    1    0    0]
+        [   0    0 3877    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0    1    0    0]
+        [   0    0 3877    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    20,
+
+"C3^2"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 3^3
+    Generators:
+        [1403    0    0    0]
+        [   0    1    0    0]
+        [   0    0 3877    0]
+        [   0    0    0    1]
+
+        [   1    0    0    0]
+        [   0    1    0    0]
+        [   0    0    1    0]
+        [   0    0    0 1403]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    22,
+
+"C3^2"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 3^3
+    Generators:
+        [   0    0 3877    0]
+        [1403    0    0    0]
+        [   0    1    0    0]
+        [   0    0    0    1]
+
+        [   1    0    0    0]
+        [   0    1    0    0]
+        [   0    0    1    0]
+        [   0    0    0 1403]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    23,
+
+"C9"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 3^3
+    Generators:
+        [   0    0 3877    0]
+        [   1    0    0    0]
+        [   0 3877    0    0]
+        [   0    0    0 1403]
+
+        [1403    0    0    0]
+        [   0 1403    0    0]
+        [   0    0 1403    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    24,
+
+"D4"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 2^3 * 3
+    Generators:
+        [   0    0    0    1]
+        [   0    0    1    0]
+        [   0    1    0    0]
+        [   1    0    0    0]
+
+        [   0    1    0    0]
+        [   1    0    0    0]
+        [   0    0    0    1]
+        [   0    0    1    0]
+
+        [   0    0    1    0]
+        [   0    1    0    0]
+        [   1    0    0    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+>
+<
+    39,
+
+"He3"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 3^4
+    Generators:
+        [   0    1    0    0]
+        [   0    0 1403    0]
+        [3877    0    0    0]
+        [   0    0    0 1403]
+
+        [1403    0    0    0]
+        [   0 1403    0    0]
+        [   0    0 1403    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+
+        [3877    0    0    0]
+        [   0    1    0    0]
+        [   0    0 1403    0]
+        [   0    0    0    1]
+>
+<
+    40,
+
+"C9:C3"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 3^4
+    Generators:
+        [3877    0    0    0]
+        [   0    1    0    0]
+        [   0    0 1403    0]
+        [   0    0    0 1403]
+
+        [1403    0    0    0]
+        [   0 1403    0    0]
+        [   0    0 1403    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+
+        [   0    0    1    0]
+        [   1    0    0    0]
+        [   0 1403    0    0]
+        [   0    0    0    1]
+>
+<
+    50,
+
+"C3wrC3"    ,
+
+    MatrixGroup(4, GF(5281^3)) of order 3^5
+    Generators:
+        [1403    0    0    0]
+        [   0    1    0    0]
+        [   0    0 3877    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0    1    0    0]
+        [   0    0 3877    0]
+        [   0    0    0    1]
+
+        [   0    0 1403    0]
+        [   1    0    0    0]
+        [   0 3877    0    0]
+        [   0    0    0    1]
+
+        [1403    0    0    0]
+        [   0 1403    0    0]
+        [   0    0 1403    0]
+        [   0    0    0    1]
+
+        [3877    0    0    0]
+        [   0 3877    0    0]
+        [   0    0 3877    0]
+        [   0    0    0 3877]
+
+
+</pre>
