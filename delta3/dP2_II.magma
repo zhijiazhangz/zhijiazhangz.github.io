@@ -1280,7 +1280,7 @@ end for;
 
 
 /////////////////////////////////////////////////////////
-//Below we display detail information on groups in Table 3, including H^1(G,Pic) and generators
+//Below we display detail information on groups in Table 4, including H^1(G,Pic) and generators
 
 
 for i in [2..#L] do 
@@ -1349,7 +1349,7 @@ end for;
 
 
 /////////////////////////////////////////////////////////
-//Below are the groups not listed in Table 3 and their information
+//Below are the groups not listed in Table 4 and their information
 
 
 elim:=[];
