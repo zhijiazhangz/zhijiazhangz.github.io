@@ -1250,7 +1250,7 @@ for i in [2..#L] do
         groupact:=L[i];
         CR:=Restriction(CH,L[i]);
         CG:=CohomologyGroup(CR,0);
-        if IsPrimePower(#groupact) then 
+        if IsPrimePower(#groupact) and #groupact mod 3 eq 0 then 
         if not Dimension(CG) eq 1 then <i,GroupName(L[i]),"Not minimal">;Append(~elim,i);continue i;end if;
         if checkab(groupact@@fmap,X,K) then <i,GroupName(L[i]),"Condition A is satisfied">;Append(~elim,i);continue i; end if;
        
