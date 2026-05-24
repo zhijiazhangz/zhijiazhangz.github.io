@@ -1264,7 +1264,7 @@ for i in [2..#L] do
                     Append(~elim,i);continue i;
                 end if;
               CG1:=CohomologyGroup(CR,1);
-              if Dimension(CG1) ne 0 then
+              if Dimension(CG1) eq 0 then
                  <i,"Type II", GroupName(L[i]),"H1(G,Pic) is trivial">;
                     Append(~elim,i);
          end if; end if;
