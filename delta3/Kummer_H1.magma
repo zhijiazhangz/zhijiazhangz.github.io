@@ -1936,14 +1936,13 @@ L:=SubgroupLattice(fff2);
 rec:=[];
 h1:=[];
 
-//When the line 1942 and the line 1972 are removed, the following code will display all G-action on X where 
-//H^1(G,Pic(tilde X)) is nontrivial and G has no smooth fixed point on X, and G is a p-group not containing the Q8
-//It will be clear that all groups showing up have trivial B^3(G) except Q8. So the only candidate is Q8.
-if false then 
-Q8S:=[];
+//the following code will display all p-group G-action on X and indicate when
+//H^1(G,Pic(tilde X)) is trivial; G has smooth fixed point on X; trivial B^3(G) is trivial; 
+//or contains one of the two Q8 in Theorem 4
+Q8S:=[];elimi:=[];
 for i in [2..#L] do 
         for inde in Q8S do 
-            if L!i ge L!inde then continue i;
+            if L!i ge L!inde then  <i, GroupName(L[i]),"Contains one of the two Q8 in Theorem 4">; Append(~elimi,i); continue i;
         end if;
         end for;
         groupact:=(L[i]@@ftr2)@ftr1;
@@ -1952,28 +1951,46 @@ for i in [2..#L] do
    
         CG1:=CohomologyGroup(CR,1);
      ptf,pp,waste:=IsPrimePower(#groupact);
-
-        if ptf and not Degree(CG1) eq 0 and checkab(actG,rX,K) then 
+     if ptf then 
+        if  Degree(CG1) eq 0 then  <i, GroupName(L[i]),"H1(G,Pic) is trivial">; Append(~elimi,i);continue i; end if;
+        if not checkab(actG,rX,K) then <i, GroupName(L[i]),"Condition A is not satisfied">; Append(~elimi,i);continue i; end if;
            fixlocus:=Schemefixlocus(rX,actG,K);
-           if #fixlocus eq 0 then 
-           <i, GroupName(groupact),IdentifyGroup( groupact),Dimension(CG1)>;
-           if GroupName(groupact) eq "Q8" then Append(~Q8S,i);end if;
-           else
-            fixlocusscheme:=&join fixlocus;
+           if #fixlocus ne 0 then 
+           fixlocusscheme:=&join fixlocus;
             if fixlocusscheme meet Sinloc ne fixlocusscheme then 
-               continue i;
-            end if;
-             <i, GroupName(groupact),IdentifyGroup( groupact),Dimension(CG1)>;
-             if GroupName(groupact) eq "Q8" then Append(~Q8S,i);end if;
+               <i, GroupName(L[i]),"Has a smooth G-fixed point">; Append(~elimi,i);continue i; end if;
+                end if;
+           if GroupName(groupact) eq "Q8" then Append(~Q8S,i);  <i, GroupName(L[i]),"One of the two Q8 in Theorem 4">; 
+           else 
+            <i, GroupName(L[i]),"Have trivial B^3">;
            end if;
 
     end if;
 end for;
+
+
+function findgenmat(L,i,mm,K)
+    actG:=((L[i]@@ftr2)@ftr1)@@fmap;ngeg:=[];
+    for x in Generators(actG) do 
+                ssma:=mm(x);
+                ssma:=DiagonalJoin(ScalarMatrix(K,1,x[1,1]),ssma);
+                Append(~ngeg,ssma);
+    end for;
+    return ngeg;
+end function;
+
+for i in [2..#L] do 
+    if IsPrimePower(#L[i]) then 
+    PrintFile("out",<i,GroupName(L[i]),findgenmat(L,i,gpmap,K)>);
 end if;
+end for;
 
 
 
 
+
+
+//The following part computes the Amistur 3 for Q8 (including one which has a fixed point)
 HH:=[];
 
 for i in [1..#L] do
@@ -2067,7 +2084,6 @@ rxg:=rx@@GtoP;
 ryg:=ry@@GtoP;
 
 actG:=sub<rG|rxg,ryg>;
-<Hh[1],"Have fixed point", #Schemefixlocus(rX,actG,K) ne 0,"H1:",Degree(H1P)>;
 bbs:=Basis(H1P);
 for xxx in bbs do 
 bs:=Eltseq(xxx@@quomp);
@@ -2251,9 +2267,13 @@ a2:=PX!(1/scalden)*(&*([PX!1] cat [npoll[i]^(-polcoef[i]):i in [1..#npoll]|polco
 tf1:=a1 eq a2;
 //tf2:=a1 eq -a2;
 [tf1];
-if not tf1 then continue H;end if;
+if not tf1 then <Hh[1],"Have fixed point:", #Schemefixlocus(rX,actG,K) ne 0,"H1:",Degree(H1P)>;
+"nontrivial AM^3";"--------------------"; continue Hhind;end if;
 //If tf1=false, then the 2 cocycle does not lift, and thus maps to a nontrivial element in H^3(G,k^\times)
 end for;
+<Hh[1],"Have fixed point:", #Schemefixlocus(rX,actG,K) ne 0,"H1:",Degree(H1P)>;
+"trivial AM^3";"--------------------";continue Hhind;
 
 end for;
+
 end for;
