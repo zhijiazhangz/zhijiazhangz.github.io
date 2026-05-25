@@ -1359,6 +1359,7 @@ for i in [2..#L] do
 //if  L!i ge L!y then continue i;
 //end if;
 //end for;
+if not (IsPrimePower(#L[i]) and #L[i] mod 2 eq 0) then continue i;end if;
 for x in C22C4 do 
     if L!x le L!i then  <i,GroupName(L[i]),"contain " cat "C2^2*C4" cat " with nontrivial Am3">;Append(~elim,i);continue i;
     end if;
