@@ -1836,12 +1836,12 @@ end for;
 
 nrel:=[];
 for x in rell do 
-    sinct:=[0:i in [1..16]];
+    sinct:=[Rationals()!0:i in [1..16]];
     for y in [1..#x] do 
         if x[y] ne 0 then 
             for z in [1..#Sin] do 
                 if Dimension(Sin[z] meet Clgen[y]) ne -1 then
-                    sinct[z]+:=x[y]*1;
+                    sinct[z]+:=x[y]*(1/2);
                 end if;
             end for;
         end if;
@@ -2000,7 +2000,7 @@ for i in [1..#L] do
 end for;
 
 for Hhind in [1,2,3] do 
-    Hh:=HH[Hhind];
+    Hh:=HH[Hhind];Hhind;
     for H in [[x:x in Conjugates(Paction,Hh[2])][i]:i in [2..6]] do
        
 F<x,y>:=FreeGroup(2);
