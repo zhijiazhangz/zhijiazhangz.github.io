@@ -1,17 +1,13 @@
-////////////////////////////////////////////////////////////////////////////////////////////////
 // The codes include a construction of 
 // Spec(Cox(X)) for the C3 : C4 quartic del Pezzo surface and
 // we check the lift of the action on the Cox ring is compatible with anticanonical model of S
 // Ground field: Q(z), z^2 + z + 1 = 0.
-// 
-///////////////////////////////////////////////////////////////////////////////////////////////
 
 K:= CyclotomicField(3);
 a:=RootOfUnity(3);
 b:=a^2;
 
-P15<q,e1,e2,e3,e4,e5,
-    l12,l13,l14,l15,l23,l24,l25,l34,l35,l45> := ProjectiveSpace(K,15);
+P15<q,e1,e2,e3,e4,e5,l12,l13,l14,l15,l23,l24,l25,l34,l35,l45> := ProjectiveSpace(K,15);
 PP15 := CoordinateRing(P15);
 R := [
     e2*l12 - e3*l13 + e4*l14,
@@ -81,10 +77,7 @@ Mtau := MonomialMatrix(
     ]
 );
 
-Gcox := sub< GL(16,K) |
-    GL(16,K)!Transpose(Msigma),
-    GL(16,K)!Transpose(Mtau)
->;
+Gcox := sub< GL(16,K) |GL(16,K)!Transpose(Msigma),GL(16,K)!Transpose(Mtau)>;
 
 
 
@@ -273,11 +266,10 @@ for i,j in [1..16] do
      end if;
 end for;
 
-pMg eq ngen[1];
-pMb eq ngen[2];
+"Check the action on Cox generators agrees with the action on exceptionals curves in the given anticanonical model:";
+pMg eq ngen[1] and pMb eq ngen[2];
+"";
 
-
-//check the anticanonical map is G equivariant
 
 //Define anticanonical map
 s1 :=
@@ -313,6 +305,6 @@ anticanonical:=map<P15->P4|antiForms>;
 
 //Check the image of the anticanonical map agrees with the surface S
 X1:=anticanonical(Y);
-
+"Check image of the anticanonical map agrees witht the given equations:";
 X1 eq S;
 //Note that the C3:C4 action on dP4 is unique. So our action on the Cox ring is indeed compatible with S
