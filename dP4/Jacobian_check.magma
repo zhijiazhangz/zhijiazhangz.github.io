@@ -1,0 +1,88 @@
+////////////////////////////////////////////////////////////////////////////////////////////////
+// The codes include relevant computations in Lemma 3.2
+// We compute Jacobian matrix of the Cox ring and its rank/kernel.
+// Base field Q(a,b)
+///////////////////////////////////////////////////////////////////////////
+K<a,b>:=FunctionField(Rationals(),2);
+
+
+P<
+    q,e1,e2,e3,e4,e5,
+    l12,l13,l14,l15,l23,l24,l25,l34,l35,l45
+> := PolynomialRing(K,16);
+
+///////////////////////////////////////////////////////////////////////////
+// The 20 Cox relations
+///////////////////////////////////////////////////////////////////////////
+
+R := [
+    e2*l12 - e3*l13 + e4*l14,
+    a*e2*l12 - b*e3*l13 + e5*l15,
+
+    e1*l12 - e3*l23 + e4*l24,
+    e1*l12 - b*e3*l23 + e5*l25,
+
+    e1*l13 - e2*l23 + e4*l34,
+    e1*l13 - a*e2*l23 + e5*l35,
+
+    e1*l14 - e2*l24 + e3*l34,
+    (b-1)*e1*l14 + (a-b)*e2*l24 + e5*l45,
+
+    e1*l15 - a*e2*l25 + b*e3*l35,
+    (a-1)*e2*l25 + (1-b)*e3*l35 + e4*l45,
+
+    l23*l45 + l24*l35 - l25*l34,
+    a*l23*l45 + (a-b)*l24*l35 - e1*q,
+
+    l13*l45 + l14*l35 - l15*l34,
+    l13*l45 + (1-b)*l14*l35 - e2*q,
+
+    l12*l45 + l14*l25 - l15*l24,
+    l12*l45 + (1-a)*l14*l25 - e3*q,
+
+    l12*l35 - l13*l25 + l15*l23,
+    (b-1)*l12*l35 + (1-a)*l13*l25 - e4*q,
+
+    l12*l34 - l13*l24 + l14*l23,
+    a*(b-1)*l12*l34 + b*(1-a)*l13*l24 - e5*q
+];
+
+//Construct the Jacbian matrix
+J:=ZeroMatrix(P,20,16);
+for i in [1..20] do 
+    for j in [1..16] do 
+        J[i,j]:=Derivative(R[i],P.j);
+    end for;
+end for;
+
+//two points t1, t2 in Lemma 3.2
+t1:=[0,1,1] cat [0:i in [1..13]];
+t2:=[1,0,0,0,0,0,1] cat [0:i in [1..9]];
+
+//Check t1,t2 are in U
+&and[x eq 0: x in Evaluate(R,t1) cat Evaluate(R,t2)];
+
+
+
+//Note that Magma compute left Kernel
+//Tangent1 is the tangent space at t1
+Jt1:=Evaluate(J,t1);
+Tangent1:=Kernel(Transpose(Jt1));
+
+
+//Tangent2 is the tangent space at t2
+Jt2:=Evaluate(J,t2);
+Tangent2:=Kernel(Transpose(Jt2));
+
+//Check the matrix whose rows are basis of Tangent1 and Tangent2 is invertible
+
+M:=Matrix(P,[Eltseq(x): x in Basis(Tangent1)] cat [Eltseq(x): x in Basis(Tangent2)]);
+
+Determinant(M);// eq -1, thus Tangent1+Tangent6=A^{16} for any a,b
+
+
+
+//Check rank of J at a t1+t2
+RowSpace(Evaluate(J,[t1[i]+t2[i]: i in [1..16]]));
+//One sees it has dimension 15, and independent of a,b
+//So Kernel(J(t1+t2)) has dimension 1

@@ -1,0 +1,318 @@
+////////////////////////////////////////////////////////////////////////////////////////////////
+// The codes include a construction of 
+// Spec(Cox(X)) for the C3 : C4 quartic del Pezzo surface and
+// we check the lift of the action on the Cox ring is compatible with anticanonical model of S
+// Ground field: Q(z), z^2 + z + 1 = 0.
+// 
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+K:= CyclotomicField(3);
+a:=RootOfUnity(3);
+b:=a^2;
+
+P15<q,e1,e2,e3,e4,e5,
+    l12,l13,l14,l15,l23,l24,l25,l34,l35,l45> := ProjectiveSpace(K,15);
+PP15 := CoordinateRing(P15);
+R := [
+    e2*l12 - e3*l13 + e4*l14,
+    a*e2*l12 - b*e3*l13 + e5*l15,
+
+    e1*l12 - e3*l23 + e4*l24,
+    e1*l12 - b*e3*l23 + e5*l25,
+
+    e1*l13 - e2*l23 + e4*l34,
+    e1*l13 - a*e2*l23 + e5*l35,
+
+    e1*l14 - e2*l24 + e3*l34,
+    (b-1)*e1*l14 + (a-b)*e2*l24 + e5*l45,
+
+    e1*l15 - a*e2*l25 + b*e3*l35,
+    (a-1)*e2*l25 + (1-b)*e3*l35 + e4*l45,
+
+    l23*l45 + l24*l35 - l25*l34,
+    a*l23*l45 + (a-b)*l24*l35 - e1*q,
+
+    l13*l45 + l14*l35 - l15*l34,
+    l13*l45 + (1-b)*l14*l35 - e2*q,
+
+    l12*l45 + l14*l25 - l15*l24,
+    l12*l45 + (1-a)*l14*l25 - e3*q,
+
+    l12*l35 - l13*l25 + l15*l23,
+    (b-1)*l12*l35 + (1-a)*l13*l25 - e4*q,
+
+    l12*l34 - l13*l24 + l14*l23,
+    a*(b-1)*l12*l34 + b*(1-a)*l13*l24 - e5*q
+];
+
+
+CoxRelations := R;
+
+IY := ideal<PP15 | CoxRelations>;
+Y  := Scheme(P15,CoxRelations);
+Cox:=PP15/IY;
+
+
+function MonomialMatrix(F, support, coefficient)
+    n := #support;
+    M := ZeroMatrix(F,n,n);
+    for i in [1..n] do
+        M[i,support[i]] := coefficient[i];
+    end for;
+    return M;
+end function;
+
+// Matrix of sigma
+Msigma := MonomialMatrix(
+    K,
+    [ 1, 3, 4, 2, 5, 6, 11, 7, 12, 13, 8, 14, 15, 9, 10, 16 ],
+    [ K | 1,1,1,1,1,1, a,a,-a,-1,a,-a,-1,a,1,1 ]
+);
+
+// Matrix of tau
+Mtau := MonomialMatrix(
+    K,
+    [ 5, 9, 14, 12, 16, 1, 13, 15, 11, 2, 10, 7, 4, 8, 3, 6 ],
+    [ K |
+      3*(b-1), (b-1)/3, (a-b)/3, (a-1)/3,
+      (b-1)/9, (a-1)/9, (b-1)/3, (a-1)/3,
+      b-a, 1-a, (b-a)/3, b-1,
+      a-1, a-1, 1-a, 3*(a-1)
+    ]
+);
+
+Gcox := sub< GL(16,K) |
+    GL(16,K)!Transpose(Msigma),
+    GL(16,K)!Transpose(Mtau)
+>;
+
+
+
+//Check action on generators agree with actions on the curves in the anticanonical model 
+
+function schememove(X,g)//Find gX where g is an group element
+
+Pp:=AmbientSpace(X);
+kx:=CoordinateRing(Pp);
+
+image:=[];
+for i in [1..Dimension(Pp)+1] do
+se:=Eltseq(Transpose(Matrix(g^(-1)))[i]);
+poly:=0;
+for j in [1..#se] do
+poly+:=se[j]*kx.j;
+end for;
+Append(~image, poly);
+end for;
+fp:=hom<kx->kx|image>;
+defpoly:=DefiningPolynomials(X);
+newpoly:=[fp(pol):pol in defpoly];
+newscheme:=Scheme(Pp,newpoly);
+
+return newscheme;
+end function;
+
+
+//Build anticanonical model of S
+M:=GL(5,K);
+z:=a;
+P4<x1,x2,x3,x4,x5> := ProjectiveSpace(K,4);
+
+q1 := x1^2 + z*x2^2 + z^2*x3^2 + x4^2;
+q2 := x1^2 + z^2*x2^2 + z*x3^2 + x5^2;
+
+X := Scheme(P4,[q1,q2]);
+S := X;
+
+//Construction G-action on S
+s:=Matrix(K,5,5,[0,0,1,0,0,
+                 1,0,0,0,0,
+                 0,1,0,0,0,
+                 0,0,0,z,0,
+                 0,0,0,0,z^2
+                 ]);
+s2:=Matrix(K,5,5,[1,0,0,0,0,
+                  0,0,1,0,0,
+                  0,1,0,0,0,
+                  0,0,0,0,1,
+                  0,0,0,-1,0
+                 ]);
+G:=sub<M|s,s2>;
+
+
+// Curves Ei
+
+E1 := Scheme(X,[
+    x3 - x1 + x2,
+    x4 - z^2*x1 - x2,
+    x5 - z*x1 - x2
+]);
+
+E2 := Scheme(X,[
+    x3 + x1 - x2,
+    x4 + z^2*x1 + x2,
+    x5 + z*x1 + x2
+]);
+
+E3 := Scheme(X,[
+    x3 - x1 - x2,
+    x4 + z^2*x1 - x2,
+    x5 + z*x1 - x2
+]);
+
+E4 := Scheme(X,[
+    x3 + x1 + x2,
+    x4 - z^2*x1 + x2,
+    x5 + z*x1 - x2
+]);
+
+E5 := Scheme(X,[
+    x3 + x1 + x2,
+    x4 + z^2*x1 - x2,
+    x5 - z*x1 + x2
+]);
+
+// Curves Lij
+
+L12 := Scheme(X,[
+    x3 - x1 - x2,
+    x4 - z^2*x1 + x2,
+    x5 - z*x1 + x2
+]);
+
+L13 := Scheme(X,[
+    x3 + x1 - x2,
+    x4 - z^2*x1 - x2,
+    x5 - z*x1 - x2
+]);
+
+L14 := Scheme(X,[
+    x3 - x1 + x2,
+    x4 + z^2*x1 + x2,
+    x5 - z*x1 - x2
+]);
+
+L15 := Scheme(X,[
+    x3 - x1 + x2,
+    x4 - z^2*x1 - x2,
+    x5 + z*x1 + x2
+]);
+
+L23 := Scheme(X,[
+    x3 - x1 + x2,
+    x4 + z^2*x1 + x2,
+    x5 + z*x1 + x2
+]);
+
+L24 := Scheme(X,[
+    x3 + x1 - x2,
+    x4 - z^2*x1 - x2,
+    x5 + z*x1 + x2
+]);
+
+L25 := Scheme(X,[
+    x3 + x1 - x2,
+    x4 + z^2*x1 + x2,
+    x5 - z*x1 - x2
+]);
+
+L34 := Scheme(X,[
+    x3 - x1 - x2,
+    x4 - z^2*x1 + x2,
+    x5 + z*x1 - x2
+]);
+
+L35 := Scheme(X,[
+    x3 - x1 - x2,
+    x4 + z^2*x1 - x2,
+    x5 - z*x1 + x2
+]);
+
+L45 := Scheme(X,[
+    x3 + x1 + x2,
+    x4 - z^2*x1 + x2,
+    x5 - z*x1 + x2
+]);
+
+//Curve Q
+Q := Scheme(X,[
+    x3 + x1 + x2,
+    x4 + z^2*x1 - x2,
+    x5 + z*x1 - x2
+]);
+
+//Store all 16 excpetional curves in one sequence
+
+all:=[Q,E1,E2,E3,E4,E5,L12,L13,L14,L15,L23,L24,L25,L34,L35,L45];
+
+//Find permutation action of G on 16 curves
+//ngen consists its two generators
+ngen:=[];
+for rr in [1..Ngens(G)] do
+     g:=G.rr;
+    ng:=ZeroMatrix(Integers(),16,16);
+    for i in [1..16] do
+        ng[i,Position(all,schememove(all[i],g))]:=1;
+    end for;
+    Append(~ngen,ng);
+end for;
+
+Z:=Integers();
+pMg:=ZeroMatrix(Z,16,16);
+for i,j in [1..16] do 
+     if Transpose(Msigma)[i,j] ne 0 then 
+          pMg[i,j]:=1;
+     end if;
+end for;
+
+//Check the permutation action on 16 curves on the anticanonical model agrees with that on the Cox generators
+pMb:=ZeroMatrix(Z,16,16);
+for i,j in [1..16] do 
+     if Transpose(Mtau)[i,j] ne 0 then 
+          pMb[i,j]:=1;
+     end if;
+end for;
+
+pMg eq ngen[1];
+pMb eq ngen[2];
+
+
+//check the anticanonical map is G equivariant
+
+//Define anticanonical map
+s1 :=
+    q*e2*e3*l23
+    - e1*l12*l13*l45;
+
+s2 :=
+    a*q*e1*e3*l13
+    - b*e2*l12*l23*l45;
+
+s3 :=
+    q*e2*e3*l23
+    + a*q*e1*e3*l13
+    + 2*b*q*e1*e2*l12
+    + b*e2*l12*l23*l45
+    + e1*l12*l13*l45;
+
+s4 :=
+    b*q*e2*e3*l23
+    - a*q*e1*e3*l13
+    - b*e2*l12*l23*l45
+    + b*e1*l12*l13*l45;
+
+s5 :=
+    a*q*e2*e3*l23
+    - a*q*e1*e3*l13
+    - b*e2*l12*l23*l45
+    + a*e1*l12*l13*l45;
+
+antiForms := [s1,s2,s3,s4,s5];
+
+anticanonical:=map<P15->P4|antiForms>;
+
+//Check the image of the anticanonical map agrees with the surface S
+X1:=anticanonical(Y);
+
+X1 eq S;
+//Note that the C3:C4 action on dP4 is unique. So our action on the Cox ring is indeed compatible with S
