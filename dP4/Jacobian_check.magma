@@ -1,19 +1,12 @@
-////////////////////////////////////////////////////////////////////////////////////////////////
 // The codes include relevant computations in Lemma 3.2
 // We compute Jacobian matrix of the Cox ring and its rank/kernel.
 // Base field Q(a,b)
-///////////////////////////////////////////////////////////////////////////
 K<a,b>:=FunctionField(Rationals(),2);
 
 
-P<
-    q,e1,e2,e3,e4,e5,
-    l12,l13,l14,l15,l23,l24,l25,l34,l35,l45
-> := PolynomialRing(K,16);
+P<q,e1,e2,e3,e4,e5,l12,l13,l14,l15,l23,l24,l25,l34,l35,l45> := PolynomialRing(K,16);
 
-///////////////////////////////////////////////////////////////////////////
 // The 20 Cox relations
-///////////////////////////////////////////////////////////////////////////
 
 R := [
     e2*l12 - e3*l13 + e4*l14,
@@ -60,8 +53,9 @@ t1:=[0,1,1] cat [0:i in [1..13]];
 t2:=[1,0,0,0,0,0,1] cat [0:i in [1..9]];
 
 //Check t1,t2 are in U
+"Check t1,t2 are in U:";
 &and[x eq 0: x in Evaluate(R,t1) cat Evaluate(R,t2)];
-
+"";
 
 
 //Note that Magma compute left Kernel
@@ -77,12 +71,16 @@ Tangent2:=Kernel(Transpose(Jt2));
 //Check the matrix whose rows are basis of Tangent1 and Tangent2 is invertible
 
 M:=Matrix(P,[Eltseq(x): x in Basis(Tangent1)] cat [Eltseq(x): x in Basis(Tangent2)]);
-
+"Determinant of the 16x16 matrices whoese rows span the sum of 2 Tangent spaces";
 Determinant(M);// eq -1, thus Tangent1+Tangent6=A^{16} for any a,b
+"";
 
 
 
 //Check rank of J at a t1+t2
+"Span of the rows of the Jacobian evaluated at point t1+t2";
 RowSpace(Evaluate(J,[t1[i]+t2[i]: i in [1..16]]));
+"";
+
 //One sees it has dimension 15, and independent of a,b
 //So Kernel(J(t1+t2)) has dimension 1
