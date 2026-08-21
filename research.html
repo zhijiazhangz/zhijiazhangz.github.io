@@ -12,9 +12,8 @@
 A:link {TEXT-DECORATION:none; }
 a:visited {TEXT-DECORATION:none; }
 a:active { text-decoration:none; }
-</STYLE
+</STYLE>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<body text="#000000" LINK="#0000F0" VLINK="#000090"  style="background-color:#F3F2F0">
 
 <style> A:link {TEXT-DECORATION:"none"}
         A:visited {TEXT-DECORATION:"none"}
@@ -27,9 +26,31 @@ a:active { text-decoration:none; }
               open parenthesis + counter + close parenthesis */
     .laparent li:before { content: " [" counter(item,lower-alpha) "] "; }
 </style>
+<style>
+    /* Give each publication room to breathe without changing the page's visual identity. */
+    .papers-list {
+      margin-top: 0.55em;
+      margin-bottom: 0.75em;
+      padding-left: 2.2em;
+    }
+
+    .papers-list li {
+      margin: 0 0 0.85em 0;
+      padding-left: 0.12em;
+      line-height: 1.18;
+    }
+
+    .papers-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .papers-list li p {
+      margin: 0;
+    }
+</style>
    <TITLE>research</TITLE>
 </HEAD>
-<body text="#000000" bgcolor="#FFFFFF">
+<body text="#000000" LINK="#0000F0" VLINK="#000090" style="background-color:#F3F2F0">
 
 
 <table width="95%">
@@ -61,7 +82,7 @@ a:active { text-decoration:none; }
  
 <b><font size="+1" style="color:#1E2E67">Papers</font></b> (my <A href="https://arxiv.org/a/zhang_z_27.html" style="color:#B31B1B">arxiv page</A>)
 <br>
-<ol reversed>
+<ol class="papers-list" reversed>
   <li><p><A href="https://zhijiazhangz.github.io/dP4torsor.pdf" style="color:#334EAC">Universal torsors over quartic del Pezzo surfaces and stable rationality</A>, (with Yu. Tschinkel), 24 pp., <em>submitted</em>, (2026)  [<A href="" style="color:#503C09">arxiv</A>]</p></li>
 <li><p><A href="https://zhijiazhangz.github.io/highAm.pdf" style="color:#334EAC">Birational invariance of higher Amitsur groups</A>, (with F. Scavia and Yu. Tschinkel), 28 pp., <em>submitted</em>, (2026)  [<A href="https://arxiv.org/abs/2605.02763" style="color:#503C09">arxiv</A>]</p></li>
 <li><p><A href="https://zhijiazhangz.github.io/dPcr2.pdf" style="color:#334EAC">Birational geometry of actions on del Pezzo surfaces</A>, (with I. Cheltsov and Yu. Tschinkel), 46 pp., <em>submitted</em>, (2026)  [<A href="https://arxiv.org/abs/2604.20425" style="color:#503C09">arxiv</A>]</p></li>
@@ -94,4 +115,6 @@ a:active { text-decoration:none; }
   </ol>
 <br>
 <br>
+</body>
+</html>
  
