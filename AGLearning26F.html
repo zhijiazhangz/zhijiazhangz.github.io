@@ -1,183 +1,79 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Fall 2026 algebraic geometry learning seminar on matroids and the integral Hodge conjecture.">
-  <title>Matroids and the Integral Hodge Conjecture</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 48px 20px;
-      color: #222;
-      background: #eef3f7;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
-    }
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML lang="en">
+<HEAD>
+<style> 
+    .move-up { 
+      margin-top: -10px; /* Adjust the value as needed */ 
+    } 
+  </style> 
+<style type="text/css">
+A:link {TEXT-DECORATION:none; }
+a:visited {TEXT-DECORATION:none; }
+a:active { text-decoration:none; }
+</STYLE
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<body text="#000000" LINK="#0000F0" VLINK="#000090"  style="background-color:#F3F2F0">
 
-    main {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 38px 44px 44px;
-      border: 1px solid #d5dfe7;
-      border-top: 5px solid #315f8c;
-      border-radius: 3px;
-      background: #fff;
-      box-shadow: 0 3px 12px rgba(34, 57, 78, 0.08);
-    }
+<style> A:link {TEXT-DECORATION:"none"}
+        A:visited {TEXT-DECORATION:"none"}
+</STYLE>
+<style>
+    /* css handles the parentheses/brackets */
+    .laparent ol { counter-reset: item }
+    .laparent li { display: block ; counter-increment: item; }
+    /* replace the counter before list item with
+              open parenthesis + counter + close parenthesis */
+    .laparent li:before { content: " [" counter(item,lower-alpha) "] "; }
+</style>
+   <TITLE>Zhijia Zhang 张智嘉</TITLE>
+</HEAD>
+<body text="#000000" bgcolor="#FFFFFF">
 
-    h1 {
-      margin: 0 0 20px;
-      color: #244b70;
-      font-size: 30px;
-      font-weight: 600;
-    }
 
-    h2 {
-      margin: 32px 0 12px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #d8e1e8;
-      color: #244b70;
-      font-size: 21px;
-      font-weight: 600;
-    }
+<table width="95%">
+<tbody><tr align="left">
 
-    p {
-      margin: 0 0 16px;
-    }
 
-    a {
-      color: #1f5d92;
-    }
+<td align="right"></td></tr>
+<tr align="left">
+<td>
+<b><font size="+2" style="color:#1E2E67">Zhijia Zhang </font>&nbsp;<font size="+2" style="color:#1E2E67">张智嘉</font></b><br>
+</td>
+</tr>
 
-    ul,
-    ol {
-      padding-left: 28px;
-    }
+</tbody></table>
+<HR>
 
-    li {
-      margin-bottom: 10px;
-    }
+ <b>Email</b>: zhang.zhijia@columbia.edu
+    <br>
+   <br>
+<b>Office</b>: <em> 2990 Broadway, Rm 413, New York, NY 10027 </em>
+  <br>
+   <br> 
+   <br>
+I am a Postdoctoral Research Scholar at
+    <a href="https://www.math.columbia.edu" style="color:#1D536C">Columbia University</a>. I received my PhD in 2026 from <a href="http://www.cims.nyu.edu/" style="color:#1D536C">
+Courant Institute</a>, <a href="http://www.nyu.edu" style="color:#1D536C">New York University</a>.
+  <br><br>
 
-    .details {
-      margin: 24px 0;
-    }
+My research interests are in algebraic geometry, especially (equivariant) birational geometry and rationality problems. 
 
-    .details p {
-      margin: 0;
-    }
+ 
+  <br><br>
+Here is my <b><a href="https://zhijiazhangz.github.io/cv.pdf" style="color:#1D536C">
+CV</a></b>.
+  <br>
+   <br> 
+   <br>
+   <br>
+   
+<b><A href="https://zhijiazhangz.github.io/research"><font size="+1" style="color:#1E2E67">Research</A></font></b> 
+ <br> 
+<br>
+<b><A href="https://zhijiazhangz.github.io/travel"><font size="+1" style="color:#1E2E67">Travel</A></font></b>
 
-    .ref-tag {
-      display: inline-block;
-      margin-right: 6px;
-      padding: 1px 6px;
-      border: 1px solid #aebdca;
-      border-radius: 3px;
-      background: #f4f7fa;
-      color: #344f68;
-      font-family: monospace;
-      font-size: 14px;
-      font-weight: 600;
-    }
+   <br> 
+<br>
+ <br> 
 
-    .schedule {
-      margin-top: 0;
-      padding-left: 0;
-      border-top: 1px solid #d8e1e8;
-      list-style: none;
-    }
-
-    .schedule li {
-      margin: 0;
-      padding: 11px 6px;
-      border-bottom: 1px solid #d8e1e8;
-    }
-
-    .schedule strong {
-      display: inline-block;
-      min-width: 178px;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 18px 10px;
-      }
-
-      main {
-        padding: 26px 22px 30px;
-      }
-
-      h1 {
-        font-size: 26px;
-      }
-
-      .schedule strong {
-        display: block;
-        min-width: 0;
-        margin-bottom: 2px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <main>
-    <h1>Matroids and the Integral Hodge Conjecture</h1>
-
-    <p>
-      This is an algebraic geometry learning seminar (Fall 2026) on matroids, degenerations of
-      abelian varieties, and their applications to the integral Hodge conjecture, stable rationality of cubic threefolds and complex structures on S<sup>6</sup>.
-    </p>
-
-    <div class="details">
-      <p>
-        <strong>Time:</strong> Fridays, 1:30–3:00 pm<br>
-        <strong>Location:</strong> Room 507, Mathematics Hall<br>
-        <strong>Organizers:</strong>
-        <a href="https://sites.google.com/view/jameshotchkiss">James Hotchkiss</a>
-        and
-        <a href="https://zhijiazhangz.github.io/">Zhijia Zhang</a>
-      </p>
-    </div>
-
-    <h2>References</h2>
-
-    <ol>
-      <li>
-        <span class="ref-tag">[EFS]</span>
-        Philip Engel, Olivier de Gaay Fortman, and Stefan Schreieder,
-        <a href="https://arxiv.org/abs/2507.15695">Combinatorics and Hodge theory of degenerations of abelian varieties: A survey of the Mumford construction</a>.
-      </li>
-      <li>
-        <span class="ref-tag">[EFS2]</span>
-        Philip Engel, Olivier de Gaay Fortman, and Stefan Schreieder,
-        <a href="https://arxiv.org/abs/2507.15704">Matroids and the integral Hodge conjecture for abelian varieties</a>.
-      </li>
-      <li>
-        <span class="ref-tag">[E]</span>
-        Philip Engel,
-        <a href="https://philip-engel.github.io/S6.pdf">Complex structures on S<sup>6</sup></a>.
-      </li>
-    </ol>
-
-    <h2>Schedule</h2>
-
-    <ul class="schedule">
-      <li><strong>September 18:</strong> TBD</li>
-      <li><strong>September 25:</strong> TBD</li>
-      <li><strong>October 2:</strong>TBD</li>
-      <li><strong>October 9:</strong> TBD</li>
-      <li><strong>October 16:</strong> TBD</li>
-      <li><strong>October 23:</strong> TBD</li>
-      <li><strong>October 30:</strong> TBD</li>
-      <li><strong>November 6:</strong> TBD</li>
-      <li><strong>November 13:</strong> TBD</li>
-      <li><strong>November 20:</strong> TBD</li>
-      <li><strong>November 27:</strong> Thanksgiving</li>
-      <li><strong>December 4:</strong> TBD</li>
-      <li><strong>December 11:</strong> TBD</li>
-    </ul>
-  </main>
-</body>
-</html>
+ <small> <em>Last update: August, 2026</em></small>
