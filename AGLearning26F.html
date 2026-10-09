@@ -93,6 +93,55 @@
       min-width: 158px;
     }
 
+    /* Keep the abstract button directly below its talk title. */
+    .schedule .talk-row {
+      display: grid;
+      grid-template-columns: 158px minmax(0, 1fr);
+      column-gap: 4px;
+    }
+
+    .talk-abstract {
+      margin-top: 6px;
+    }
+
+    .talk-abstract > summary {
+      display: inline-block;
+      padding: 3px 9px;
+      border: 1px solid #aebdca;
+      border-radius: 3px;
+      background: transparent;
+      color: #244b70;
+      font-size: 13px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .talk-abstract > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .talk-abstract > summary:hover,
+    .talk-abstract[open] > summary {
+      background: #e3e9ee;
+    }
+
+    .talk-abstract > summary:focus-visible {
+      outline: 2px solid #1f5d92;
+      outline-offset: 3px;
+    }
+
+    .abstract-text {
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-left: 3px solid #aebdca;
+      background: #faf9f7;
+      overflow-wrap: anywhere;
+    }
+
+    .abstract-text > :last-child {
+      margin-bottom: 0;
+    }
+
     @media (max-width: 600px) {
       body {
         padding: 18px 14px;
@@ -110,6 +159,10 @@
         display: block;
         min-width: 0;
         margin-bottom: 2px;
+      }
+
+      .schedule .talk-row {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
@@ -187,12 +240,37 @@
     </ol>
 
     <h2>Schedule</h2>
-
     <ul class="schedule">
-      <li><strong>September 18:</strong> Introductions (Speaker: James Hotchkiss) </li>
-      <li><strong>September 25:</strong> Backgrounds on degenerations of abelian varieties (Speaker: Yoonjoo Kim)</li>
+       <li><strong>September 18:</strong>Introductions (Speaker: James Hotchkiss)</li>
+      <li class="talk-row">
+        <strong>September 25:</strong>
+        <div>
+          <div>Backgrounds on degenerations of abelian varieties (Speaker: Yoonjoo Kim)</div>
+          <details class="talk-abstract">
+            <summary>Abstract</summary>
+            <div class="abstract-text">
+              <!-- Replace this placeholder with the September 25 abstract. -->
+              <p>We will learn/review some basic material for our discussion of matroidal degenerations of abelian varieties. This includes principally polarized abelian varieties (ppav), Hodge structures of weight -1, log monodromies, and toroidal compactifications of A_g associated to certain cones B of positive-definite symmetric matrices / Q.
+</p>
+            </div>
+          </details>
+        </div>
+      </li>
       <li><strong>October 2:</strong> No meeting</li>
-      <li><strong>October 9:</strong> TBD </li>
+         <li><strong>October 2:</strong> No meeting</li>
+            <li class="talk-row">
+        <strong>October 9:</strong>
+        <div>
+          <div>Mumford construction over a polydisk (Speaker: Daigo Ito)</div>
+          <details class="talk-abstract">
+            <summary>Abstract</summary>
+            <div class="abstract-text">
+              <!-- Replace this placeholder with the September 25 abstract. -->
+              <p>We will first explain the basic idea of the Mumford construction via equivariant toric extensions of intermediate covers, and then describe the construction over a polydisk. We will also briefly discuss its connection with toroidal compactifications of A_g. </p>
+            </div>
+          </details>
+        </div>
+      </li>
       <li><strong>October 16:</strong> TBD</li>
       <li><strong>October 23:</strong> TBD</li>
       <li><strong>October 30:</strong> TBD</li>
